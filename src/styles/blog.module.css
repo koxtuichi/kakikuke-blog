@@ -47,6 +47,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 3px;
 }
 .draftBadge {
   border-radius: 16px;
@@ -65,7 +68,6 @@
 .postPreview {
   max-width: 600px;
   margin: 10px auto;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
 }
 
 .postPreview:last-child {
@@ -135,4 +137,18 @@
 
 .post :global(a + p) {
   margin-top: 0;
+}
+
+.tag {
+  color: white;
+  background-color: black;
+  height: 25px;
+  min-height: 25px;
+  line-height: 25px;
+  margin-top: 5px;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 12px;
+  display: inline-block;
+  padding: 0 10px;
 }

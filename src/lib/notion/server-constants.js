@@ -15,8 +15,12 @@ const normalizeId = id => {
   )}-${id.substr(20)}`
 }
 
-const NOTION_TOKEN = process.env.NOTION_TOKEN
-const BLOG_INDEX_ID = normalizeId(process.env.BLOG_INDEX_ID)
+const NOTION_TOKEN =
+  process.env.NOTION_TOKEN ||
+  'd0bab8627e88a19670e14bb5052ee0df226b3bd66aec4a1f764a4db2ba074b645458544dc07e7532d2a0efe8381c7187b83b3e6945038abfbdb7a69637f08bada256dae85d77eadc0915a8295c54'
+const BLOG_INDEX_ID = normalizeId(
+  process.env.BLOG_INDEX_ID || 'bf915e99310d4fb39ea34797631a5ca3'
+)
 const API_ENDPOINT = 'https://www.notion.so/api/v3'
 const BLOG_INDEX_CACHE = path.resolve('.blog_index_data')
 

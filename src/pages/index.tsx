@@ -9,7 +9,7 @@ export default () => (
   <>
     <Header titlePre="Home" />
     <div className={sharedStyles.layout}>
-      <h1>NOVEL WAREHOUSE</h1>
+      <h1>シナリオも絵も音楽もプログラムも</h1>
       <h2 className={sharedStyles.subTitle}>-Blog Tag-</h2>
       <div style={{ textAlign: 'center' }}>
         <Link href={'/blog'}>

@@ -6,6 +6,7 @@ import sharedStyles from '../../styles/shared.module.css'
 
 import {
   getBlogLink,
+  getTagLink,
   getDateStr,
   postIsPublished,
 } from '../../lib/blog-helpers'
@@ -47,7 +48,6 @@ export async function getStaticProps({ preview }) {
 }
 
 export default ({ posts = [], preview }) => {
-  console.log(posts)
   return (
     <>
       <Header titlePre="Blog" />
@@ -71,7 +71,14 @@ export default ({ posts = [], preview }) => {
             <div className={blogStyles.postPreview} key={post.Slug}>
               <div style={{ display: 'flex' }}>
                 {post.Tag.length > 0 && (
-                  <div className={blogStyles.tag}>{post.Tag}</div>
+                  <Link href="/tag/[tag]" as={getTagLink(post.Tag)}>
+                    <div>
+                      {!post.Published && (
+                        <span className={blogStyles.draftBadge}>Draft</span>
+                      )}
+                      <a className={blogStyles.tag}>{post.Tag}</a>
+                    </div>
+                  </Link>
                 )}
                 <div className={blogStyles.titleContainer}>
                   <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>

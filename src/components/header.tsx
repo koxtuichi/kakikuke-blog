@@ -18,7 +18,9 @@ export default ({ titlePre = '' }) => {
   return (
     <header className={styles.header}>
       <Head>
-        <title>{titlePre ? `${titlePre} |` : ''} novel warehouse</title>
+        <title>
+          {titlePre ? `${titlePre} |` : ''} シナリオも絵も音楽もプログラムも
+        </title>
         <meta
           name="description"
           content="An example Next.js site using Notion for the blog"

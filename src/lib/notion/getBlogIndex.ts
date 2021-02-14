@@ -52,8 +52,18 @@ export default async function getBlogIndex(previews = true) {
     }
 
     // only get 10 most recent post's previews
-    const postsKeys = Object.keys(postsTable).splice(0, 10)
 
+    // オブジェクトの中身
+    // toatemwohakaishitaiyatu: {
+    //   id: '6d212294-acfe-4852-9f6c-aed50c6bf3ad',
+    //   Slug: 'toatemwohakaishitaiyatu',
+    //   Date: 1612796400768,
+    //   Published: 'Yes',
+    //   Tag: '小説',
+    //   Authors: [ '0b4c1439-c38b-41b3-9eb5-f4c51811245f' ],
+    //   Page: 'トーテムを破壊したい奴'
+    // },
+    const postsKeys = Object.keys(postsTable).splice(0, 10)
     const sema = new Sema(3, { capacity: postsKeys.length })
 
     if (previews) {

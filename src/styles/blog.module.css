@@ -141,7 +141,7 @@
 
 .tag {
   color: white;
-  background-color: black;
+  background-color: var(--common-color);
   height: 25px;
   min-height: 25px;
   line-height: 25px;
@@ -151,4 +151,8 @@
   font-size: 12px;
   display: inline-block;
   padding: 0 10px;
+}
+
+.tagHeader {
+  color: var(--accents-3);
 }

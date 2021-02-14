@@ -1,10 +1,11 @@
 import getBlogIndex from '../../lib/notion/getBlogIndex'
-import { getTagLink, getDateStr, getBlogLink } from '../../lib/blog-helpers'
+import { getTagLink, getDate, getBlogLink } from '../../lib/blog-helpers'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import blogStyles from '../../styles/blog.module.css'
 import Header from '../../components/header'
+import Moment from 'react-moment';
 
 export async function getStaticProps({ params: { tag } }) {
   const postsTable = await getBlogIndex()
@@ -83,7 +84,7 @@ const RenderTag = ({ posts, postsTable, redirect }) => {
           </div>
           {postsTable[post].Date && (
             <div style={{ marginTop: '4px', fontSize: '18px' }}>
-              {getDateStr(postsTable[post].Date)}
+              <Moment format="//YYYY-MM-DD">{getDate(postsTable[post].Date)}</Moment>
             </div>
           )}
           </div>

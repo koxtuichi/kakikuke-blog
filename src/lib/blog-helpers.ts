@@ -6,12 +6,8 @@ export const getTagLink = (tag: string) => {
   return `/tag/${tag}`
 }
 
-export const getDateStr = date => {
-  return new Date(date).toLocaleString('en-US', {
-    month: 'long',
-    day: '2-digit',
-    year: 'numeric',
-  })
+export const getDate = date => {
+  return new Date(date)
 }
 
 export const postIsPublished = (post: any) => {

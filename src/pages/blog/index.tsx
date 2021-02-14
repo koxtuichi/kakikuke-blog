@@ -1,13 +1,12 @@
 import Link from 'next/link'
 import Header from '../../components/header'
-
+import Moment from 'react-moment'
 import blogStyles from '../../styles/blog.module.css'
 import sharedStyles from '../../styles/shared.module.css'
-
 import {
   getBlogLink,
   getTagLink,
-  getDateStr,
+  getDate,
   postIsPublished,
 } from '../../lib/blog-helpers'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
@@ -92,7 +91,7 @@ export default ({ posts = [], preview }) => {
                 </div>
                 {post.Date && (
                   <div style={{ marginTop: '4px', fontSize: '18px' }}>
-                    {getDateStr(post.Date)}
+                    <Moment format="//YYYY-MM-DD">{getDate(post.Date)}</Moment>
                   </div>
                 )}
               </div>

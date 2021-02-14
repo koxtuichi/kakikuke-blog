@@ -68,13 +68,10 @@ export default ({ posts = [], preview }) => {
         {posts.map(post => {
           return (
             <div className={blogStyles.postPreview} key={post.Slug}>
-              <div style={{ display: 'flex' }}>
+              <div style={{ display: 'block' }}>
                 {post.Tag.length > 0 && (
                   <Link href="/tag/[tag]" as={getTagLink(post.Tag)}>
                     <div>
-                      {!post.Published && (
-                        <span className={blogStyles.draftBadge}>Draft</span>
-                      )}
                       <a className={blogStyles.tag}>{post.Tag}</a>
                     </div>
                   </Link>
@@ -90,7 +87,7 @@ export default ({ posts = [], preview }) => {
                   </Link>
                 </div>
                 {post.Date && (
-                  <div style={{ marginTop: '4px', fontSize: '18px' }}>
+                  <div style={{ marginTop: '4px', fontSize: '12px' }}>
                     <Moment format="//YYYY-MM-DD">{getDate(post.Date)}</Moment>
                   </div>
                 )}

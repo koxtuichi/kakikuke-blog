@@ -68,25 +68,27 @@ const RenderTag = ({ posts, postsTable, redirect }) => {
         )}
         {posts.map(post => 
         <div className={blogStyles.postPreview} key={postsTable[post].Slug}>
-          <div style={{ display: 'flex' }}>
-          {postsTable[post].Tag.length > 0 && (
-            <div className={blogStyles.tag}>{postsTable[post].Tag}</div>
-          )}
-          <div className={blogStyles.titleContainer}>
-            <Link href="/blog/[slug]" as={getBlogLink(postsTable[post].Slug)}>
+          <div style={{ display: 'block' }}>
+            {postsTable[post].Tag.length > 0 && (
               <div>
-                {!postsTable[post].Published && (
-                  <span className={blogStyles.draftBadge}>Draft</span>
-                )}
-                <a>{postsTable[post].Page}</a>
+                <div className={blogStyles.tag}>{postsTable[post].Tag}</div>
               </div>
-            </Link>
-          </div>
-          {postsTable[post].Date && (
-            <div style={{ marginTop: '4px', fontSize: '18px' }}>
-              <Moment format="//YYYY-MM-DD">{getDate(postsTable[post].Date)}</Moment>
+            )}
+            <div className={blogStyles.titleContainer}>
+              <Link href="/blog/[slug]" as={getBlogLink(postsTable[post].Slug)}>
+                <div>
+                  {!postsTable[post].Published && (
+                    <span className={blogStyles.draftBadge}>Draft</span>
+                  )}
+                  <a>{postsTable[post].Page}</a>
+                </div>
+              </Link>
             </div>
-          )}
+            {postsTable[post].Date && (
+              <div style={{ marginTop: '4px', fontSize: '12px' }}>
+                <Moment format="//YYYY-MM-DD">{getDate(postsTable[post].Date)}</Moment>
+              </div>
+            )}
           </div>
         </div>)}
       </div>

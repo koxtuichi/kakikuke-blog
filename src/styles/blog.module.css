@@ -144,6 +144,7 @@
   background-color: var(--common-color);
   height: 25px;
   min-height: 25px;
+  min-width: 50px;
   line-height: 25px;
   margin-top: 5px;
   text-align: center;

@@ -155,4 +155,5 @@
 
 .tagHeader {
   color: var(--accents-3);
+  font-weight: 600;
 }

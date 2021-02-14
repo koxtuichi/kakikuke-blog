@@ -137,7 +137,7 @@ const RenderPost = ({ post, redirect, preview }) => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <Header titlePre={post.Page} />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
@@ -151,12 +151,12 @@ const RenderPost = ({ post, redirect, preview }) => {
         </div>
       )}
       <div className={blogStyles.post}>
-        <h1>{post.Page || ''}</h1>
-        {post.Authors.length > 0 && (
+        <h2>{post.Page || ''}</h2>
+        {/* {post.Authors.length > 0 && (
           <div className="authors">By: {post.Authors.join(' ')}</div>
-        )}
+        )} */}
         {post.Date && (
-          <div className="posted">Posted: {getDateStr(post.Date)}</div>
+          <div className="posted">{getDateStr(post.Date)}</div>
         )}
 
         <hr />
@@ -419,7 +419,7 @@ const RenderPost = ({ post, redirect, preview }) => {
           return toRender
         })}
       </div>
-    </>
+    </React.Fragment>
   )
 }
 

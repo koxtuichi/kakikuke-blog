@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import blogStyles from '../../styles/blog.module.css'
+import Header from '../../components/header'
 
 export async function getStaticProps({ params: { tag } }) {
   const postsTable = await getBlogIndex()
@@ -56,10 +57,11 @@ const RenderTag = ({ posts, postsTable, redirect }) => {
 
   return (
     <React.Fragment>
-      <div className={blogStyles.tagHeader} style={{ margin: '50px 0 47px 0', fontSize: '16px', textAlign: 'center' }}>
+      <Header titlePre={'Tag'} />
+      <div className={blogStyles.tagHeader} style={{ margin: '-25px 0 19px 0', fontSize: '16px', textAlign: 'center' }}>
         <div>{postsTable[posts.find(post => post)].Tag}の記事一覧</div>
       </div>
-      <div className={blogStyles.blogIndex} style={{ marginLeft: '17px' }}>
+      <div className={blogStyles.blogIndex}>
         {posts.length === 0 && (
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
@@ -86,11 +88,6 @@ const RenderTag = ({ posts, postsTable, redirect }) => {
           )}
           </div>
         </div>)}
-      </div>
-      <div className={blogStyles.tagHeader} style={{ margin: '50px 0 26px 0', fontSize: '16px', textAlign: 'center' }}>
-        <Link href="/blog">
-            <a className={blogStyles.tagHeader}>Back</a>
-        </Link>
       </div>
     </React.Fragment>
   )

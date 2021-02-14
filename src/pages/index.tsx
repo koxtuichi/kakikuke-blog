@@ -29,7 +29,7 @@ const RenderTagList = ({ tags }) => {
           {tags.map(tag => (
             <div style={{ marginLeft: '10px', fontSize: '16px' }}>
               <Link href={'/tag/[tag]'} as={getTagLink(tag)}>
-                <a>{tag}</a>
+                <a>#{tag}</a>
               </Link>
             </div>
           ))}

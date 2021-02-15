@@ -26,13 +26,15 @@ const RenderTagList = ({ tags }) => {
           <h2 className={sharedStyles.subTitle}>-Blog Tag-</h2>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          {tags.map(tag => (
-            <div style={{ marginLeft: '10px', fontSize: '16px' }}>
-              <Link href={'/tag/[tag]'} as={getTagLink(tag)}>
-                <a>#{tag}</a>
-              </Link>
-            </div>
-          ))}
+          {tags.map(tag =>
+            tag.split(',').map(tagName => (
+              <div style={{ marginLeft: '10px', fontSize: '16px' }}>
+                <Link href={'/tag/[tag]'} as={getTagLink(tagName)}>
+                  <a>#{tagName}</a>
+                </Link>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </React.Fragment>

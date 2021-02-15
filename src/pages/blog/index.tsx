@@ -67,15 +67,18 @@ export default ({ posts = [], preview }) => {
         )}
         {posts.map(post => {
           return (
-            <div className={blogStyles.postPreview} key={post.Slug}>
+            <div key={post.Slug} className={blogStyles.postPreview}>
               <div style={{ display: 'block' }}>
-                {post.Tag.length > 0 && (
-                  <Link href="/tag/[tag]" as={getTagLink(post.Tag)}>
-                    <div>
-                      <a className={blogStyles.tag}>{post.Tag}</a>
-                    </div>
-                  </Link>
-                )}
+                <div style={{ display: 'flex' }}>
+                  {post.Tag.length > 0 &&
+                    post.Tag.split(',').map(tag => (
+                      <Link href="/tag/[tag]" as={getTagLink(tag)}>
+                        <div>
+                          <a className={blogStyles.tag}>{tag}</a>
+                        </div>
+                      </Link>
+                    ))}
+                </div>
                 <div className={blogStyles.titleContainer}>
                   <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
                     <div>

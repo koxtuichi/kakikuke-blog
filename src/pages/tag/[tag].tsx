@@ -10,8 +10,8 @@ import Moment from 'react-moment';
 export async function getStaticProps({ params: { tag } }) {
   const postsTable = await getBlogIndex()
   const posts = Object.keys(postsTable)
-                    .filter(post => postsTable[post].Published === 'Yes' 
-                                  && postsTable[post].Tag === tag)
+                      .filter(post => postsTable[post].Published === 'Yes' 
+                                    && postsTable[post].Tag.split(',').find(tagName => tag === tagName))
   // if we can't find the post or if it is unpublished and
   // viewed without preview mode then we just redirect to /blog
   if (!posts) {
@@ -26,6 +26,7 @@ export async function getStaticProps({ params: { tag } }) {
   return {
     props: {
       posts,
+      tag,
       postsTable,
     },
     unstable_revalidate: 10,
@@ -35,15 +36,18 @@ export async function getStaticProps({ params: { tag } }) {
 export async function getStaticPaths() {
   const postsTable = await getBlogIndex()
 
+  let tagList = [];
+  Object.keys(postsTable)
+        .filter(post => postsTable[post].Published === 'Yes')
+        .map(post => postsTable[post] && postsTable[post].Tag.split(',').map(tag => tagList.push(tag)));
+
   return {
-    paths: Object.keys(postsTable)
-      .filter(post => postsTable[post].Published === 'Yes')
-      .map(post => getTagLink(postsTable[post].Tag)),
+    paths: tagList.map(tag => getTagLink(tag)),
     fallback: true,
   }
 }
 
-const RenderTag = ({ posts, postsTable, redirect }) => {
+const RenderTag = ({ posts, tag, postsTable, redirect }) => {
   const router = useRouter()
 
   useEffect(() => {
@@ -60,20 +64,22 @@ const RenderTag = ({ posts, postsTable, redirect }) => {
     <React.Fragment>
       <Header titlePre={'Tag'} />
       <div className={blogStyles.tagHeader} style={{ margin: '-25px 0 19px 0', fontSize: '16px', textAlign: 'center' }}>
-        <div>{postsTable[posts.find(post => post)].Tag}の記事一覧</div>
+        <div>{tag}の記事一覧</div>
       </div>
       <div className={blogStyles.blogIndex}>
-        {posts.length === 0 && (
+        {!tag && (
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
         {posts.map(post => 
         <div className={blogStyles.postPreview} key={postsTable[post].Slug}>
           <div style={{ display: 'block' }}>
-            {postsTable[post].Tag.length > 0 && (
-              <div>
-                <div className={blogStyles.tag}>{postsTable[post].Tag}</div>
-              </div>
-            )}
+            <div style={{ display: 'flex' }}>
+              {postsTable[post].Tag.length > 0 && (
+                postsTable[post].Tag.split(',').map((tag, i) =>
+                    <div key={i} className={blogStyles.tag}>{tag}</div>
+                )
+              )}
+            </div>
             <div className={blogStyles.titleContainer}>
               <Link href="/blog/[slug]" as={getBlogLink(postsTable[post].Slug)}>
                 <div>

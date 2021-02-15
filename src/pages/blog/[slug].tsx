@@ -11,7 +11,7 @@ import getPageData from '../../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
-import { getBlogLink, getDate } from '../../lib/blog-helpers'
+import { getTagLink, getBlogLink, getDate } from '../../lib/blog-helpers'
 import Moment from 'react-moment';
 
 // Get the data for each blog post
@@ -156,9 +156,20 @@ const RenderPost = ({ post, redirect, preview }) => {
         {/* {post.Authors.length > 0 && (
           <div className="authors">By: {post.Authors.join(' ')}</div>
         )} */}
-        {post.Date && (
-          <Moment format="//YYYY-MM-DD">{getDate(post.Date)}</Moment>
-        )}
+
+        <div style={{ display: 'flex' }}>
+          {post.Date && (
+            <Moment format="//YYYY-MM-DD">{getDate(post.Date)}</Moment>
+          )}
+
+          {post.Tag.split(',').map((tag, i) =>
+            <div style={{ marginLeft: '10px', fontSize: '14px' }}>
+              <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
+                <a>#{tag}</a>
+              </Link>
+            </div>
+          )}
+        </div>
 
         <hr />
 

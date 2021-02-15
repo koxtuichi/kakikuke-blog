@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 import Header from '../../components/header'
 import Moment from 'react-moment'
@@ -48,7 +49,7 @@ export async function getStaticProps({ preview }) {
 
 export default ({ posts = [], preview }) => {
   return (
-    <>
+    <React.Fragment>
       <Header titlePre="Blog" />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
@@ -71,8 +72,8 @@ export default ({ posts = [], preview }) => {
               <div style={{ display: 'block' }}>
                 <div style={{ display: 'flex' }}>
                   {post.Tag.length > 0 &&
-                    post.Tag.split(',').map(tag => (
-                      <Link href="/tag/[tag]" as={getTagLink(tag)}>
+                    post.Tag.split(',').map((tag, i) => (
+                      <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
                         <div>
                           <a className={blogStyles.tag}>{tag}</a>
                         </div>
@@ -99,6 +100,6 @@ export default ({ posts = [], preview }) => {
           )
         })}
       </div>
-    </>
+    </React.Fragment>
   )
 }

@@ -7,10 +7,14 @@ import Link from 'next/link'
 
 export async function getStaticProps() {
   const postsTable = await getBlogIndex()
-  const tags = Object.keys(postsTable)
+  let tagList = []
+  Object.keys(postsTable)
     .filter(post => postsTable[post].Published === 'Yes')
-    .map(post => postsTable[post].Tag)
-    .filter((tag, index, self) => self.indexOf(tag) === index)
+    .map(post =>
+      postsTable[post].Tag.split(',').map(tagName => tagList.push(tagName))
+    )
+
+  const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
   return {
     props: { tags },
   }

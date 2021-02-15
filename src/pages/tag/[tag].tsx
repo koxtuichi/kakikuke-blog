@@ -76,7 +76,11 @@ const RenderTag = ({ posts, tag, postsTable, redirect }) => {
             <div style={{ display: 'flex' }}>
               {postsTable[post].Tag.length > 0 && (
                 postsTable[post].Tag.split(',').map((tag, i) =>
-                    <div key={i} className={blogStyles.tag}>{tag}</div>
+                  <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
+                    <div>
+                      <a className={blogStyles.tag}>{tag}</a>
+                    </div>
+                  </Link>
                 )
               )}
             </div>

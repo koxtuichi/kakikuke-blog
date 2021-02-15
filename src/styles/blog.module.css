@@ -85,7 +85,7 @@
 
 .post :global(h2),
 .post :global(h3) {
-  margin: 3rem 0 1.5rem 0;
+  margin: 3rem 0 0.5rem 0;
 }
 
 .post :global(video),
@@ -151,7 +151,7 @@
   border-radius: 4px;
   font-size: 12px;
   display: inline-block;
-  padding: 0 10px;
+  padding: 0 7px;
 }
 
 .tagHeader {

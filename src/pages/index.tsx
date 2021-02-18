@@ -25,7 +25,7 @@ const RenderTagList = ({ tags }) => {
     <React.Fragment>
       <Header titlePre="Home" />
       <div className={sharedStyles.layout}>
-        <h1>シナリオと絵と音楽とプログラムと</h1>
+        <h1>じぶんがたり。</h1>
         <div style={{ marginLeft: '10px' }}>
           <h2 className={sharedStyles.subTitle}>-Blog Tag-</h2>
         </div>

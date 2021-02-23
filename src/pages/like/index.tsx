@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+import axios from '../../../node_modules/axios'
 import { REACT_APP_API_ENDPOINT_URL } from '../../lib/notion/server-constants'
 
 type typeImageTableState = {
@@ -31,7 +31,6 @@ class like extends React.Component<{}, typeImageTableState> {
   }
 
   componentDidMount() {
-    console.log('koko')
     twitterAPI()
       .then(res => {
         console.log(res)

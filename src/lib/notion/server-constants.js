@@ -23,10 +23,13 @@ const BLOG_INDEX_ID = normalizeId(
 )
 const API_ENDPOINT = 'https://www.notion.so/api/v3'
 const BLOG_INDEX_CACHE = path.resolve('.blog_index_data')
+const REACT_APP_API_ENDPOINT_URL =
+  'https://nbw1ayq2ml.execute-api.us-east-2.amazonaws.com/production/fav'
 
 module.exports = {
   NOTION_TOKEN,
   BLOG_INDEX_ID,
   API_ENDPOINT,
   BLOG_INDEX_CACHE,
+  REACT_APP_API_ENDPOINT_URL,
 }

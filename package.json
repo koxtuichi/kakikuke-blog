@@ -15,6 +15,7 @@
   "dependencies": {
     "@zeit/react-jsx-parser": "^2.0.0",
     "async-sema": "^3.1.0",
+    "axios": "^0.21.1",
     "fs": "^0.0.1-security",
     "github-slugger": "^1.2.1",
     "katex": "^0.12.0",

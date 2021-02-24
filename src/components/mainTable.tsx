@@ -1,6 +1,7 @@
 import React from 'react'
-import axios from '../../../node_modules/axios'
-import { REACT_APP_API_ENDPOINT_URL } from '../../lib/notion/server-constants'
+import axios from 'axios'
+import ImageTable from './imageTable'
+import { REACT_APP_API_ENDPOINT_URL } from '../lib/notion/server-constants'
 
 type typeImageTableState = {
   images: typeImages
@@ -10,7 +11,7 @@ type typeImageTableState = {
 
 type typeImages = {
   url: string[]
-  height: string[]
+  height: number[]
   source: string[]
   max_id: string
 }
@@ -33,7 +34,6 @@ class like extends React.Component<{}, typeImageTableState> {
   componentDidMount() {
     twitterAPI()
       .then(res => {
-        console.log(res)
         this.setIineImages(res)
       })
       .catch(() => {
@@ -46,12 +46,13 @@ class like extends React.Component<{}, typeImageTableState> {
 
   setIineImages = (results: any) => {
     this.setState({ images: results, message: 'done' })
-    console.log(this.state.images)
+    // console.log(this.state.images)
   }
 
   render() {
     return (
       <div>
+        <ImageTable images={this.state.images} />
         <div>{this.state.message}</div>
       </div>
     )
@@ -65,7 +66,6 @@ function twitterAPI() {
     axios
       .get(endpoint)
       .then(res => {
-        console.log(res)
         resolve(res.data)
       })
       .catch(err => {

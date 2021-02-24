@@ -7,7 +7,7 @@ import styles from '../styles/header.module.css'
 const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Profile', page: '/' },
   { label: 'Blog', page: '/blog' },
-  { label: 'Like', page: '/like' },
+  { label: 'Favorite', page: '/favorite' },
 ]
 
 //TODO:画像は差し替える

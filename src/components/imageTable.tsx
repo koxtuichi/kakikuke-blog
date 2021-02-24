@@ -28,11 +28,16 @@ class ImageTable extends React.Component<
   constructor(props: typeImageTableProps) {
     super(props)
     this.state = {
-      raneNum: 3,
+      raneNum: 1,
     }
   }
 
   componentDidMount() {
+    if (this.state.raneNum === 1) {
+      const raneNumFirst =
+        window.innerWidth > 600 ? Math.floor(window.innerWidth / 300) : 2
+      this.setState({ raneNum: raneNumFirst })
+    }
     let queue: NodeJS.Timeout
     window.addEventListener('resize', () => {
       clearTimeout(queue)

@@ -6,7 +6,6 @@ import { REACT_APP_API_ENDPOINT_URL } from '../lib/notion/server-constants'
 type typeImageTableState = {
   images: typeImages
   message: string
-  screen_name: string
 }
 
 type typeImages = {
@@ -27,12 +26,35 @@ class like extends React.Component<{}, typeImageTableState> {
         max_id: '',
       },
       message: '',
-      screen_name: '',
     }
   }
 
   componentDidMount() {
-    twitterAPI()
+    this.setState({ message: 'loading...' })
+    setTimeout(() => {
+      this.getiine()
+    }, 500)
+
+    let queue: NodeJS.Timeout
+    window.addEventListener('scroll', () => {
+      clearTimeout(queue)
+      queue = setTimeout(() => {
+        const scroll_Y = document.documentElement.scrollTop + window.innerHeight
+        const offsetHeight = document.documentElement.offsetHeight
+        if (
+          offsetHeight - scroll_Y <= 1000 &&
+          this.state.message !== 'loading...' &&
+          offsetHeight > 1500
+        ) {
+          this.setState({ message: 'loading...' })
+          this.getiine()
+        }
+      }, 500)
+    })
+  }
+
+  getiine = () => {
+    twitterAPI(this.state.images.max_id)
       .then(res => {
         this.setIineImages(res)
       })
@@ -45,8 +67,21 @@ class like extends React.Component<{}, typeImageTableState> {
   }
 
   setIineImages = (results: any) => {
-    this.setState({ images: results, message: 'done' })
-    // console.log(this.state.images)
+    this.setState({
+      images: {
+        url: this.state.images.url.concat(results.url),
+        height: this.state.images.height.concat(results.height),
+        source: this.state.images.source.concat(results.source),
+        max_id: String(results.max_id),
+      },
+    })
+    if (results.url.length === 0) {
+      this.setState({ message: 'いいねした画像がありませんでした' })
+      return
+    }
+    this.setState({
+      message: '',
+    })
   }
 
   render() {
@@ -60,8 +95,9 @@ class like extends React.Component<{}, typeImageTableState> {
 }
 export default like
 
-function twitterAPI() {
-  const endpoint = REACT_APP_API_ENDPOINT_URL
+function twitterAPI(max_id: string) {
+  console.log(max_id)
+  const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=${max_id}`
   return new Promise((resolve, reject) => {
     axios
       .get(endpoint)

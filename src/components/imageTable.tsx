@@ -32,6 +32,18 @@ class ImageTable extends React.Component<
     }
   }
 
+  componentDidMount() {
+    let queue: NodeJS.Timeout
+    window.addEventListener('resize', () => {
+      clearTimeout(queue)
+      queue = setTimeout(() => {
+        const raneNum =
+          window.innerWidth > 600 ? Math.floor(window.innerWidth / 300) : 2
+        this.setState({ raneNum: raneNum })
+      }, 500)
+    })
+  }
+
   render() {
     return (
       <div className="flex m-1">

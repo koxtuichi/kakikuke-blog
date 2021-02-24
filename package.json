@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
-    "start": "next start && craco start",
-    "build": "next build && node .next/serverless/scripts/build-rss.js && craco build",
+    "start": "next start",
+    "build": "next build && node .next/serverless/scripts/build-rss.js",
     "test": "craco test",
-    "eject": "react-scripts eject",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .gitignore"
   },
   "husky": {

@@ -42,7 +42,7 @@ class like extends React.Component<{}, typeImageTableState> {
         const scroll_Y = document.documentElement.scrollTop + window.innerHeight
         const offsetHeight = document.documentElement.offsetHeight
         if (
-          offsetHeight - scroll_Y <= 1000 &&
+          offsetHeight - scroll_Y <= 2000 &&
           this.state.message !== 'loading...' &&
           offsetHeight > 1500
         ) {
@@ -60,9 +60,9 @@ class like extends React.Component<{}, typeImageTableState> {
       })
       .catch(() => {
         this.setState({
-          message:
-            '取得に失敗しました。データが空か、スクリーンネームが間違っているかもしれません。',
+          message: '',
         })
+        console.log('取得に失敗しました。')
       })
   }
 
@@ -76,7 +76,10 @@ class like extends React.Component<{}, typeImageTableState> {
       },
     })
     if (results.url.length === 0) {
-      this.setState({ message: 'いいねした画像がありませんでした' })
+      this.setState({
+        message: '',
+      })
+      console.log('いいねした画像が見つかりませんでした。')
       return
     }
     this.setState({
@@ -88,7 +91,7 @@ class like extends React.Component<{}, typeImageTableState> {
     return (
       <div>
         <ImageTable images={this.state.images} />
-        <div>{this.state.message}</div>
+        {this.state.images.url.length === 0 && <div>{this.state.message}</div>}
       </div>
     )
   }
@@ -96,7 +99,6 @@ class like extends React.Component<{}, typeImageTableState> {
 export default like
 
 function twitterAPI(max_id: string) {
-  console.log(max_id)
   const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=${max_id}`
   return new Promise((resolve, reject) => {
     axios

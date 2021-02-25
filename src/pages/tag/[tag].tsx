@@ -63,7 +63,7 @@ const RenderTag = ({ posts, tag, postsTable, redirect }) => {
   return (
     <React.Fragment>
       <Header titlePre={'Tag'} className="mt-6" />
-      <div className={blogStyles.tagHeader} style={{ margin: '-25px 0 19px 0', fontSize: '16px', textAlign: 'center' }}>
+      <div className={blogStyles.tagHeader} style={{ height: '40px', fontSize: '16px', textAlign: 'center' }}>
         <div>{tag}の記事一覧</div>
       </div>
       <div className={blogStyles.blogIndex}>
@@ -94,11 +94,14 @@ const RenderTag = ({ posts, tag, postsTable, redirect }) => {
                 </div>
               </Link>
             </div>
-            {postsTable[post].Date && (
-              <div style={{ marginTop: '4px', fontSize: '12px' }}>
-                <Moment format="//YYYY-MM-DD">{getDate(postsTable[post].Date)}</Moment>
+              <div style={{ marginTop: '4px', marginLeft: '10px', fontSize: '12px' }}>
+                <div style={{ display: 'flex' }}>
+                  {postsTable[post].Date && (
+                    <Moment format="//YYYY-MM-DD">{getDate(postsTable[post].Date)}</Moment>
+                  )}
+                  <div className={'text-xs ml-2'} style={{ marginTop: '0.17rem' }}>({postsTable[post].Page.length}文字)</div>
+                </div>
               </div>
-            )}
           </div>
         </div>)}
       </div>

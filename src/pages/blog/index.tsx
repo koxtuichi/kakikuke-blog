@@ -51,6 +51,7 @@ export default ({ posts = [], preview }) => {
   return (
     <React.Fragment>
       <Header titlePre="Blog" className="mt-6" />
+      <div style={{ height: '31px' }}></div>
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
           <div className={blogStyles.previewAlert}>
@@ -90,11 +91,27 @@ export default ({ posts = [], preview }) => {
                     </div>
                   </Link>
                 </div>
-                {post.Date && (
-                  <div style={{ marginTop: '4px', fontSize: '12px' }}>
-                    <Moment format="//YYYY-MM-DD">{getDate(post.Date)}</Moment>
+                <div
+                  style={{
+                    marginTop: '4px',
+                    marginLeft: '10px',
+                    fontSize: '12px',
+                  }}
+                >
+                  <div style={{ display: 'flex' }}>
+                    {post.Date && (
+                      <Moment format="//YYYY-MM-DD">
+                        {getDate(post.Date)}
+                      </Moment>
+                    )}
+                    <div
+                      className={'text-xs ml-2'}
+                      style={{ marginTop: '0.17rem' }}
+                    >
+                      ({post.Page.length}文字)
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             </div>
           )

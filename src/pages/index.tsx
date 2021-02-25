@@ -25,7 +25,7 @@ const RenderTagList = ({ tags }) => {
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
       <div className={sharedStyles.layout}>
-        <h1 className="mt-10 text-2xl animate__fadeInDown">みかんがすき</h1>
+        <h1 className="mt-10 text-2xl">みかんがすき</h1>
 
         <h2 className="font-extrabold mb-2 mt-16">コンセプト</h2>
         <div style={{ textAlign: 'center' }}>

@@ -5,7 +5,7 @@ import Header from '../../components/header'
 function App() {
   return (
     <React.Fragment>
-      <Header titlePre="Blog" />
+      <Header titlePre="Blog" className="mt-6" />
       <div className="min-h-screen">
         <div className="container mx-auto">
           <div className="flex justify-center">

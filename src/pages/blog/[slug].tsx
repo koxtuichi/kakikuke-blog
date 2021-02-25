@@ -139,7 +139,7 @@ const RenderPost = ({ post, redirect, preview }) => {
 
   return (
     <React.Fragment>
-      <Header titlePre={post.Page} />
+      <Header titlePre={post.Page} className="mt-6" />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
           <div className={blogStyles.previewAlert}>

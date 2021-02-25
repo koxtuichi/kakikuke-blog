@@ -62,7 +62,7 @@ const RenderTag = ({ posts, tag, postsTable, redirect }) => {
 
   return (
     <React.Fragment>
-      <Header titlePre={'Tag'} />
+      <Header titlePre={'Tag'} className="mt-6" />
       <div className={blogStyles.tagHeader} style={{ margin: '-25px 0 19px 0', fontSize: '16px', textAlign: 'center' }}>
         <div>{tag}の記事一覧</div>
       </div>

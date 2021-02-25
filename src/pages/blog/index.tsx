@@ -50,7 +50,7 @@ export async function getStaticProps({ preview }) {
 export default ({ posts = [], preview }) => {
   return (
     <React.Fragment>
-      <Header titlePre="Blog" />
+      <Header titlePre="Blog" className="mt-6" />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
           <div className={blogStyles.previewAlert}>

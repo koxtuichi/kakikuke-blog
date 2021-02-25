@@ -25,37 +25,45 @@ const RenderTagList = ({ tags }) => {
     <React.Fragment>
       <Header titlePre="Home" />
       <div className={sharedStyles.layout}>
-        <h1 style={{ fontSize: '3vw' }}>みかんはあまりすきじゃない</h1>
+        <h1 className="mt-10 text-2xl animate__fadeInDown">
+          みかんはあまりすきじゃない
+        </h1>
 
-        <h2 style={{ marginTop: '65px' }}>コンセプト</h2>
+        <h2 className="font-extrabold mb-2 mt-16">コンセプト</h2>
         <div style={{ textAlign: 'center' }}>
-          <p>
-            「ノウハウだけでなく何度も見返すことができるエンタメを発信していく」
+          <p className="mb-1">「何度も楽しめるエンタメを発信したい（趣味）」</p>
+          <p className="mb-1">中学生の頃、モンハンポータブルにハマってた</p>
+          <p className="mb-1">友達と一緒に遊ぶのも楽しかったけど</p>
+          <p className="mb-1">それと同じくらいブログをみるのにもハマってた</p>
+          <p className="mb-1">たしか夫婦で運営してたモンハンブログだったか</p>
+          <p className="mb-1">僕もおんなじことをやりたいと思って15年</p>
+          <p className="mb-1">趣味全開のブログをはじめてみましたので</p>
+          <p className="mb-1">どうぞよろしくお願いしますｍｍ</p>
+        </div>
+
+        <h2 className="font-extrabold mb-2 mt-16">仕事</h2>
+        <div style={{ textAlign: 'center' }}>
+          <p className="mb-1">フロントエンドをよくいじってるプログラマー</p>
+          <p className="mb-1">C#／javascriptが好き</p>
+          <p className="mb-1">今はReact,Reduxの環境で発狂してる</p>
+        </div>
+
+        <h2 className="font-extrabold mb-2 mt-16">ブログについて</h2>
+        <div style={{ textAlign: 'center' }}>
+          <p className="mb-1">Notionで記事管理▷vercelに自動デプロイ</p>
+          <p className="mb-1">環境はReact.js + Next.js</p>
+          <p className="mb-1">
+            favoriteの画像はTwitterAPI + REST API + Lamdaを使用
           </p>
-          <p>ゲーム日記やショートショート小説とか</p>
-          <p>ゲーム制作の過程とか</p>
-          <p>プログラミングでつまづいた所の原因と解説とか</p>
-          <p>いろんなことがやりたいなーと思った結果</p>
-          <p>自分専用のプラットフォームを作った</p>
-          <p>ここでは文章も画像も動画も全部を詰め込みたい</p>
         </div>
 
-        <h2 style={{ marginTop: '65px' }}>仕事</h2>
-        <div style={{ textAlign: 'center' }}>
-          <p>プログラマーというかエンジニアというか</p>
-          <p>主にC#とjavascriptを使ってて</p>
-          <p>今はReact,Reduxの環境で発狂してる</p>
-          <p>苦手なのはどっちかっていうとサーバー周り</p>
-          <p>結果、僕はフロントエンドのプログラマーです</p>
-        </div>
-
-        <div style={{ marginLeft: '10px' }}>
+        <div className="mt-8">
           <h2 className={sharedStyles.subTitle}>-Blog Tag-</h2>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           {tags.map(tag =>
-            tag.split(',').map(tagName => (
-              <div style={{ marginLeft: '10px', fontSize: '16px' }}>
+            tag.split(',').map((tagName, i) => (
+              <div key={i} style={{ marginLeft: '10px', fontSize: '16px' }}>
                 <Link href={'/tag/[tag]'} as={getTagLink(tagName)}>
                   <a>#{tagName}</a>
                 </Link>

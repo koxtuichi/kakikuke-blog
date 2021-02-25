@@ -33,7 +33,7 @@ class like extends React.Component<{}, typeImageTableState> {
     this.setState({ message: 'loading...' })
     setTimeout(() => {
       this.getiine()
-    }, 500)
+    }, 100)
 
     let queue: NodeJS.Timeout
     window.addEventListener('scroll', () => {
@@ -49,7 +49,7 @@ class like extends React.Component<{}, typeImageTableState> {
           this.setState({ message: 'loading...' })
           this.getiine()
         }
-      }, 500)
+      }, 100)
     })
   }
 

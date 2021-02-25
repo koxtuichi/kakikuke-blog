@@ -13,15 +13,13 @@ const navItems: { label: string; page?: string; link?: string }[] = [
 //TODO:画像は差し替える
 const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
 
-export default ({ titlePre = '' }) => {
+export default ({ titlePre = '', className = '' }) => {
   const { pathname } = useRouter()
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${className}`}>
       <Head>
-        <title>
-          {titlePre ? `${titlePre} |` : ''} シナリオも絵も音楽もプログラムも
-        </title>
+        <title>{titlePre ? `${titlePre} |` : ''}</title>
         <meta
           name="description"
           content="An example Next.js site using Notion for the blog"

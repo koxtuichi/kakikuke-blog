@@ -23,11 +23,9 @@ export async function getStaticProps() {
 const RenderTagList = ({ tags }) => {
   return (
     <React.Fragment>
-      <Header titlePre="Home" />
+      <Header titlePre="Home" className="mt-6" />
       <div className={sharedStyles.layout}>
-        <h1 className="mt-10 text-2xl animate__fadeInDown">
-          みかんはあまりすきじゃない
-        </h1>
+        <h1 className="mt-10 text-2xl animate__fadeInDown">みかんがすき</h1>
 
         <h2 className="font-extrabold mb-2 mt-16">コンセプト</h2>
         <div style={{ textAlign: 'center' }}>
@@ -57,7 +55,7 @@ const RenderTagList = ({ tags }) => {
           </p>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-2 mb-2">
           <h2 className={sharedStyles.subTitle}>-Blog Tag-</h2>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>

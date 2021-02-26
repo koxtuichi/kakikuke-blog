@@ -3,9 +3,12 @@ import axios from 'axios'
 import ImageTable from './imageTable'
 import { REACT_APP_API_ENDPOINT_URL } from '../lib/notion/server-constants'
 
+const getFirstTweetNum = 30
+
 type typeImageTableState = {
   images: typeImages
   message: string
+  getTweetNum: Number
 }
 
 type typeImages = {
@@ -26,14 +29,18 @@ class like extends React.Component<{}, typeImageTableState> {
         max_id: '',
       },
       message: '',
+      getTweetNum: getFirstTweetNum,
     }
   }
 
   componentDidMount() {
     this.setState({ message: 'loading...' })
-    setTimeout(() => {
-      this.getiine()
-    }, 100)
+    this.getiine()
+    if (this.state.getTweetNum === getFirstTweetNum) {
+      this.setState({
+        getTweetNum: 50,
+      })
+    }
 
     let queue: NodeJS.Timeout
     window.addEventListener('scroll', () => {
@@ -54,7 +61,7 @@ class like extends React.Component<{}, typeImageTableState> {
   }
 
   getiine = () => {
-    twitterAPI(this.state.images.max_id)
+    twitterAPI(this.state.images.max_id, this.state.getTweetNum)
       .then(res => {
         this.setIineImages(res)
       })
@@ -98,8 +105,8 @@ class like extends React.Component<{}, typeImageTableState> {
 }
 export default like
 
-function twitterAPI(max_id: string) {
-  const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=${max_id}`
+function twitterAPI(max_id: string, gettweetnum: Number) {
+  const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=${max_id}&gettweetnum=${gettweetnum}`
   return new Promise((resolve, reject) => {
     axios
       .get(endpoint)

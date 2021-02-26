@@ -108,7 +108,7 @@ export default ({ posts = [], preview }) => {
                       className={'text-xs ml-2'}
                       style={{ marginTop: '0.17rem' }}
                     >
-                      ({post.Page.length}文字)
+                      ({post && post.content}文字)
                     </div>
                   </div>
                 </div>

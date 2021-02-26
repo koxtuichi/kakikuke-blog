@@ -99,7 +99,7 @@ const RenderTag = ({ posts, tag, postsTable, redirect }) => {
                   {postsTable[post].Date && (
                     <Moment format="//YYYY-MM-DD">{getDate(postsTable[post].Date)}</Moment>
                   )}
-                  <div className={'text-xs ml-2'} style={{ marginTop: '0.17rem' }}>({postsTable[post].Page.length}文字)</div>
+                  <div className={'text-xs ml-2'} style={{ marginTop: '0.17rem' }}>({postsTable[post].content && postsTable[post].content.length}文字)</div>
                 </div>
               </div>
           </div>

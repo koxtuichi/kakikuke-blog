@@ -35,10 +35,12 @@ class like extends React.Component<{}, typeImageTableState> {
 
   componentDidMount() {
     this.setState({ message: 'loading...' })
-    this.getiine()
     if (this.state.getTweetNum === getFirstTweetNum) {
+      setTimeout(() => {
+        this.getiine()
+      }, 100)
       this.setState({
-        getTweetNum: 50,
+        getTweetNum: 100,
       })
     }
 

@@ -60,19 +60,20 @@ class like extends React.Component<{}, typeImageTableState> {
 
   getiine = () => {
     this.setState({ isLoading: true })
-    console.log('getiine')
-    twitterAPI(this.state.images.max_id, this.state.getTweetNum)
-      .then(res => {
-        this.setIineImages(res)
-        this.setState({ isLoading: false })
-      })
-      .catch(() => {
-        this.setState({
-          message: '',
-          isLoading: false,
+    setTimeout(() => {
+      twitterAPI(this.state.images.max_id, this.state.getTweetNum)
+        .then(res => {
+          this.setIineImages(res)
+          this.setState({ isLoading: false })
         })
-        console.log('取得に失敗しました。')
-      })
+        .catch(() => {
+          this.setState({
+            message: '',
+            isLoading: false,
+          })
+          console.log('取得に失敗しました。')
+        })
+    }, 500)
   }
 
   setIineImages = (results: any) => {

@@ -10,6 +10,7 @@ type typeImageTableState = {
   message: string
   getTweetNum: Number
   isLoading: Boolean
+  limit: Boolean
 }
 
 type typeImages = {
@@ -32,6 +33,7 @@ class like extends React.Component<{}, typeImageTableState> {
       message: '',
       getTweetNum: getFirstTweetNum,
       isLoading: false,
+      limit: false,
     }
   }
 
@@ -59,7 +61,15 @@ class like extends React.Component<{}, typeImageTableState> {
   }
 
   getiine = () => {
-    this.setState({ isLoading: true })
+    if (this.state.limit) return
+    this.setState({
+      isLoading: true,
+    })
+    if (!!this.state.images.max_id) {
+      this.setState({
+        limit: true,
+      })
+    }
     twitterAPI(this.state.images.max_id, this.state.getTweetNum)
       .then(res => {
         this.setIineImages(res)

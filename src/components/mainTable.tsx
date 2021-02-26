@@ -9,6 +9,7 @@ type typeImageTableState = {
   images: typeImages
   message: string
   getTweetNum: Number
+  isLoading: Boolean
 }
 
 type typeImages = {
@@ -30,46 +31,45 @@ class like extends React.Component<{}, typeImageTableState> {
       },
       message: '',
       getTweetNum: getFirstTweetNum,
+      isLoading: false,
     }
   }
 
   componentDidMount() {
     this.setState({ message: 'loading...' })
     if (this.state.getTweetNum === getFirstTweetNum) {
-      setTimeout(() => {
-        this.getiine()
-      }, 100)
+      this.getiine()
       this.setState({
-        getTweetNum: 100,
+        getTweetNum: 50,
       })
     }
 
-    let queue: NodeJS.Timeout
     window.addEventListener('scroll', () => {
-      clearTimeout(queue)
-      queue = setTimeout(() => {
-        const scroll_Y = document.documentElement.scrollTop + window.innerHeight
-        const offsetHeight = document.documentElement.offsetHeight
-        if (
-          offsetHeight - scroll_Y <= 2000 &&
-          this.state.message !== 'loading...' &&
-          offsetHeight > 1500
-        ) {
-          this.setState({ message: 'loading...' })
-          this.getiine()
-        }
-      }, 100)
+      const scroll_Y = document.documentElement.scrollTop + window.innerHeight
+      const offsetHeight = document.documentElement.offsetHeight
+      if (
+        offsetHeight - scroll_Y <= 1000 &&
+        !this.state.isLoading &&
+        offsetHeight > 1500
+      ) {
+        this.setState({ message: 'loading...' })
+        this.getiine()
+      }
     })
   }
 
   getiine = () => {
+    this.setState({ isLoading: true })
+    console.log('getiine')
     twitterAPI(this.state.images.max_id, this.state.getTweetNum)
       .then(res => {
         this.setIineImages(res)
+        this.setState({ isLoading: false })
       })
       .catch(() => {
         this.setState({
           message: '',
+          isLoading: false,
         })
         console.log('取得に失敗しました。')
       })

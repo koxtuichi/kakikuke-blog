@@ -12,6 +12,12 @@ export async function getStaticProps({ params: { tag } }) {
   const posts = Object.keys(postsTable)
                       .filter(post => postsTable[post].Published === 'Yes' 
                                     && postsTable[post].Tag.split(',').find(tagName => tag === tagName))
+
+  posts.sort((a, b) => {
+    if(postsTable[a].Date > postsTable[b].Date) return -1;
+    if(postsTable[a].Date < postsTable[b].Date) return 1;
+    return 0
+  })
   // if we can't find the post or if it is unpublished and
   // viewed without preview mode then we just redirect to /blog
   if (!posts) {

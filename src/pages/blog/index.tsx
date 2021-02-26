@@ -38,6 +38,12 @@ export async function getStaticProps({ preview }) {
     post.Authors = post.Authors.map(id => users[id].full_name)
   })
 
+  posts.sort((a, b) => {
+    if (a.Date > b.Date) return -1
+    if (a.Date < b.Date) return 1
+    return 0
+  })
+
   return {
     props: {
       preview: preview || false,

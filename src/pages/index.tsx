@@ -55,19 +55,28 @@ const RenderTagList = ({ tags }) => {
           </p>
         </div>
 
-        <div className="mt-2 mb-2">
-          <h2 className={sharedStyles.subTitle}>-Blog Tag-</h2>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          {tags.map(tag =>
-            tag.split(',').map((tagName, i) => (
-              <div key={i} style={{ marginLeft: '10px', fontSize: '16px' }}>
-                <Link href={'/tag/[tag]'} as={getTagLink(tagName)}>
-                  <a>#{tagName}</a>
-                </Link>
-              </div>
-            ))
-          )}
+        <h2 className="font-extrabold mb-2 mt-16">-Blog Tag-</h2>
+        <div style={{ display: 'flex' }}>
+          <div style={{ minWidth: '15%' }}></div>
+          <div style={{ width: 'auto', textAlign: 'center', margin: '0 auto' }}>
+            {tags.map(tag =>
+              tag.split(',').map((tagName, i) => (
+                <div
+                  key={i}
+                  style={{
+                    marginLeft: '10px',
+                    fontSize: '16px',
+                    display: 'inline-block',
+                  }}
+                >
+                  <Link href={'/tag/[tag]'} as={getTagLink(tagName)}>
+                    <a>#{tagName}</a>
+                  </Link>
+                </div>
+              ))
+            )}
+          </div>
+          <div style={{ minWidth: '15%' }}></div>
         </div>
       </div>
     </React.Fragment>

@@ -110,12 +110,14 @@ export default ({ posts = [], preview }) => {
                         {getDate(post.Date)}
                       </Moment>
                     )}
-                    <div
-                      className={'text-xs ml-2'}
-                      style={{ marginTop: '0.17rem' }}
-                    >
-                      ({post && post.content}文字)
-                    </div>
+                    {post && post.NumOfWords && (
+                      <div
+                        className={'text-xs ml-2'}
+                        style={{ marginTop: '0.17rem' }}
+                      >
+                        {post.NumOfWords + '文字'}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

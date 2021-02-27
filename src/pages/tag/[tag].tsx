@@ -79,7 +79,7 @@ const RenderTag = ({ posts, tag, postsTable, redirect }) => {
         {posts.map(post => 
         <div className={blogStyles.postPreview} key={postsTable[post].Slug}>
           <div style={{ display: 'block' }}>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'inline-flex' }}>
               {postsTable[post].Tag.length > 0 && (
                 postsTable[post].Tag.split(',').map((tag, i) =>
                   <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
@@ -100,7 +100,7 @@ const RenderTag = ({ posts, tag, postsTable, redirect }) => {
                 </div>
               </Link>
             </div>
-              <div style={{ marginTop: '4px', marginLeft: '10px', fontSize: '12px' }}>
+              <div style={{ marginTop: '4px', fontSize: '12px' }}>
                 <div style={{ display: 'flex' }}>
                   {postsTable[post].Date && (
                     <Moment format="//YYYY-MM-DD">{getDate(postsTable[post].Date)}</Moment>

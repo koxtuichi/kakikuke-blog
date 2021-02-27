@@ -146,8 +146,8 @@ const RenderPost = ({ post, redirect, preview }) => {
           )}
 
           {post.Tag.split(',').map((tag, i) =>
-            <div style={{ marginLeft: '10px', fontSize: '14px' }}>
-              <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
+            <div key={i} style={{ marginLeft: '10px', fontSize: '14px' }}>
+              <Link href="/tag/[tag]" as={getTagLink(tag)}>
                 <a>#{tag}</a>
               </Link>
             </div>
@@ -162,7 +162,7 @@ const RenderPost = ({ post, redirect, preview }) => {
 
         {(post.content || []).map((block, blockIdx) => {
           const { value } = block
-          const { type, properties, id, parent_id } = value
+          const { type, properties, id, parent_id, format } = value
           const isLast = blockIdx === post.content.length - 1
           const isList = listTypes.has(type)
           let toRender = []
@@ -229,7 +229,13 @@ const RenderPost = ({ post, redirect, preview }) => {
               break
             case 'text':
               if (properties) {
-                toRender.push(textBlock(properties.title, false, id))
+                toRender.push(
+                <div key={id} style={{ 
+                  color: COLOR_MAP[format && format.block_color] || 'inherit',
+                  backgroundColor: BK_COLOR_MAP[format && format.block_color] || 'inherit' }}
+                  >
+                    {textBlock(properties.title, false, id)}
+                </div>)
               }
               break
             case 'image':
@@ -414,6 +420,30 @@ const RenderPost = ({ post, redirect, preview }) => {
       </div>
     </React.Fragment>
   )
+}
+
+const COLOR_MAP = {
+  ['gray']: '#5e5e5e',
+  ['brown']: '#e3be78',
+  ['orange']: '#f5b622',
+  ['yellow']: '#c4c934',
+  ['teal']: '#79bf71',
+  ['blue']: '#24dced',
+  ['purple']: '#d3adff',
+  ['pink']: '#ff7878',
+  ['red']: '#ff5252',
+}
+
+const BK_COLOR_MAP = {
+  ['gray_background']: '#f5f5f5',
+  ['brown_background']: '#fcf0e8',
+  ['orange_background']: '#fcf6e8',
+  ['yellow_background']: '#f9fce8',
+  ['teal_background']: '#e8fcef',
+  ['blue_background']: '#e8e8fc',
+  ['purple_background']: '#f2e8fc',
+  ['pink_background']: '#fbe8fc',
+  ['red_background']: '#fce8e8',
 }
 
 export default RenderPost

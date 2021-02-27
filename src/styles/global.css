@@ -312,10 +312,12 @@ h2 {
 }
 
 p {
-  color: #555;
+  /* color: #555; */
+  color: inherit;
   font-weight: 400;
   font-size: 0.94rem;
   line-height: 1.7;
+  height: 22px;
 }
 pre {
   white-space: pre;

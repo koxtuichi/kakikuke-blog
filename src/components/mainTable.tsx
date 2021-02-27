@@ -50,11 +50,10 @@ class like extends React.Component<{}, typeImageTableState> {
       const scroll_Y = document.documentElement.scrollTop + window.innerHeight
       const offsetHeight = document.documentElement.offsetHeight
       if (
-        offsetHeight - scroll_Y <= 1000 &&
+        offsetHeight - scroll_Y <= 3000 &&
         !this.state.isLoading &&
         offsetHeight > 1500
       ) {
-        this.setState({ message: 'loading...' })
         this.getiine()
       }
     })
@@ -63,6 +62,7 @@ class like extends React.Component<{}, typeImageTableState> {
   getiine = () => {
     if (this.state.limit) return
     this.setState({
+      message: 'loading...',
       isLoading: true,
     })
     if (!!this.state.images.max_id) {
@@ -115,7 +115,7 @@ class like extends React.Component<{}, typeImageTableState> {
           className="font-bold mb-2 mt-16"
           style={{
             textAlign: 'center',
-            display: this.state.limit ? 'none' : null,
+            display: !this.state.limit ? 'none' : null,
           }}
         >
           - FINISHED -

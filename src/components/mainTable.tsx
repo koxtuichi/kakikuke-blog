@@ -79,6 +79,7 @@ class like extends React.Component<{}, typeImageTableState> {
         this.setState({
           message: '',
           isLoading: false,
+          limit: true,
         })
         console.log('取得に失敗しました。')
       })

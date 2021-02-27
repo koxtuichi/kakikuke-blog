@@ -13,8 +13,8 @@ export async function getStaticProps() {
     .map(post =>
       postsTable[post].Tag.split(',').map(tagName => tagList.push(tagName))
     )
-  const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
 
+  const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
   return {
     props: { tags },
   }
@@ -25,9 +25,9 @@ const RenderTagList = ({ tags }) => {
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
       <div className={sharedStyles.layout}>
-        <h1 className="mt-10 text-2xl">みかんがすき</h1>
+        <div className="mt-10 text-2xl">みかんがすき</div>
 
-        <h2 className="font-extrabold mb-2 mt-16">コンセプト</h2>
+        <div className="font-extrabold mb-2 mt-16">コンセプト</div>
         <div style={{ textAlign: 'center' }}>
           <p className="mb-1">「何度も楽しめるエンタメを発信したい（趣味）」</p>
           <p className="mb-1">中学生の頃、モンハンポータブルにハマってた</p>
@@ -39,14 +39,14 @@ const RenderTagList = ({ tags }) => {
           <p className="mb-1">どうぞよろしくお願いしますｍｍ</p>
         </div>
 
-        <h2 className="font-extrabold mb-2 mt-16">仕事</h2>
+        <div className="font-extrabold mb-2 mt-16">仕事</div>
         <div style={{ textAlign: 'center' }}>
           <p className="mb-1">フロントエンドをよくいじってるプログラマー</p>
           <p className="mb-1">C#／javascriptが好き</p>
           <p className="mb-1">今はReact,Reduxの環境で発狂してる</p>
         </div>
 
-        <h2 className="font-extrabold mb-2 mt-16">ブログについて</h2>
+        <div className="font-extrabold mb-2 mt-16">ブログについて</div>
         <div style={{ textAlign: 'center' }}>
           <p className="mb-1">Notionで記事管理▷vercelに自動デプロイ</p>
           <p className="mb-1">環境はReact.js + Next.js</p>
@@ -55,7 +55,7 @@ const RenderTagList = ({ tags }) => {
           </p>
         </div>
 
-        <h2 className="font-extrabold mb-2 mt-16">-Blog Tag-</h2>
+        <div className="font-extrabold mb-2 mt-16">-Blog Tag-</div>
         <div style={{ display: 'flex' }}>
           <div style={{ minWidth: '15%' }}></div>
           <div style={{ width: 'auto', textAlign: 'center', margin: '0 auto' }}>

@@ -73,55 +73,56 @@ export default ({ posts = [], preview }) => {
         {posts.length === 0 && (
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
-        {posts.map(post => {
+        {posts.map((post, i) => {
           return (
-            <div key={post.Slug} className={blogStyles.postPreview}>
-              <div style={{ display: 'block' }}>
-                <div style={{ display: 'flex' }}>
-                  {post.Tag.length > 0 &&
-                    post.Tag.split(',').map((tag, i) => (
-                      <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
-                        <div>
-                          <a className={blogStyles.tag}>{tag}</a>
-                        </div>
-                      </Link>
-                    ))}
-                </div>
-                <div className={blogStyles.titleContainer}>
-                  <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
-                    <div>
-                      {!post.Published && (
-                        <span className={blogStyles.draftBadge}>Draft</span>
-                      )}
-                      <a>{post.Page}</a>
-                    </div>
-                  </Link>
-                </div>
-                <div
-                  style={{
-                    marginTop: '4px',
-                    marginLeft: '10px',
-                    fontSize: '12px',
-                  }}
-                >
-                  <div style={{ display: 'flex' }}>
-                    {post.Date && (
-                      <Moment format="//YYYY-MM-DD">
-                        {getDate(post.Date)}
-                      </Moment>
-                    )}
-                    {post && post.NumOfWords && (
-                      <div
-                        className={'text-xs ml-2'}
-                        style={{ marginTop: '0.17rem' }}
-                      >
-                        {post.NumOfWords + '文字'}
+            <React.Fragment key={i}>
+              <div key={post.Slug} className={blogStyles.postPreview}>
+                <div style={{ display: 'block' }}>
+                  <div style={{ display: 'inline-flex' }}>
+                    {post.Tag.length > 0 &&
+                      post.Tag.split(',').map((tag, i) => (
+                        <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
+                          <div>
+                            <a className={blogStyles.tag}>{tag}</a>
+                          </div>
+                        </Link>
+                      ))}
+                  </div>
+                  <div className={blogStyles.titleContainer}>
+                    <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
+                      <div>
+                        {!post.Published && (
+                          <span className={blogStyles.draftBadge}>Draft</span>
+                        )}
+                        <a>{post.Page}</a>
                       </div>
-                    )}
+                    </Link>
+                  </div>
+                  <div
+                    style={{
+                      marginTop: '4px',
+                      fontSize: '12px',
+                    }}
+                  >
+                    <div style={{ display: 'flex' }}>
+                      {post.Date && (
+                        <Moment format="//YYYY-MM-DD">
+                          {getDate(post.Date)}
+                        </Moment>
+                      )}
+                      {post && post.NumOfWords && (
+                        <div
+                          className={'text-xs ml-2'}
+                          style={{ marginTop: '0.17rem' }}
+                        >
+                          {post.NumOfWords + '文字'}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </React.Fragment>
           )
         })}
       </div>

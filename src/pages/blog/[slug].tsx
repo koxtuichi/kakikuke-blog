@@ -14,14 +14,10 @@ import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getTagLink, getBlogLink, getDate } from '../../lib/blog-helpers'
 import Moment from 'react-moment';
 
-// Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
-  // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex()
   const post = postsTable[slug]
 
-  // if we can't find the post or if it is unpublished and
-  // viewed without preview mode then we just redirect to /blog
   if (!post || (post.Published !== 'Yes' && !preview)) {
     console.log(`Failed to find post for slug: ${slug}`)
     return {
@@ -40,7 +36,6 @@ export async function getStaticProps({ params: { slug }, preview }) {
     const { type, properties } = value
     if (type == 'tweet') {
       const src = properties.source[0][0]
-      // parse id from https://twitter.com/_ijjk/status/TWEET_ID format
       const tweetId = src.split('/')[5].split('?')[0]
       if (!tweetId) continue
 
@@ -69,11 +64,8 @@ export async function getStaticProps({ params: { slug }, preview }) {
   }
 }
 
-// Return our list of blog posts to prerender
 export async function getStaticPaths() {
   const postsTable = await getBlogIndex()
-  // we fallback for any unpublished posts to save build time
-  // for actually published ones
   return {
     paths: Object.keys(postsTable)
       .filter(post => postsTable[post].Published === 'Yes')
@@ -100,8 +92,6 @@ const RenderPost = ({ post, redirect, preview }) => {
 
   useEffect(() => {
     const twitterSrc = 'https://platform.twitter.com/widgets.js'
-    // make sure to initialize any new widgets loading on
-    // client navigation
     if (post && post.hasTweet) {
       if ((window as any)?.twttr?.widgets) {
         ;(window as any).twttr.widgets.load()
@@ -119,14 +109,10 @@ const RenderPost = ({ post, redirect, preview }) => {
     }
   }, [redirect, post])
 
-  // If the page is not yet generated, this will be displayed
-  // initially until getStaticProps() finishes running
   if (router.isFallback) {
     return <div>Loading...</div>
   }
 
-  // if you don't have a post at this point, and are not
-  // loading one from fallback then  redirect back to the index
   if (!post) {
     return (
       <div className={blogStyles.post}>
@@ -153,9 +139,6 @@ const RenderPost = ({ post, redirect, preview }) => {
       )}
       <div className={blogStyles.post}>
         <h2>{post.Page || ''}</h2>
-        {/* {post.Authors.length > 0 && (
-          <div className="authors">By: {post.Authors.join(' ')}</div>
-        )} */}
 
         <div style={{ display: 'flex' }}>
           {post.Date && (
@@ -280,11 +263,9 @@ const RenderPost = ({ post, redirect, preview }) => {
                     top: 0,
                   }
                 : {
-                    width,
+                    width: '90%',
                     border: 'none',
-                    height: block_height,
                     display: 'block',
-                    maxWidth: '100%',
                   }
 
               let child = null

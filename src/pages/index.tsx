@@ -15,6 +15,7 @@ export async function getStaticProps() {
     )
 
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
+
   return {
     props: { tags },
   }
@@ -61,18 +62,19 @@ const RenderTagList = ({ tags }) => {
           <div style={{ width: 'auto', textAlign: 'center', margin: '0 auto' }}>
             {tags.map(tag =>
               tag.split(',').map((tagName, i) => (
-                <div
-                  key={i}
-                  style={{
-                    marginLeft: '10px',
-                    fontSize: '16px',
-                    display: 'inline-block',
-                  }}
-                >
-                  <Link href={'/tag/[tag]'} as={getTagLink(tagName)}>
-                    <a>#{tagName}</a>
-                  </Link>
-                </div>
+                <React.Fragment key={i}>
+                  <div
+                    style={{
+                      marginRight: '10px',
+                      fontSize: '16px',
+                      display: 'inline-block',
+                    }}
+                  >
+                    <Link href={'/tag/[tag]'} as={getTagLink(tagName)}>
+                      <a>#{tagName}</a>
+                    </Link>
+                  </div>
+                </React.Fragment>
               ))
             )}
           </div>

@@ -13,6 +13,8 @@ import {
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 
+export let postList = []
+
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
   const authorsToGet: Set<string> = new Set()
@@ -42,6 +44,8 @@ export async function getStaticProps({ preview }) {
     if (a.Date < b.Date) return 1
     return 0
   })
+
+  postList = posts
 
   return {
     props: {

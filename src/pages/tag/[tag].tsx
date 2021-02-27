@@ -6,6 +6,7 @@ import Link from 'next/link'
 import blogStyles from '../../styles/blog.module.css'
 import Header from '../../components/header'
 import Moment from 'react-moment';
+import {postList} from '../blog/index';
 
 export async function getStaticProps({ params: { tag } }) {
   const postsTable = await getBlogIndex()
@@ -31,6 +32,7 @@ export async function getStaticProps({ params: { tag } }) {
   }
   return {
     props: {
+      postList,
       posts,
       tag,
       postsTable,
@@ -53,7 +55,7 @@ export async function getStaticPaths() {
   }
 }
 
-const RenderTag = ({ posts, tag, postsTable, redirect }) => {
+const RenderTag = ({ postList, posts, tag, postsTable, redirect }) => {
   const router = useRouter()
 
   useEffect(() => {
@@ -76,12 +78,12 @@ const RenderTag = ({ posts, tag, postsTable, redirect }) => {
         {!tag && (
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
-        {posts.map(post => 
-        <div className={blogStyles.postPreview} key={postsTable[post].Slug}>
+        {postList.map(post => 
+        <div className={blogStyles.postPreview} key={post.Slug}>
           <div style={{ display: 'block' }}>
             <div style={{ display: 'inline-flex' }}>
-              {postsTable[post].Tag.length > 0 && (
-                postsTable[post].Tag.split(',').map((tag, i) =>
+              {post.Tag.length > 0 && (
+                post.Tag.split(',').map((tag, i) =>
                   <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
                     <div>
                       <a className={blogStyles.tag}>{tag}</a>
@@ -90,24 +92,25 @@ const RenderTag = ({ posts, tag, postsTable, redirect }) => {
                 )
               )}
             </div>
+            <div />
             <div className={blogStyles.titleContainer}>
-              <Link href="/blog/[slug]" as={getBlogLink(postsTable[post].Slug)}>
+              <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
                 <div>
-                  {!postsTable[post].Published && (
+                  {!post.Published && (
                     <span className={blogStyles.draftBadge}>Draft</span>
                   )}
-                  <a>{postsTable[post].Page}</a>
+                  <a>{post.Page}</a>
                 </div>
               </Link>
             </div>
               <div style={{ marginTop: '4px', fontSize: '12px' }}>
                 <div style={{ display: 'flex' }}>
-                  {postsTable[post].Date && (
-                    <Moment format="//YYYY-MM-DD">{getDate(postsTable[post].Date)}</Moment>
+                  {post.Date && (
+                    <Moment format="//YYYY-MM-DD">{getDate(post.Date)}</Moment>
                   )}
-                  {(postsTable[post].NumOfWords) &&
+                  {(post.NumOfWords) &&
                     <div className={'text-xs ml-2'} style={{ marginTop: '0.17rem' }}>
-                      {postsTable[post].NumOfWords + '文字'}
+                      {post.NumOfWords + '文字'}
                     </div>
                   }
                 </div>

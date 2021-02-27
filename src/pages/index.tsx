@@ -15,7 +15,7 @@ export async function getStaticProps() {
     )
 
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
-
+  console.log(tags)
   return {
     props: { tags },
   }

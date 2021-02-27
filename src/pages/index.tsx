@@ -13,8 +13,8 @@ export async function getStaticProps() {
     .map(post =>
       postsTable[post].Tag.split(',').map(tagName => tagList.push(tagName))
     )
-
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
+
   return {
     props: { tags },
   }
@@ -25,10 +25,12 @@ const RenderTagList = ({ tags }) => {
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
       <div className={sharedStyles.layout}>
-        <div className="mt-10 text-2xl">みかんがすき</div>
+        <div className="mt-10 text-2xl" style={{ textAlign: 'center' }}>
+          みかんがすき
+        </div>
 
-        <div className="font-extrabold mb-2 mt-16">コンセプト</div>
         <div style={{ textAlign: 'center' }}>
+          <div className="font-bold mb-2 mt-16">コンセプト</div>
           <p className="mb-1">「何度も楽しめるエンタメを発信したい（趣味）」</p>
           <p className="mb-1">中学生の頃、モンハンポータブルにハマってた</p>
           <p className="mb-1">友達と一緒に遊ぶのも楽しかったけど</p>
@@ -39,15 +41,15 @@ const RenderTagList = ({ tags }) => {
           <p className="mb-1">どうぞよろしくお願いしますｍｍ</p>
         </div>
 
-        <div className="font-extrabold mb-2 mt-16">仕事</div>
         <div style={{ textAlign: 'center' }}>
+          <div className="font-bold mb-2 mt-16">仕事</div>
           <p className="mb-1">フロントエンドをよくいじってるプログラマー</p>
           <p className="mb-1">C#／javascriptが好き</p>
           <p className="mb-1">今はReact,Reduxの環境で発狂してる</p>
         </div>
 
-        <div className="font-extrabold mb-2 mt-16">ブログについて</div>
         <div style={{ textAlign: 'center' }}>
+          <div className="font-bold mb-2 mt-16">ブログについて</div>
           <p className="mb-1">Notionで記事管理▷vercelに自動デプロイ</p>
           <p className="mb-1">環境はReact.js + Next.js</p>
           <p className="mb-1">
@@ -55,7 +57,9 @@ const RenderTagList = ({ tags }) => {
           </p>
         </div>
 
-        <div className="font-extrabold mb-2 mt-16">-Blog Tag-</div>
+        <div className="font-bold mb-2 mt-16" style={{ textAlign: 'center' }}>
+          -Blog Tag-
+        </div>
         <div style={{ display: 'flex' }}>
           <div style={{ minWidth: '15%' }}></div>
           <div style={{ width: 'auto', textAlign: 'center', margin: '0 auto' }}>

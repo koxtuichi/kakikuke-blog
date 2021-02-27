@@ -111,11 +111,15 @@ class like extends React.Component<{}, typeImageTableState> {
       <div>
         <ImageTable images={this.state.images} />
         {this.state.images.url.length === 0 && <div>{this.state.message}</div>}
-        {this.state.limit && (
-          <div className="font-bold mb-2 mt-16" style={{ textAlign: 'center' }}>
-            - FINISHED -
-          </div>
-        )}
+        <div
+          className="font-bold mb-2 mt-16"
+          style={{
+            textAlign: 'center',
+            display: this.state.limit ? 'none' : null,
+          }}
+        >
+          - FINISHED -
+        </div>
       </div>
     )
   }

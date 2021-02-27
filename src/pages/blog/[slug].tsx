@@ -229,12 +229,28 @@ const RenderPost = ({ post, redirect, preview }) => {
               break
             case 'text':
               if (properties) {
+                properties && properties.title[0][0] === ' ' ?
                 toRender.push(
-                <div key={id} style={{ 
-                  color: COLOR_MAP[format && format.block_color] || 'inherit',
-                  backgroundColor: BK_COLOR_MAP[format && format.block_color] || 'inherit' }}
-                  >
-                    {textBlock(properties.title, false, id)}
+                  <React.Fragment key={id}>
+                    <div style={{ 
+                      color: COLOR_MAP[format && format.block_color] || 'inherit',
+                      backgroundColor: BK_COLOR_MAP[format && format.block_color] || 'inherit',
+                      borderRadius: '5px' }}
+                      > 
+                      <br />
+                    </div>
+                  </React.Fragment>
+                  )
+                :
+                toRender.push(
+                <div key={id} style={{ display: 'flex' }}>
+                  <p style={{
+                    color: COLOR_MAP[format && format.block_color] || 'inherit',
+                    backgroundColor: BK_COLOR_MAP[format && format.block_color] || 'inherit',
+                    padding: '0 5px',
+                    borderRadius: '5px'
+                  }}>{properties.title}</p>
+                  <div />
                 </div>)
               }
               break

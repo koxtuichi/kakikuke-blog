@@ -317,7 +317,7 @@ p {
   font-weight: 400;
   font-size: 0.94rem;
   line-height: 1.7;
-  height: 22px;
+  height: 100%;
 }
 pre {
   white-space: pre;

@@ -2,8 +2,8 @@ import React from 'react'
 import Header from '../components/header'
 import sharedStyles from '../styles/shared.module.css'
 import getBlogIndex from '../lib/notion/getBlogIndex'
-import { getTagLink, postIsPublished } from '../lib/blog-helpers'
-import Link from 'next/link'
+import { postIsPublished } from '../lib/blog-helpers'
+import Profiel from '../components/getTags'
 
 export async function getStaticProps() {
   const postsTable = await getBlogIndex(false)
@@ -70,7 +70,6 @@ const RenderTagList = ({ tags }) => {
             favoriteの画像はTwitterAPI + REST API + Lamdaを使用
           </p>
         </div>
-
         <div className="font-bold mb-2 mt-16" style={{ textAlign: 'center' }}>
           -Blog Tag-
         </div>
@@ -78,18 +77,9 @@ const RenderTagList = ({ tags }) => {
           <div style={{ minWidth: '15%' }}></div>
           <div style={{ width: 'auto', textAlign: 'center', margin: '0 auto' }}>
             {tags.map((tagName, i) => (
-              <div
-                key={i}
-                style={{
-                  marginRight: '10px',
-                  fontSize: '16px',
-                  display: 'inline-block',
-                }}
-              >
-                <Link href={'/blog/tag/[tag]'} as={getTagLink(tagName)}>
-                  <a>#{tagName}</a>
-                </Link>
-              </div>
+              <React.Fragment key={i}>
+                <Profiel tag={tagName}></Profiel>
+              </React.Fragment>
             ))}
           </div>
           <div style={{ minWidth: '15%' }}></div>

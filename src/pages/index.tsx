@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/header'
 import sharedStyles from '../styles/shared.module.css'
 import getBlogIndex from '../lib/notion/getBlogIndex'
@@ -26,33 +26,27 @@ export async function getStaticProps() {
   let tagList = []
   posts.map(post => post.Tag.split(',').map(tagName => tagList.push(tagName)))
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
-  const preview = false
 
   return {
     props: {
       tags,
-      preview,
     },
   }
 }
 
-const RenderTagList = ({ tags, preview }) => {
+const RenderTagList = ({ tags }) => {
+  const [a, b] = useState(0)
+  if (a < 3) {
+    b(a + 1)
+  }
+
   return (
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
-      {preview && (
-        <div>
-          <div>
-            <button>Exit Preview</button>
-          </div>
-        </div>
-      )}
       <div className={sharedStyles.layout}>
-        {tags.length === 0 || (
-          <div className="mt-10 text-2xl" style={{ textAlign: 'center' }}>
-            みかんがすき
-          </div>
-        )}
+        <div className="mt-10 text-2xl" style={{ textAlign: 'center' }}>
+          みかんがすき
+        </div>
         <div style={{ textAlign: 'center' }}>
           <div className="font-bold mb-2 mt-16">コンセプト</div>
           <p className="mb-1">「何度も楽しめるエンタメを発信したい（趣味）」</p>

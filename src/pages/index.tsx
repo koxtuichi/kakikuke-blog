@@ -6,7 +6,7 @@ import { postIsPublished } from '../lib/blog-helpers'
 import TagList from '../components/getTags'
 
 export async function getStaticProps() {
-  const postsTable = await getBlogIndex(false)
+  const postsTable = await getBlogIndex(true)
   const posts = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]
@@ -26,18 +26,27 @@ export async function getStaticProps() {
   let tagList = []
   posts.map(post => post.Tag.split(',').map(tagName => tagList.push(tagName)))
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
+  const preview = false
 
   return {
     props: {
       tags,
+      preview,
     },
   }
 }
 
-const RenderTagList = ({ tags }) => {
+const RenderTagList = ({ tags, preview }) => {
   return (
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
+      {preview && (
+        <div>
+          <div>
+            <button>Exit Preview</button>
+          </div>
+        </div>
+      )}
       <div className={sharedStyles.layout}>
         {tags.length === 0 || (
           <div className="mt-10 text-2xl" style={{ textAlign: 'center' }}>

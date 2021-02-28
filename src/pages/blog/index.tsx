@@ -15,7 +15,6 @@ import getBlogIndex from '../../lib/notion/getBlogIndex'
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
-  const authorsToGet: Set<string> = new Set()
   const posts: any[] = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]
@@ -23,19 +22,9 @@ export async function getStaticProps({ preview }) {
       if (!preview && !postIsPublished(post)) {
         return null
       }
-      post.Authors = post.Authors || []
-      for (const author of post.Authors) {
-        authorsToGet.add(author)
-      }
       return post
     })
     .filter(Boolean)
-
-  const { users } = await getNotionUsers([...authorsToGet])
-
-  posts.map(post => {
-    post.Authors = post.Authors.map(id => users[id].full_name)
-  })
 
   posts.sort((a, b) => {
     if (a.Date > b.Date) return -1

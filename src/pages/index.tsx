@@ -78,19 +78,18 @@ const RenderTagList = ({ tags }) => {
           <div style={{ minWidth: '15%' }}></div>
           <div style={{ width: 'auto', textAlign: 'center', margin: '0 auto' }}>
             {tags.map((tagName, i) => (
-              <React.Fragment key={i}>
-                <div
-                  style={{
-                    marginRight: '10px',
-                    fontSize: '16px',
-                    display: 'inline-block',
-                  }}
-                >
-                  <Link href={'/blog/tag/[tag]'} as={getTagLink(tagName)}>
-                    <a>#{tagName}</a>
-                  </Link>
-                </div>
-              </React.Fragment>
+              <div
+                key={i}
+                style={{
+                  marginRight: '10px',
+                  fontSize: '16px',
+                  display: 'inline-block',
+                }}
+              >
+                <Link href={'/blog/tag/[tag]'} as={getTagLink(tagName)}>
+                  <a>#{tagName}</a>
+                </Link>
+              </div>
             ))}
           </div>
           <div style={{ minWidth: '15%' }}></div>

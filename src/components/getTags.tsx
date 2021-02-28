@@ -6,7 +6,7 @@ type typeTag = {
   tag: string
 }
 
-class Profiel extends React.Component<typeTag> {
+class TagList extends React.Component<typeTag> {
   constructor(props: typeTag) {
     super(props)
     this.state = {
@@ -38,4 +38,4 @@ class Profiel extends React.Component<typeTag> {
   }
 }
 
-export default Profiel
+export default TagList

@@ -3,7 +3,7 @@ import Header from '../components/header'
 import sharedStyles from '../styles/shared.module.css'
 import getBlogIndex from '../lib/notion/getBlogIndex'
 import { postIsPublished } from '../lib/blog-helpers'
-import Profiel from '../components/getTags'
+import TagList from '../components/getTags'
 
 export async function getStaticProps() {
   const postsTable = await getBlogIndex(false)
@@ -39,10 +39,11 @@ const RenderTagList = ({ tags }) => {
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
       <div className={sharedStyles.layout}>
-        <div className="mt-10 text-2xl" style={{ textAlign: 'center' }}>
-          みかんがすき
-        </div>
-
+        {tags.length === 0 || (
+          <div className="mt-10 text-2xl" style={{ textAlign: 'center' }}>
+            みかんがすき
+          </div>
+        )}
         <div style={{ textAlign: 'center' }}>
           <div className="font-bold mb-2 mt-16">コンセプト</div>
           <p className="mb-1">「何度も楽しめるエンタメを発信したい（趣味）」</p>
@@ -78,7 +79,7 @@ const RenderTagList = ({ tags }) => {
           <div style={{ width: 'auto', textAlign: 'center', margin: '0 auto' }}>
             {tags.map((tagName, i) => (
               <React.Fragment key={i}>
-                <Profiel tag={tagName}></Profiel>
+                <TagList tag={tagName}></TagList>
               </React.Fragment>
             ))}
           </div>

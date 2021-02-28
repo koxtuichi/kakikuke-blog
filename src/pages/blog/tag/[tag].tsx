@@ -1,27 +1,32 @@
-import getBlogIndex from '../../lib/notion/getBlogIndex'
-import { getTagLink, getDate, getBlogLink } from '../../lib/blog-helpers'
+import getBlogIndex from '../../../lib/notion/getBlogIndex'
+import { getTagLink, getDate, getBlogLink, postIsPublished } from '../../../lib/blog-helpers'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import blogStyles from '../../styles/blog.module.css'
-import Header from '../../components/header'
+import blogStyles from '../../../styles/blog.module.css'
+import Header from '../../../components/header'
 import Moment from 'react-moment';
-import {postList} from '../blog/index';
 
 export async function getStaticProps({ params: { tag } }) {
   const postsTable = await getBlogIndex()
   const posts = Object.keys(postsTable)
-                      .filter(post => postsTable[post].Published === 'Yes' 
-                                    && postsTable[post].Tag.split(',').find(tagName => tag === tagName))
+    .map(slug => {
+      const post = postsTable[slug]
+
+      if (!postIsPublished(post)) {
+        return null
+      }
+      return post
+    })
+    .filter(Boolean)
 
   posts.sort((a, b) => {
-    if(postsTable[a].Date > postsTable[b].Date) return -1;
-    if(postsTable[a].Date < postsTable[b].Date) return 1;
+    if (a.Date > b.Date) return -1
+    if (a.Date < b.Date) return 1
     return 0
   })
-  // if we can't find the post or if it is unpublished and
-  // viewed without preview mode then we just redirect to /blog
-  if (!posts) {
+
+  if (posts.length === 0) {
     console.log(`Failed to find post for slug: ${tag}`)
     return {
       props: {
@@ -32,10 +37,8 @@ export async function getStaticProps({ params: { tag } }) {
   }
   return {
     props: {
-      postList,
       posts,
       tag,
-      postsTable,
     },
     unstable_revalidate: 10,
   }
@@ -55,11 +58,11 @@ export async function getStaticPaths() {
   }
 }
 
-const RenderTag = ({ postList, posts, tag, postsTable, redirect }) => {
+const RenderTag = ({ posts, tag, redirect }) => {
   const router = useRouter()
 
   useEffect(() => {
-    if (redirect && !posts) {
+    if (redirect && posts.length === 0) {
       router.replace(redirect)
     }
   }, [redirect, posts])
@@ -78,13 +81,13 @@ const RenderTag = ({ postList, posts, tag, postsTable, redirect }) => {
         {!tag && (
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
-        {postList.map(post => 
+        {posts.map(post => 
         <div className={blogStyles.postPreview} key={post.Slug}>
           <div style={{ display: 'block' }}>
             <div style={{ display: 'inline-flex' }}>
               {post.Tag.length > 0 && (
                 post.Tag.split(',').map((tag, i) =>
-                  <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
+                  <Link key={i} href="/blog/tag/[tag]" as={getTagLink(tag)}>
                     <div>
                       <a className={blogStyles.tag}>{tag}</a>
                     </div>

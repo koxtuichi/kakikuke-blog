@@ -3,7 +3,7 @@ export const getBlogLink = (slug: string) => {
 }
 
 export const getTagLink = (tag: string) => {
-  return `/tag/${tag}`
+  return `/blog/tag/${tag}`
 }
 
 export const getDate = date => {

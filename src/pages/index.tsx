@@ -2,26 +2,29 @@ import React from 'react'
 import Header from '../components/header'
 import sharedStyles from '../styles/shared.module.css'
 import getBlogIndex from '../lib/notion/getBlogIndex'
-import { getTagLink } from '../lib/blog-helpers'
+import { getTagLink, postIsPublished } from '../lib/blog-helpers'
 import Link from 'next/link'
-import { postList } from './blog/index'
 
 export async function getStaticProps() {
   const postsTable = await getBlogIndex()
+  const posts = Object.keys(postsTable)
+    .map(slug => {
+      const post = postsTable[slug]
+      if (!postIsPublished(post)) {
+        return null
+      }
+      return post
+    })
+    .filter(Boolean)
+
+  posts.sort((a, b) => {
+    if (a.Date > b.Date) return -1
+    if (a.Date < b.Date) return 1
+    return 0
+  })
 
   let tagList = []
-  if (postList.length === 0) {
-    Object.keys(postsTable)
-      .filter(post => postsTable[post].Published === 'Yes')
-      .map(post =>
-        postsTable[post].Tag.split(',').map(tagName => tagList.push(tagName))
-      )
-  } else {
-    postList.map(post =>
-      post.Tag.split(',').map(tagName => tagList.push(tagName))
-    )
-  }
-
+  posts.map(post => post.Tag.split(',').map(tagName => tagList.push(tagName)))
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
 
   return {
@@ -84,7 +87,7 @@ const RenderTagList = ({ tags }) => {
                       display: 'inline-block',
                     }}
                   >
-                    <Link href={'/tag/[tag]'} as={getTagLink(tagName)}>
+                    <Link href={'/blog/tag/[tag]'} as={getTagLink(tagName)}>
                       <a>#{tagName}</a>
                     </Link>
                   </div>

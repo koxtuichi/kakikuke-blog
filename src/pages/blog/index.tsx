@@ -84,7 +84,11 @@ export default ({ posts = [], preview }) => {
                   <div style={{ display: 'inline-flex' }}>
                     {post.Tag.length > 0 &&
                       post.Tag.split(',').map((tag, i) => (
-                        <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
+                        <Link
+                          key={i}
+                          href="/blog/tag/[tag]"
+                          as={getTagLink(tag)}
+                        >
                           <div>
                             <a className={blogStyles.tag}>{tag}</a>
                           </div>

@@ -7,8 +7,8 @@ import blogStyles from '../../../styles/blog.module.css'
 import Header from '../../../components/header'
 import Moment from 'react-moment';
 
-export async function getStaticProps({ params: { tag } }) {
-  const postsTable = await getBlogIndex()
+export async function getStaticProps({ params: { tag }, preview }) {
+  const postsTable = await getBlogIndex(true)
   const posts = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]
@@ -16,6 +16,11 @@ export async function getStaticProps({ params: { tag } }) {
       if (!postIsPublished(post)) {
         return null
       }
+      
+      if(post.Tag !== tag) {
+        return null
+      }
+
       return post
     })
     .filter(Boolean)
@@ -39,6 +44,7 @@ export async function getStaticProps({ params: { tag } }) {
     props: {
       posts,
       tag,
+      preview: preview || false,
     },
     unstable_revalidate: 10,
   }
@@ -58,7 +64,7 @@ export async function getStaticPaths() {
   }
 }
 
-const RenderTag = ({ posts, tag, redirect }) => {
+const RenderTag = ({ posts, tag, preview, redirect }) => {
   const router = useRouter()
 
   useEffect(() => {

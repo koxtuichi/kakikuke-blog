@@ -26,7 +26,7 @@ export async function getStaticProps() {
   let tagList = []
   posts.map(post => post.Tag.split(',').map(tagName => tagList.push(tagName)))
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
-
+  // console.log()
   return {
     props: {
       tags,

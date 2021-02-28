@@ -26,16 +26,15 @@ export async function getStaticProps() {
   let tagList = []
   posts.map(post => post.Tag.split(',').map(tagName => tagList.push(tagName)))
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
-  // console.log()
+
   return {
     props: {
       tags,
-      posts,
     },
   }
 }
 
-const RenderTagList = ({ tags, posts }) => {
+const RenderTagList = ({ tags }) => {
   return (
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
@@ -77,25 +76,22 @@ const RenderTagList = ({ tags, posts }) => {
         </div>
         <div style={{ display: 'flex' }}>
           <div style={{ minWidth: '15%' }}></div>
-          <div>{posts.map(p => p.Tag)}</div>
           <div style={{ width: 'auto', textAlign: 'center', margin: '0 auto' }}>
-            {tags.map(tag =>
-              tag.split(',').map((tagName, i) => (
-                <React.Fragment key={i}>
-                  <div
-                    style={{
-                      marginRight: '10px',
-                      fontSize: '16px',
-                      display: 'inline-block',
-                    }}
-                  >
-                    <Link href={'/blog/tag/[tag]'} as={getTagLink(tagName)}>
-                      <a>#{tagName}</a>
-                    </Link>
-                  </div>
-                </React.Fragment>
-              ))
-            )}
+            {tags.map((tagName, i) => (
+              <React.Fragment key={i}>
+                <div
+                  style={{
+                    marginRight: '10px',
+                    fontSize: '16px',
+                    display: 'inline-block',
+                  }}
+                >
+                  <Link href={'/blog/tag/[tag]'} as={getTagLink(tagName)}>
+                    <a>#{tagName}</a>
+                  </Link>
+                </div>
+              </React.Fragment>
+            ))}
           </div>
           <div style={{ minWidth: '15%' }}></div>
         </div>

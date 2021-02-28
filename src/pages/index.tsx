@@ -6,7 +6,7 @@ import { getTagLink, postIsPublished } from '../lib/blog-helpers'
 import Link from 'next/link'
 
 export async function getStaticProps() {
-  const postsTable = await getBlogIndex()
+  const postsTable = await getBlogIndex(true)
   const posts = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]

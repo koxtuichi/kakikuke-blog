@@ -11,6 +11,7 @@ type typeImageTableState = {
   getTweetNum: Number
   isLoading: Boolean
   limit: Boolean
+  limitMassage: string
 }
 
 type typeImages = {
@@ -34,6 +35,7 @@ class like extends React.Component<{}, typeImageTableState> {
       getTweetNum: getFirstTweetNum,
       isLoading: false,
       limit: false,
+      limitMassage: '',
     }
   }
 
@@ -52,9 +54,14 @@ class like extends React.Component<{}, typeImageTableState> {
       if (
         offsetHeight - scroll_Y <= 3000 &&
         !this.state.isLoading &&
+        !this.state.limit &&
         offsetHeight > 1500
       ) {
         this.getiine()
+      } else if (3000 <= offsetHeight - scroll_Y && this.state.limit) {
+        this.setState({
+          limitMassage: '- FINISHED -',
+        })
       }
     })
   }
@@ -118,7 +125,7 @@ class like extends React.Component<{}, typeImageTableState> {
             display: !this.state.limit ? 'none' : null,
           }}
         >
-          - FINISHED -
+          {this.state.limitMassage}
         </div>
       </div>
     )

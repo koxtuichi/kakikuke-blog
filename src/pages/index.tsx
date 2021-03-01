@@ -26,6 +26,7 @@ export async function getStaticProps() {
   let tagList = []
   posts.map(post => post.Tag.split(',').map(tagName => tagList.push(tagName)))
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
+  console.log(tags)
 
   return {
     props: {
@@ -79,6 +80,7 @@ const RenderTagList = ({ tags }) => {
         </div>
         <div style={{ display: 'flex' }}>
           <div style={{ minWidth: '15%' }}></div>
+          {console.log(tags)}
           <div style={{ width: 'auto', textAlign: 'center', margin: '0 auto' }}>
             {tags.map((tagName, i) => (
               <React.Fragment key={i}>

@@ -16,8 +16,8 @@ export async function getStaticProps({ params: { tag }, preview }) {
       if (!postIsPublished(post)) {
         return null
       }
-      
-      if(post.Tag !== tag) {
+
+      if(!post.Tag.match(tag)) {
         return null
       }
 

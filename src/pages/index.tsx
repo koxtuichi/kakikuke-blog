@@ -4,30 +4,37 @@ import sharedStyles from '../styles/shared.module.css'
 import getBlogIndex from '../lib/notion/getBlogIndex'
 import { postIsPublished } from '../lib/blog-helpers'
 import TagList from '../components/getTags'
+import { postList } from './blog/index'
 
 export async function getStaticProps() {
-  const postsTable = await getBlogIndex(true)
-  const posts = Object.keys(postsTable)
-    .map(slug => {
-      const post = postsTable[slug]
-      if (!postIsPublished(post)) {
-        return null
-      }
-      return post
-    })
-    .filter(Boolean)
-
-  posts.sort((a, b) => {
-    if (a.Date > b.Date) return -1
-    if (a.Date < b.Date) return 1
-    return 0
-  })
-
+  let posts: any[] = []
   let tagList = []
-  posts.map(post => post.Tag.split(',').map(tagName => tagList.push(tagName)))
-  const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
-  console.log(tags)
+  if (postList.length === 0) {
+    const postsTable = await getBlogIndex(true)
+    posts = Object.keys(postsTable)
+      .map(slug => {
+        const post = postsTable[slug]
+        if (!postIsPublished(post)) {
+          return null
+        }
+        return post
+      })
+      .filter(Boolean)
 
+    posts.sort((a, b) => {
+      if (a.Date > b.Date) return -1
+      if (a.Date < b.Date) return 1
+      return 0
+    })
+
+    posts.map(post => post.Tag.split(',').map(tagName => tagList.push(tagName)))
+  } else {
+    postList.map(post =>
+      post.Tag.split(',').map(tagName => tagList.push(tagName))
+    )
+  }
+
+  const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
   return {
     props: {
       tags,
@@ -36,11 +43,6 @@ export async function getStaticProps() {
 }
 
 const RenderTagList = ({ tags }) => {
-  const [a, b] = useState(0)
-  if (a < 3) {
-    b(a + 1)
-  }
-
   return (
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
@@ -80,7 +82,6 @@ const RenderTagList = ({ tags }) => {
         </div>
         <div style={{ display: 'flex' }}>
           <div style={{ minWidth: '15%' }}></div>
-          {console.log(tags)}
           <div style={{ width: 'auto', textAlign: 'center', margin: '0 auto' }}>
             {tags.map((tagName, i) => (
               <React.Fragment key={i}>

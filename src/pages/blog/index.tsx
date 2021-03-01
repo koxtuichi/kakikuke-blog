@@ -12,6 +12,8 @@ import {
 } from '../../lib/blog-helpers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 
+export let postList = []
+
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
   const posts: any[] = Object.keys(postsTable)
@@ -30,6 +32,8 @@ export async function getStaticProps({ preview }) {
     if (a.Date < b.Date) return 1
     return 0
   })
+
+  postList = posts
 
   return {
     props: {

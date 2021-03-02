@@ -56,6 +56,7 @@ const RenderTagList = ({ tags }) => {
             width: '40vw',
             maxWidth: '650px',
             minWidth: '300px',
+            marginTop: '20px',
           }}
           src="https://lh3.googleusercontent.com/0uSBYTmV76sUiKLr0Pkd6Qx6THzSCsfzKirZekxrb6R-LwWg6zGWsc3XK8ay_qFX6_K3rw6NYCLMnPnLVLT08udZVwt1kER5dZYzxJzh3w_no4v4MIWoZ7GJHPv4prGEu9NDqgpiOw=w2400"
         />

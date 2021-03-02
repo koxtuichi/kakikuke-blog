@@ -58,16 +58,24 @@ const RenderTagList = ({ tags }) => {
             minWidth: '300px',
             marginTop: '20px',
           }}
-          src="https://lh3.googleusercontent.com/0uSBYTmV76sUiKLr0Pkd6Qx6THzSCsfzKirZekxrb6R-LwWg6zGWsc3XK8ay_qFX6_K3rw6NYCLMnPnLVLT08udZVwt1kER5dZYzxJzh3w_no4v4MIWoZ7GJHPv4prGEu9NDqgpiOw=w2400"
+          src="https://lh3.googleusercontent.com/76V76X2N2K04JeBeKv12oEmyy2GB7P_7w6tkRORDYEk5NHtpUHeZvwllohbmeItpjNDJn7xASpIbLLrd7j1PHEALbzFaB5x2ZuDJWrQcRy3T99crTC9Yhk4q3P2wW4mf3xEEW22V9Q=w2400"
         />
         <div style={{ textAlign: 'center' }}>
           <div className="font-bold mb-2 mt-16">コンセプト</div>
-          <p className="mb-1">「何度も楽しめるエンタメを発信したい」</p>
+          <p className="mb-1">「ゲーム欲が掻き立てられるブログを発信したい」</p>
           <p className="mb-1">中学生の頃、モンハンポータブルにハマってた</p>
-          <p className="mb-1">友達と一緒に遊ぶのも楽しかったけど</p>
+          <p className="mb-1">友達の家に泊まって一緒に遊ぶのも楽しかったけど</p>
           <p className="mb-1">それと同じくらいブログをみるのにもハマってた</p>
-          <p className="mb-1">たしか夫婦で運営してたモンハンブログだったか</p>
-          <p className="mb-1">僕もおんなじことをやりたいと思って15年</p>
+          <p className="mb-1">
+            「
+            <a href="http://blog.livedoor.jp/keicha18-heppokomh/archives/cat_954118.html?p=16">
+              けいちゃ
+            </a>
+            」って人のブログで日記が中心
+          </p>
+          <p className="mb-1">攻略情報とかはなかったけどそれでも面白かった</p>
+          <p className="mb-1">見ればみるほど自分もゲームを進めたいなと思えた</p>
+          <p className="mb-1">そして僕もおんなじことをやりたいと思って15年</p>
           <p className="mb-1">完全趣味のブログ、はじめてみたので</p>
           <p className="mb-1">どうぞよろしくですｍｍ</p>
         </div>

@@ -34,6 +34,8 @@ export async function getStaticProps() {
     )
   }
 
+  // console.log(postList)
+
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
   return {
     props: {
@@ -47,9 +49,13 @@ const RenderTagList = ({ tags }) => {
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
       <div className={sharedStyles.layout}>
-        <div className="mt-10 text-2xl" style={{ textAlign: 'center' }}>
+        {/* <div className="mt-10 text-2xl" style={{ textAlign: 'center' }}>
           みかんがすき
-        </div>
+        </div> */}
+        <img
+          style={{ margin: '10px auto', borderRadius: '12px', width: '40vw' }}
+          src="https://lh3.googleusercontent.com/uNlbdePQ-AUUy-WhGLlCqV1MvDBeHORSIhlOE8AIV2qCpsxtKHiAUK3FOEXRetNNvuKt-cTp0tivAQF_C2Flp-vI7UqY2hbAmjKuF0HkmGBoZzqpcDwqztTVGSpdiNG8H3e_Q3Y8WA=w2400"
+        />
         <div style={{ textAlign: 'center' }}>
           <div className="font-bold mb-2 mt-16">コンセプト</div>
           <p className="mb-1">「何度も楽しめるエンタメを発信したい（趣味）」</p>

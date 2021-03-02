@@ -49,11 +49,14 @@ const RenderTagList = ({ tags }) => {
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
       <div className={sharedStyles.layout}>
-        {/* <div className="mt-10 text-2xl" style={{ textAlign: 'center' }}>
-          みかんがすき
-        </div> */}
         <img
-          style={{ margin: '10px auto', borderRadius: '12px', width: '40vw' }}
+          style={{
+            margin: '10px auto',
+            borderRadius: '12px',
+            width: '40vw',
+            maxWidth: '650px',
+            minWidth: '300px',
+          }}
           src="https://lh3.googleusercontent.com/uNlbdePQ-AUUy-WhGLlCqV1MvDBeHORSIhlOE8AIV2qCpsxtKHiAUK3FOEXRetNNvuKt-cTp0tivAQF_C2Flp-vI7UqY2hbAmjKuF0HkmGBoZzqpcDwqztTVGSpdiNG8H3e_Q3Y8WA=w2400"
         />
         <div style={{ textAlign: 'center' }}>

@@ -57,18 +57,18 @@ const RenderTagList = ({ tags }) => {
             maxWidth: '650px',
             minWidth: '300px',
           }}
-          src="https://lh3.googleusercontent.com/uNlbdePQ-AUUy-WhGLlCqV1MvDBeHORSIhlOE8AIV2qCpsxtKHiAUK3FOEXRetNNvuKt-cTp0tivAQF_C2Flp-vI7UqY2hbAmjKuF0HkmGBoZzqpcDwqztTVGSpdiNG8H3e_Q3Y8WA=w2400"
+          src="https://lh3.googleusercontent.com/0uSBYTmV76sUiKLr0Pkd6Qx6THzSCsfzKirZekxrb6R-LwWg6zGWsc3XK8ay_qFX6_K3rw6NYCLMnPnLVLT08udZVwt1kER5dZYzxJzh3w_no4v4MIWoZ7GJHPv4prGEu9NDqgpiOw=w2400"
         />
         <div style={{ textAlign: 'center' }}>
           <div className="font-bold mb-2 mt-16">コンセプト</div>
-          <p className="mb-1">「何度も楽しめるエンタメを発信したい（趣味）」</p>
+          <p className="mb-1">「何度も楽しめるエンタメを発信したい」</p>
           <p className="mb-1">中学生の頃、モンハンポータブルにハマってた</p>
           <p className="mb-1">友達と一緒に遊ぶのも楽しかったけど</p>
           <p className="mb-1">それと同じくらいブログをみるのにもハマってた</p>
           <p className="mb-1">たしか夫婦で運営してたモンハンブログだったか</p>
           <p className="mb-1">僕もおんなじことをやりたいと思って15年</p>
-          <p className="mb-1">趣味全開のブログをはじめてみましたので</p>
-          <p className="mb-1">どうぞよろしくお願いしますｍｍ</p>
+          <p className="mb-1">完全趣味のブログ、はじめてみたので</p>
+          <p className="mb-1">どうぞよろしくですｍｍ</p>
         </div>
 
         <div style={{ textAlign: 'center' }}>

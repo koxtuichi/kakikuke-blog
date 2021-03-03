@@ -68,10 +68,13 @@ const RenderTagList = ({ tags }) => {
           <p className="mb-1">それと同じくらいブログをみるのにもハマってた</p>
           <p className="mb-1">
             「
-            <a href="http://blog.livedoor.jp/keicha18-heppokomh/archives/cat_954118.html?p=16">
+            <a
+              href="http://blog.livedoor.jp/keicha18-heppokomh/archives/cat_954118.html?p=16"
+              style={{ color: '#f5b622' }}
+            >
               けいちゃ
             </a>
-            」って人のブログで日記が中心
+            」って人のブログ、日記が中心で
           </p>
           <p className="mb-1">攻略情報とかはなかったけどそれでも面白かった</p>
           <p className="mb-1">見ればみるほど自分もゲームを進めたいなと思えた</p>

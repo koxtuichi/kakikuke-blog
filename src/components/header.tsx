@@ -29,7 +29,7 @@ export default ({ titlePre = '', className = '' }) => {
         <meta name="og:title" content={title || 'かきくけこういち.COM'} />
         <meta property="og:image" content={ogImageUrl} />
         <meta name="twitter:site" content="@kakikukekoichi" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
         <meta name="twitter:image" content={ogImageUrl} />
       </Head>
       <ul>

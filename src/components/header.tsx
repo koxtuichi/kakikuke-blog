@@ -20,6 +20,7 @@ export default ({ titlePre = '', className = '' }) => {
     <header className={`${styles.header} ${className}`}>
       <Head>
         <title>{titlePre ? `${titlePre} |` : ''}</title>
+        <script async src="https://cdn.splitbee.io/sb.js"></script>
         <meta
           name="description"
           content="An example Next.js site using Notion for the blog"

@@ -3,6 +3,7 @@ import Head from 'next/head'
 import ExtLink from './ext-link'
 import { useRouter } from 'next/router'
 import styles from '../styles/header.module.css'
+import { title } from '../pages/blog/[slug]'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Profile', page: '/' },
@@ -10,8 +11,8 @@ const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Favorite', page: '/favorite' },
 ]
 
-//TODO:画像は差し替える
-const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
+const ogImageUrl =
+  'https://lh3.googleusercontent.com/xBwUlh5zYzZOPf4Nom73QQvuc-ON6XPNjLVTfN1GBmRRSRj-SPgSMUPLAjcNzsZYGeXLz7UFp6IxwPDl1d4JAxQQnvtFwTkJrWmrZ7x9BWVgSxFKO5YEtmc1ZULW0a6FEsHrRVKELA=w2400'
 
 export default ({ titlePre = '', className = '' }) => {
   const { pathname } = useRouter()
@@ -25,9 +26,9 @@ export default ({ titlePre = '', className = '' }) => {
           name="description"
           content="An example Next.js site using Notion for the blog"
         />
-        <meta name="og:title" content="novel warehouse" />
+        <meta name="og:title" content={title || 'かきくけこういち.COM'} />
         <meta property="og:image" content={ogImageUrl} />
-        <meta name="twitter:site" content="@_ijjk" />
+        <meta name="twitter:site" content="@kakikukekoichi" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImageUrl} />
       </Head>

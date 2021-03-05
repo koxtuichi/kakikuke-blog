@@ -14,7 +14,11 @@ import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getTagLink, getBlogLink, getDate } from '../../lib/blog-helpers'
 import Moment from 'react-moment';
 
+export let title = '';
+
 export async function getStaticProps({ params: { slug }, preview }) {
+  title = slug;
+
   const postsTable = await getBlogIndex()
   const post = postsTable[slug]
 

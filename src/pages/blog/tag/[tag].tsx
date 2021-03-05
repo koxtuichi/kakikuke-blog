@@ -37,7 +37,7 @@ export async function getStaticProps({ params: { tag }, preview }) {
       props: {
         redirect: '/blog',
       },
-      unstable_revalidate: 5,
+      unstable_revalidate: 10,
     }
   }
   return {
@@ -46,7 +46,7 @@ export async function getStaticProps({ params: { tag }, preview }) {
       tag,
       preview: preview || false,
     },
-    unstable_revalidate: 5,
+    unstable_revalidate: 10,
   }
 }
 

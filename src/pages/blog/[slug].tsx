@@ -460,7 +460,7 @@ const BK_COLOR_MAP = {
   ['orange_background']: '#fcf6e8',
   ['yellow_background']: '#f9fce8',
   ['teal_background']: '#e8fcef',
-  ['blue_background']: '#e8e8fc',
+  ['blue_background']: '#e8f0ff',
   ['purple_background']: '#f2e8fc',
   ['pink_background']: '#fbe8fc',
   ['red_background']: '#fce8e8',

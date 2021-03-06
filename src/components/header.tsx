@@ -11,7 +11,7 @@ const navItems: { label: string; page?: string; link?: string }[] = [
 ]
 
 const ogImageUrl =
-  'https://lh3.googleusercontent.com/_-KDpzLdi8SChkJAjawZnlYIZMOJgJbwI0mDfWplbAhUZ9M5kKlvFgoBcoieXE98UjcAkZx8iX8yDAGTMeT6pJ2REWWX0_0nDDBfu0wxbnW8NuIM_Oh42lfT16IZO5WJy4hh033ENA=w2400'
+  'https://lh3.googleusercontent.com/nCvzINkGgEGKkXDxaNHkgh-vHmEu31iD2dnZT25qZWmx2vOE60zHtsSj9IuEf0PUqhzwjrgQGq7gu8EzzWgKnOPjbrLzVsT56MwC6FEqGxk__kvgSeR3cIflL05SChRCsCrHWJQdBg=w2400'
 
 export default ({ titlePre = '', className = '' }) => {
   const { pathname } = useRouter()

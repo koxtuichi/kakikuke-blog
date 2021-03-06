@@ -43,7 +43,6 @@ export async function getStaticProps({ preview }) {
     unstable_revalidate: 10,
   }
 }
-
 export default ({ posts = [], preview }) => {
   return (
     <React.Fragment>

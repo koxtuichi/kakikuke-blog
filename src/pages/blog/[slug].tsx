@@ -123,6 +123,8 @@ const RenderPost = ({ post, redirect, preview }) => {
     )
   }
 
+  const url = `https%3A%2F%2Fxn--n8jdoikmo8i.com%2Fblog%2F${encodeURIComponent(encodeURIComponent(post.Slug))}`
+
   return (
     <React.Fragment>
       <Header titlePre={post.Page} className="mt-6" />
@@ -437,8 +439,10 @@ const RenderPost = ({ post, redirect, preview }) => {
       <hr />
       </div>
       <div style={{ textAlign: 'center', margin: '0 auto' }}>
-          <a href={`http://twitter.com/share?url=https://かきくけこういち.com/blog&text=${post.Slug}&hashtags=ブログ,かきくけこういち&via=kakikukekoichi`} target="_blank"
-           style={{ backgroundColor: '#e8f0ff', borderRadius: '24px', padding: '5px 10px' }}>シェアする？</a>
+        <a href={`http://twitter.com/share?text=かきくけこういち.COM%0a- ${post.Slug} -%0a&hashtags=ブログ&url=${url}%0a`}
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+          style={{ backgroundColor: '#e8f0ff', borderRadius: '24px', padding: '5px 10px' }}>シェアする？</a>
       </div>
     </React.Fragment>
   )

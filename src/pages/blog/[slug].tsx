@@ -433,15 +433,12 @@ const RenderPost = ({ post, redirect, preview }) => {
           }
           return toRender
         })}
+      <br />
+      <hr />
       </div>
       <div style={{ textAlign: 'center', margin: '0 auto' }}>
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" style={{ backgroundColor: '#e8f0ff', borderRadius: '24px', padding: '5px 10px' }}
-        data-show-count="true"
-        data-text={post.Page}
-        data-url={`https://xn--n8jdoikmo8i.com/blog/${post.Slug}`}
-        data-hashtags='@kakikukekoichi'>
-          シェアする？</a>
-        <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+          <a href={`http://twitter.com/share?url=https://かきくけこういち.com/blog&text=${post.Slug}&hashtags=ブログ,かきくけこういち&via=kakikukekoichi`} target="_blank"
+           style={{ backgroundColor: '#e8f0ff', borderRadius: '24px', padding: '5px 10px' }}>シェアする？</a>
       </div>
     </React.Fragment>
   )

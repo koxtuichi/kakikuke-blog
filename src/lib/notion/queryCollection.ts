@@ -7,7 +7,7 @@ export default function queryCollection({
   query = {},
 }: any) {
   const {
-    limit = 999, // TODO: figure out Notion's way of handling pagination
+    limit = 100, // TODO: figure out Notion's way of handling pagination
     loadContentCover = true,
     type = 'table',
     userLocale = 'en',
@@ -29,6 +29,7 @@ export default function queryCollection({
     sort = [],
   } = query
 
+  console.log('req queryCollection')
   return rpc('queryCollection', {
     collectionId,
     collectionViewId,

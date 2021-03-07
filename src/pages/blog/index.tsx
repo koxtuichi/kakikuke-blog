@@ -13,10 +13,11 @@ import {
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 
 export let gettingCommonPosts = []
+export let posts: any[]
 
 export async function getStaticProps({ preview }) {
   gettingCommonPosts = await getBlogIndex()
-  const posts: any[] = Object.keys(gettingCommonPosts)
+  posts = Object.keys(gettingCommonPosts)
     .map(slug => {
       const post = gettingCommonPosts[slug]
       // remove draft posts in production

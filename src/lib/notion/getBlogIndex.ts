@@ -21,7 +21,6 @@ export default async function getBlogIndex(limit = 100, previews = false) {
 
   if (!postsTable) {
     try {
-      console.log('req !postsTable')
       const data = await rpc('loadPageChunk', {
         pageId: BLOG_INDEX_ID,
         limit: 99,

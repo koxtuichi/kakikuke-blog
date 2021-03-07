@@ -1,6 +1,5 @@
 import { GetServerSidePropsContext } from 'next'
 import RSS from 'rss'
-import { posts } from './index'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { postIsPublished } from '../../lib/blog-helpers'
 
@@ -15,26 +14,22 @@ async function generateFeedXml() {
 
   let postsTable: any[] = []
   let localPosts
-  if (true) {
-    postsTable = await getBlogIndex()
-    localPosts = Object.keys(postsTable)
-      .map(slug => {
-        const post = postsTable[slug]
-        if (!postIsPublished(post)) {
-          return null
-        }
-        return post
-      })
-      .filter(Boolean)
-
-    localPosts.sort((a, b) => {
-      if (a.Date > b.Date) return -1
-      if (a.Date < b.Date) return 1
-      return 0
+  postsTable = await getBlogIndex()
+  localPosts = Object.keys(postsTable)
+    .map(slug => {
+      const post = postsTable[slug]
+      if (!postIsPublished(post)) {
+        return null
+      }
+      return post
     })
-  } else {
-    localPosts = posts
-  }
+    .filter(Boolean)
+
+  localPosts.sort((a, b) => {
+    if (a.Date > b.Date) return -1
+    if (a.Date < b.Date) return 1
+    return 0
+  })
   localPosts?.forEach(post => {
     feed.item({
       title: post.Page,

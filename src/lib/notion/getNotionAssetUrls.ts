@@ -11,24 +11,29 @@ export default async function getNotionAsset(
   signedUrls: string[]
 }> {
   const requestURL = `${API_ENDPOINT}/getSignedFileUrls`
-  const assetRes = await fetch(requestURL, {
-    method: 'POST',
-    headers: {
-      cookie: `token_v2=${NOTION_TOKEN}`,
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      urls: [
-        {
-          url: assetUrl,
-          permissionRecord: {
-            table: 'block',
-            id: blockId,
+
+  let assetRes
+  setTimeout(async () => {
+    console.log('リクエスト')
+    assetRes = await fetch(requestURL, {
+      method: 'POST',
+      headers: {
+        cookie: `token_v2=${NOTION_TOKEN}`,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        urls: [
+          {
+            url: assetUrl,
+            permissionRecord: {
+              table: 'block',
+              id: blockId,
+            },
           },
-        },
-      ],
-    }),
-  })
+        ],
+      }),
+    })
+  }, 2000)
 
   if (assetRes.ok) {
     return assetRes.json()

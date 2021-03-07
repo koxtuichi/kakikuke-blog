@@ -21,16 +21,13 @@ export default async function getBlogIndex(limit = 100, previews = true) {
 
   if (!postsTable) {
     try {
-      let data
-      setTimeout(async () => {
-        data = await rpc('loadPageChunk', {
-          pageId: BLOG_INDEX_ID,
-          limit: limit,
-          cursor: { stack: [] },
-          chunkNumber: 0,
-          verticalColumns: false,
-        })
-      }, 2000)
+      const data = await rpc('loadPageChunk', {
+        pageId: BLOG_INDEX_ID,
+        limit: limit,
+        cursor: { stack: [] },
+        chunkNumber: 0,
+        verticalColumns: false,
+      })
 
       // Parse table with posts
       const tableBlock = values(data.recordMap.block).find(

@@ -13,7 +13,6 @@ export default async function getNotionAsset(
   const requestURL = `${API_ENDPOINT}/getSignedFileUrls`
 
   setTimeout(() => {}, 2000)
-  console.log('リクエスト')
 
   const assetRes = await fetch(requestURL, {
     method: 'POST',

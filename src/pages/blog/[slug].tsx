@@ -152,13 +152,13 @@ const RenderPost = ({ post, redirect, preview }) => {
       <div className={blogStyles.post}>
         <h2>{post.Page || ''}</h2>
 
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'block' }}>
           {post.Date && (
             <Moment format="//YYYY-MM-DD">{getDate(post.Date)}</Moment>
           )}
 
           {post.Tag.split(',').map((tag, i) =>
-            <div key={i} style={{ marginLeft: '10px', fontSize: '14px' }}>
+            <div key={i} style={{ marginLeft: '10px', fontSize: '14px', display: 'inline-flex' }}>
               <Link href="/blog/tag/[tag]" as={getTagLink(tag)}>
                 <a>#{tag}</a>
               </Link>

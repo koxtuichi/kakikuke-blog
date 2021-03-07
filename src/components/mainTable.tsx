@@ -135,6 +135,8 @@ export default like
 
 function twitterAPI(max_id: string, gettweetnum: Number) {
   const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=${max_id}&gettweetnum=${gettweetnum}`
+  setTimeout(() => {}, 2000)
+  console.log('twitterAPI')
   return new Promise((resolve, reject) => {
     axios
       .get(endpoint)

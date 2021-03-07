@@ -311,7 +311,7 @@ const RenderPost = ({ post, redirect, preview }) => {
                     style={childStyle}
                     src={display_source}
                     key={!useWrapper ? id : undefined}
-                    className={!useWrapper ? 'asset-wrapper' : undefined}
+                    className='asset-wrapper'
                   />
                 )
               } else {

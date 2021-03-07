@@ -15,7 +15,7 @@ async function generateFeedXml() {
 
   let postsTable: any[] = []
   let localPosts
-  if (!posts) {
+  if (true) {
     postsTable = await getBlogIndex()
     localPosts = Object.keys(postsTable)
       .map(slug => {
@@ -39,7 +39,7 @@ async function generateFeedXml() {
     feed.item({
       title: post.Page,
       description: '', //なにもない
-      date: new Date(post.createdAt),
+      date: new Date(post.Date),
       url: `https://xn--n8jdoikmo8i.com/blog/${post.Slug}`,
     })
   })

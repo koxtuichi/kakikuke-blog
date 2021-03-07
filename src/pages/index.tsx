@@ -4,37 +4,34 @@ import sharedStyles from '../styles/shared.module.css'
 import getBlogIndex from '../lib/notion/getBlogIndex'
 import { postIsPublished } from '../lib/blog-helpers'
 import TagList from '../components/getTags'
-import { postList } from './blog/index'
+import { gettingCommonPosts } from './blog/index'
 
 export async function getStaticProps() {
-  let posts: any[] = []
-  let tagList = []
-  if (postList.length === 0) {
-    const postsTable = await getBlogIndex(true)
-    posts = Object.keys(postsTable)
-      .map(slug => {
-        const post = postsTable[slug]
-        if (!postIsPublished(post)) {
-          return null
-        }
-        return post
-      })
-      .filter(Boolean)
-
-    posts.sort((a, b) => {
-      if (a.Date > b.Date) return -1
-      if (a.Date < b.Date) return 1
-      return 0
-    })
-
-    posts.map(post => post.Tag.split(',').map(tagName => tagList.push(tagName)))
+  let postsTable: any[] = []
+  if (Object.keys(gettingCommonPosts).length === 0) {
+    postsTable = await getBlogIndex()
   } else {
-    postList.map(post =>
-      post.Tag.split(',').map(tagName => tagList.push(tagName))
-    )
+    postsTable = gettingCommonPosts
   }
 
-  // console.log(postList)
+  const posts = Object.keys(postsTable)
+    .map(slug => {
+      const post = postsTable[slug]
+      if (!postIsPublished(post)) {
+        return null
+      }
+      return post
+    })
+    .filter(Boolean)
+
+  posts.sort((a, b) => {
+    if (a.Date > b.Date) return -1
+    if (a.Date < b.Date) return 1
+    return 0
+  })
+
+  let tagList = []
+  posts.map(post => post.Tag.split(',').map(tagName => tagList.push(tagName)))
 
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
   return {

@@ -6,9 +6,16 @@ import Link from 'next/link'
 import blogStyles from '../../../styles/blog.module.css'
 import Header from '../../../components/header'
 import Moment from 'react-moment';
+import { gettingCommonPosts } from '../../blog/index'
 
 export async function getStaticProps({ params: { tag }, preview }) {
-  const postsTable = await getBlogIndex(true)
+  let postsTable
+  if (Object.keys(gettingCommonPosts).length === 0) {
+    postsTable = await getBlogIndex()
+  } else {
+    postsTable = gettingCommonPosts
+  }
+
   const posts = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]
@@ -30,7 +37,7 @@ export async function getStaticProps({ params: { tag }, preview }) {
     if (a.Date < b.Date) return 1
     return 0
   })
-
+  
   if (posts.length === 0) {
     console.log(`Failed to find post for slug: ${tag}`)
     return {
@@ -51,12 +58,17 @@ export async function getStaticProps({ params: { tag }, preview }) {
 }
 
 export async function getStaticPaths() {
-  const postsTable = await getBlogIndex()
-
   let tagList = [];
+  let postsTable
+  if (Object.keys(gettingCommonPosts).length === 0) {
+    postsTable = await getBlogIndex()
+  } else {
+    postsTable = gettingCommonPosts
+  }
+
   Object.keys(postsTable)
-        .filter(post => postsTable[post].Published === 'Yes')
-        .map(post => postsTable[post] && postsTable[post].Tag.split(',').map(tag => tagList.push(tag)));
+    .filter(post => postsTable[post].Published === 'Yes')
+    .map(post => postsTable[post] && postsTable[post].Tag.split(',').map(tag => tagList.push(tag)));
 
   return {
     paths: tagList.map(tag => getTagLink(tag)),

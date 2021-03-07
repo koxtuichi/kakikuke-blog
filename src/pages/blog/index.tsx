@@ -12,13 +12,13 @@ import {
 } from '../../lib/blog-helpers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 
-export let postList = []
+export let gettingCommonPosts = []
 
 export async function getStaticProps({ preview }) {
-  const postsTable = await getBlogIndex()
-  const posts: any[] = Object.keys(postsTable)
+  gettingCommonPosts = await getBlogIndex()
+  const posts: any[] = Object.keys(gettingCommonPosts)
     .map(slug => {
-      const post = postsTable[slug]
+      const post = gettingCommonPosts[slug]
       // remove draft posts in production
       if (!preview && !postIsPublished(post)) {
         return null
@@ -32,8 +32,6 @@ export async function getStaticProps({ preview }) {
     if (a.Date < b.Date) return 1
     return 0
   })
-
-  postList = posts
 
   return {
     props: {

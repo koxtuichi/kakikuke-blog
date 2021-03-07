@@ -13,9 +13,16 @@ import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getTagLink, getBlogLink, getDate } from '../../lib/blog-helpers'
 import Moment from 'react-moment';
+import { gettingCommonPosts } from './index'
 
 export async function getStaticProps({ params: { slug }, preview }) {
-  const postsTable = await getBlogIndex()
+  let postsTable
+  if (Object.keys(gettingCommonPosts).length === 0) {
+    postsTable = await getBlogIndex()
+  }else{
+    postsTable = gettingCommonPosts
+  }
+
   const post = postsTable[slug]
 
   if (!post || (post.Published !== 'Yes' && !preview)) {
@@ -54,7 +61,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
 
   const { users } = await getNotionUsers(post.Authors || [])
   post.Authors = Object.keys(users).map(id => users[id].full_name)
-
+  
   return {
     props: {
       post,
@@ -65,7 +72,14 @@ export async function getStaticProps({ params: { slug }, preview }) {
 }
 
 export async function getStaticPaths() {
-  const postsTable = await getBlogIndex()
+  let postsTable
+
+  if (Object.keys(gettingCommonPosts).length === 0) {
+    postsTable = await getBlogIndex()
+  }else{
+    postsTable = gettingCommonPosts
+  }
+
   return {
     paths: Object.keys(postsTable)
       .filter(post => postsTable[post].Published === 'Yes')

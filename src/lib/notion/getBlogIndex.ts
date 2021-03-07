@@ -7,7 +7,6 @@ import { readFile, writeFile } from '../fs-helpers'
 import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
 
 export default async function getBlogIndex(limit = 100, previews = true) {
-  console.log('getBlogIndex')
   let postsTable: any = null
   const useCache = process.env.USE_CACHE === 'true'
   const cacheFile = `${BLOG_INDEX_CACHE}${previews ? '_previews' : ''}`
@@ -22,13 +21,16 @@ export default async function getBlogIndex(limit = 100, previews = true) {
 
   if (!postsTable) {
     try {
-      const data = await rpc('loadPageChunk', {
-        pageId: BLOG_INDEX_ID,
-        limit: limit,
-        cursor: { stack: [] },
-        chunkNumber: 0,
-        verticalColumns: false,
-      })
+      let data
+      setTimeout(async () => {
+        data = await rpc('loadPageChunk', {
+          pageId: BLOG_INDEX_ID,
+          limit: limit,
+          cursor: { stack: [] },
+          chunkNumber: 0,
+          verticalColumns: false,
+        })
+      }, 2000)
 
       // Parse table with posts
       const tableBlock = values(data.recordMap.block).find(

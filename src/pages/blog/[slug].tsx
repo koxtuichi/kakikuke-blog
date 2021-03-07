@@ -450,9 +450,12 @@ const RenderPost = ({ post, redirect, preview }) => {
       </div>
       <div style={{ textAlign: 'center', margin: '0 auto' }}>
         <a href={`http://twitter.com/share?text=かきくけこういち.COM%0a- ${post.Slug} -%0a&hashtags=ブログ&url=${url}%0a`}
-        rel="nofollow noopener noreferrer"
-        target="_blank"
-          style={{ backgroundColor: '#e8f0ff', borderRadius: '24px', padding: '5px 10px' }}>シェアする？</a>
+          rel="nofollow noopener noreferrer"
+          target="_blank"
+          style={{ backgroundColor: '#71bfaf', borderRadius: '24px', padding: '5px 10px', color: 'white' }}>シェアの手助け</a>
+        
+        <a href="https://game.blogmura.com/ranking/in?p_cid=10978808" 
+          style={{ backgroundColor: '#bf71ba', borderRadius: '24px', padding: '5px 10px', color: 'white', marginLeft: '10px' }} target="_blank" >ブログランクの手助け</a>
       </div>
     </React.Fragment>
   )

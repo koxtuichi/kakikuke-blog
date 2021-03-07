@@ -20,7 +20,6 @@ export async function getStaticProps({ preview }) {
   posts = Object.keys(gettingCommonPosts)
     .map(slug => {
       const post = gettingCommonPosts[slug]
-      // remove draft posts in production
       if (!preview && !postIsPublished(post)) {
         return null
       }

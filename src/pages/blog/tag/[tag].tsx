@@ -13,7 +13,7 @@ export async function getStaticProps({ params: { tag }, preview }) {
   if (Object.keys(gettingCommonPosts).length === 0) {
     postsTable = await getBlogIndex()
   } else {
-    postsTable = gettingCommonPosts
+    postsTable = gettingCommonPosts;
   }
 
   const posts = Object.keys(postsTable)

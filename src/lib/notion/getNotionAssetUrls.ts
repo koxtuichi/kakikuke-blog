@@ -10,6 +10,7 @@ export default async function getNotionAsset(
 ): Promise<{
   signedUrls: string[]
 }> {
+  setTimeout(() => {}, 2000)
   const requestURL = `${API_ENDPOINT}/getSignedFileUrls`
   const assetRes = await fetch(requestURL, {
     method: 'POST',

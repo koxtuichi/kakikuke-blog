@@ -310,6 +310,8 @@ async function main() {
     ],
   }
 
+  setTimeout(() => {}, 2000)
+
   const res = await fetch(`${API_ENDPOINT}/submitTransaction`, {
     method: 'POST',
     headers: {
@@ -325,6 +327,7 @@ async function main() {
 }
 
 async function getExistingexistingBlockId() {
+  setTimeout(() => {}, 2000)
   const res = await fetch(`${API_ENDPOINT}/loadPageChunk`, {
     method: 'POST',
     headers: {
@@ -353,6 +356,7 @@ async function getExistingexistingBlockId() {
 }
 
 async function getUserId() {
+  setTimeout(() => {}, 2000)
   const res = await fetch(`${API_ENDPOINT}/loadUserContent`, {
     method: 'POST',
     headers: {

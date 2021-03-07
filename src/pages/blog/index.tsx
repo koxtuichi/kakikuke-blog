@@ -67,7 +67,7 @@ export default ({ posts = [], preview }) => {
             <React.Fragment key={i}>
               <div key={post.Slug} className={blogStyles.postPreview}>
                 <div style={{ display: 'block' }}>
-                  <div style={{ display: 'inline-flex' }}>
+                  <div style={{ display: 'block' }}>
                     {post.Tag.length > 0 &&
                       post.Tag.split(',').map((tag, i) => (
                         <Link
@@ -75,7 +75,7 @@ export default ({ posts = [], preview }) => {
                           href="/blog/tag/[tag]"
                           as={getTagLink(tag)}
                         >
-                          <div>
+                          <div style={{ display: 'inline-flex' }}>
                             <a className={blogStyles.tag}>{tag}</a>
                           </div>
                         </Link>

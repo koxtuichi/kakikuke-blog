@@ -23,7 +23,7 @@ export default async function getBlogIndex(limit = 100, previews = true) {
     try {
       const data = await rpc('loadPageChunk', {
         pageId: BLOG_INDEX_ID,
-        limit: limit,
+        limit: 99,
         cursor: { stack: [] },
         chunkNumber: 0,
         verticalColumns: false,

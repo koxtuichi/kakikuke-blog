@@ -28,3 +28,7 @@ export function handleError(res: NextApiResponse, error: string | Error) {
     message: 'an error occurred processing request',
   })
 }
+
+export const sleep = milliseconds => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}

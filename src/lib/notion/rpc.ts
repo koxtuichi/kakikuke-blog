@@ -1,12 +1,12 @@
 import fetch, { Response } from 'node-fetch'
 import { API_ENDPOINT, NOTION_TOKEN } from './server-constants'
+import { sleep } from './utils'
 
 export default async function rpc(fnName: string, body: any) {
   if (!NOTION_TOKEN) {
     throw new Error('NOTION_TOKEN is not set in env')
   }
-  setTimeout(() => {}, 2000)
-
+  await sleep(1000)
   const res = await fetch(`${API_ENDPOINT}/${fnName}`, {
     method: 'POST',
     headers: {
@@ -15,7 +15,6 @@ export default async function rpc(fnName: string, body: any) {
     },
     body: JSON.stringify(body),
   })
-
   if (res.ok) {
     return res.json()
   } else {

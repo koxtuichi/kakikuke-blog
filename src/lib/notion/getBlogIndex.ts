@@ -5,6 +5,7 @@ import getTableData from './getTableData'
 import { getPostPreview } from './getPostPreview'
 import { readFile, writeFile } from '../fs-helpers'
 import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
+import { sleep } from '../notion/utils'
 
 export default async function getBlogIndex(limit = 100, previews = false) {
   let postsTable: any = null
@@ -39,15 +40,17 @@ export default async function getBlogIndex(limit = 100, previews = false) {
       console.warn(
         `Failed to load Notion posts, attempting to auto create table`
       )
-      try {
-        await createTable()
-        console.log(`Successfully created table in Notion`)
-      } catch (err) {
-        console.error(
-          `Auto creating table failed, make sure you created a blank page and site the id with BLOG_INDEX_ID in your environment`,
-          err
-        )
-      }
+      //TODO:テーブル作成の必要はない
+      // try {
+      //   await sleep(1000)
+      //   await createTable()
+      //   console.log(`Successfully created table in Notion`)
+      // } catch (err) {
+      //   console.error(
+      //     `Auto creating table failed, make sure you created a blank page and site the id with BLOG_INDEX_ID in your environment`,
+      //     err
+      //   )
+      // }
       return {}
     }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import ImageTable from './imageTable'
 import { REACT_APP_API_ENDPOINT_URL } from '../lib/notion/server-constants'
+import { sleep } from '../lib/notion/utils'
 
 const getFirstTweetNum = 30
 
@@ -66,7 +67,7 @@ class like extends React.Component<{}, typeImageTableState> {
     })
   }
 
-  getiine = () => {
+  getiine = async () => {
     if (this.state.limit) return
     this.setState({
       message: 'loading...',
@@ -77,6 +78,7 @@ class like extends React.Component<{}, typeImageTableState> {
         limit: true,
       })
     }
+    await sleep(1000)
     twitterAPI(this.state.images.max_id, this.state.getTweetNum)
       .then(res => {
         this.setIineImages(res)
@@ -135,7 +137,6 @@ export default like
 
 function twitterAPI(max_id: string, gettweetnum: Number) {
   const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=${max_id}&gettweetnum=${gettweetnum}`
-  setTimeout(() => {}, 2000)
   console.log('twitterAPI')
   return new Promise((resolve, reject) => {
     axios

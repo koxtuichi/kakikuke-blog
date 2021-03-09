@@ -6,7 +6,6 @@ export default async function rpc(fnName: string, body: any) {
   if (!NOTION_TOKEN) {
     throw new Error('NOTION_TOKEN is not set in env')
   }
-  await sleep(2000)
   const res = await fetch(`${API_ENDPOINT}/${fnName}`, {
     method: 'POST',
     headers: {

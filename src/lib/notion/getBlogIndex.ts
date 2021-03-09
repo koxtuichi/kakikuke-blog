@@ -8,6 +8,7 @@ import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
 import { sleep } from '../notion/utils'
 
 export default async function getBlogIndex(limit = 100, previews = false) {
+  await sleep(5000)
   let postsTable: any = null
   const useCache = process.env.USE_CACHE === 'true'
   const cacheFile = `${BLOG_INDEX_CACHE}${previews ? '_previews' : ''}`

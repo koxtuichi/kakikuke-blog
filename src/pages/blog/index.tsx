@@ -17,7 +17,7 @@ export let gettingCommonPosts = []
 export let posts: any[]
 
 export async function getStaticProps({ preview }) {
-  await sleep(3000)
+  await sleep(1000)
   gettingCommonPosts = await getBlogIndex()
   posts = Object.keys(gettingCommonPosts)
     .map(slug => {

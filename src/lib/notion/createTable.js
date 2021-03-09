@@ -336,7 +336,7 @@ async function getExistingexistingBlockId() {
     },
     body: JSON.stringify({
       pageId,
-      limit: 25,
+      limit: 1,
       cursor: { stack: [] },
       chunkNumber: 0,
       verticalColumns: false,

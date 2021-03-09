@@ -11,11 +11,13 @@ import {
   postIsPublished,
 } from '../../lib/blog-helpers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
+import { sleep } from '../../lib/notion/utils'
 
 export let gettingCommonPosts = []
 export let posts: any[]
 
 export async function getStaticProps({ preview }) {
+  await sleep(3000)
   gettingCommonPosts = await getBlogIndex()
   posts = Object.keys(gettingCommonPosts)
     .map(slug => {

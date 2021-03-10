@@ -78,6 +78,7 @@ class like extends React.Component<{}, typeImageTableState> {
         limit: true,
       })
     }
+    await sleep(1000)
     twitterAPI(this.state.images.max_id, this.state.getTweetNum)
       .then(res => {
         this.setIineImages(res)
@@ -134,8 +135,7 @@ class like extends React.Component<{}, typeImageTableState> {
 }
 export default like
 
-async function twitterAPI(max_id: string, gettweetnum: Number) {
-  await sleep(1000)
+function twitterAPI(max_id: string, gettweetnum: Number) {
   const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=${max_id}&gettweetnum=${gettweetnum}`
   console.log('twitterAPI')
   return new Promise((resolve, reject) => {

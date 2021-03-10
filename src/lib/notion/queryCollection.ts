@@ -10,8 +10,8 @@ export default function queryCollection({
     limit = 999, // TODO: figure out Notion's way of handling pagination
     loadContentCover = true,
     type = 'table',
-    userLocale = 'en',
-    userTimeZone = 'America/Phoenix',
+    userLocale = 'ja',
+    userTimeZone = 'Japan/Tokyo',
   } = loader
 
   const {
@@ -29,21 +29,26 @@ export default function queryCollection({
     sort = [],
   } = query
 
-  return rpc('queryCollection', {
-    collectionId,
-    collectionViewId,
-    loader: {
-      limit,
-      loadContentCover,
-      type,
-      userLocale,
-      userTimeZone,
+  console.log('queryCollection')
+  return rpc(
+    'queryCollection',
+    {
+      collectionId,
+      collectionViewId,
+      loader: {
+        limit,
+        loadContentCover,
+        type,
+        userLocale,
+        userTimeZone,
+      },
+      query: {
+        aggregate,
+        filter,
+        filter_operator,
+        sort,
+      },
     },
-    query: {
-      aggregate,
-      filter,
-      filter_operator,
-      sort,
-    },
-  })
+    true
+  )
 }

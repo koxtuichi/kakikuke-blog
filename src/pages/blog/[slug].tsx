@@ -13,8 +13,10 @@ import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { getTagLink, getBlogLink, getDate } from '../../lib/blog-helpers'
 import Moment from 'react-moment';
 import { gettingCommonPosts } from './index'
+import { sleep } from '../../lib/notion/utils'
 
 export async function getStaticProps({ params: { slug }, preview }) {
+  await sleep(2000)
   let postsTable
   if (Object.keys(gettingCommonPosts).length === 0) {
     postsTable = await getBlogIndex()

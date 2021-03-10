@@ -9,7 +9,7 @@ import Moment from 'react-moment';
 import { gettingCommonPosts } from '../../blog/index'
 import { sleep } from '../../../lib/notion/utils'
 
-export async function getStaticProps({ params: { tag }, preview }) {
+export async function getStaticProps({ params: { tag } }) {
   let postsTable
   if (Object.keys(gettingCommonPosts).length === 0) {
     postsTable = await getBlogIndex()
@@ -52,7 +52,6 @@ export async function getStaticProps({ params: { tag }, preview }) {
     props: {
       posts,
       tag,
-      preview: preview || false,
     },
     unstable_revalidate: 10,
   }
@@ -77,7 +76,7 @@ export async function getStaticPaths() {
   }
 }
 
-const RenderTag = ({ posts, tag, preview, redirect }) => {
+const RenderTag = ({ posts, tag, redirect }) => {
   const router = useRouter()
 
   useEffect(() => {
@@ -98,7 +97,7 @@ const RenderTag = ({ posts, tag, preview, redirect }) => {
       </div>
       <div className={blogStyles.blogIndex}>
         {!tag && (
-          <p className={blogStyles.noPosts}>There are no posts yet</p>
+          <p className={blogStyles.noPosts}>助けて～記事が取得できないよぉお</p>
         )}
         {posts.map(post => 
         <div className={blogStyles.postPreview} key={post.Slug}>

@@ -14,14 +14,13 @@ import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { sleep } from '../../lib/notion/utils'
 
 export let gettingCommonPosts = []
-export let posts: any[]
 
-export async function getStaticProps({ preview }) {
+export async function getStaticProps() {
   gettingCommonPosts = await getBlogIndex()
-  posts = Object.keys(gettingCommonPosts)
+  const posts = Object.keys(gettingCommonPosts)
     .map(slug => {
       const post = gettingCommonPosts[slug]
-      if (!preview && !postIsPublished(post)) {
+      if (!postIsPublished(post)) {
         return null
       }
       return post
@@ -36,31 +35,20 @@ export async function getStaticProps({ preview }) {
 
   return {
     props: {
-      preview: preview || false,
       posts,
     },
     unstable_revalidate: 10,
   }
 }
-export default ({ posts = [], preview }) => {
+export default ({ posts = [] }) => {
   return (
     <React.Fragment>
       <Header titlePre="Blog" className="mt-6" />
       <div style={{ height: '31px' }}></div>
-      {preview && (
-        <div className={blogStyles.previewAlertContainer}>
-          <div className={blogStyles.previewAlert}>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
-            </Link>
-          </div>
-        </div>
-      )}
+
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
         {posts.length === 0 && (
-          <p className={blogStyles.noPosts}>There are no posts yet</p>
+          <p className={blogStyles.noPosts}>助けて～記事が取得できないよぉお</p>
         )}
         {posts.map((post, i) => {
           return (

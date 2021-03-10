@@ -30,25 +30,21 @@ export default function queryCollection({
   } = query
 
   console.log('queryCollection')
-  return rpc(
-    'queryCollection',
-    {
-      collectionId,
-      collectionViewId,
-      loader: {
-        limit,
-        loadContentCover,
-        type,
-        userLocale,
-        userTimeZone,
-      },
-      query: {
-        aggregate,
-        filter,
-        filter_operator,
-        sort,
-      },
+  return rpc('queryCollection', {
+    collectionId,
+    collectionViewId,
+    loader: {
+      limit,
+      loadContentCover,
+      type,
+      userLocale,
+      userTimeZone,
     },
-    true
-  )
+    query: {
+      aggregate,
+      filter,
+      filter_operator,
+      sort,
+    },
+  })
 }

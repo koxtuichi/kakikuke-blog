@@ -8,7 +8,6 @@ import { gettingCommonPosts } from './blog/index'
 import { sleep } from '../lib/notion/utils'
 
 export async function getStaticProps() {
-  await sleep(2000)
   let postsTable: any[] = []
   if (Object.keys(gettingCommonPosts).length === 0) {
     postsTable = await getBlogIndex()

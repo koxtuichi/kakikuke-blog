@@ -16,7 +16,6 @@ import { gettingCommonPosts } from './index'
 import { sleep } from '../../lib/notion/utils'
 
 export async function getStaticProps({ params: { slug }, preview }) {
-  await sleep(2000)
   let postsTable
   if (Object.keys(gettingCommonPosts).length === 0) {
     postsTable = await getBlogIndex()
@@ -102,38 +101,38 @@ const RenderPost = ({ post, redirect, preview }) => {
     }
   } = {}
 
-  useEffect(() => {
-    const twitterSrc = 'https://platform.twitter.com/widgets.js'
-    if (post && post.hasTweet) {
-      if ((window as any)?.twttr?.widgets) {
-        ;(window as any).twttr.widgets.load()
-      } else if (!document.querySelector(`script[src="${twitterSrc}"]`)) {
-        const script = document.createElement('script')
-        script.async = true
-        script.src = twitterSrc
-        document.querySelector('body').appendChild(script)
-      }
-    }
-  }, [])
-  useEffect(() => {
-    if (redirect && !post) {
-      router.replace(redirect)
-    }
-  }, [redirect, post])
+  // useEffect(() => {
+  //   const twitterSrc = 'https://platform.twitter.com/widgets.js'
+  //   if (post && post.hasTweet) {
+  //     if ((window as any)?.twttr?.widgets) {
+  //       ;(window as any).twttr.widgets.load()
+  //     } else if (!document.querySelector(`script[src="${twitterSrc}"]`)) {
+  //       const script = document.createElement('script')
+  //       script.async = true
+  //       script.src = twitterSrc
+  //       document.querySelector('body').appendChild(script)
+  //     }
+  //   }
+  // }, [])
+  // useEffect(() => {
+  //   if (redirect && !post) {
+  //     router.replace(redirect)
+  //   }
+  // }, [redirect, post])
 
   if (router.isFallback) {
     return <div>Loading...</div>
   }
 
-  if (!post) {
-    return (
-      <div className={blogStyles.post}>
-        <p>
-          Woops! didn't find that post, redirecting you back to the blog index
-        </p>
-      </div>
-    )
-  }
+  // if (!post) {
+  //   return (
+  //     <div className={blogStyles.post}>
+  //       <p>
+  //         Woops! didn't find that post, redirecting you back to the blog index
+  //       </p>
+  //     </div>
+  //   )
+  // }
 
   const url = `https%3A%2F%2Fxn--n8jdoikmo8i.com%2Fblog%2F${encodeURIComponent(encodeURIComponent(post.Slug))}`
 

@@ -48,8 +48,8 @@ Remove the margin in all browsers.
 
 body {
   margin: 0;
-  position: relative;
-  cursor: none;
+  /* position: relative;
+  cursor: none; */
 }
 
 /**

@@ -10,8 +10,7 @@ const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Favorite', page: '/favorite' },
 ]
 
-const ogImageUrl =
-  'https://lh3.googleusercontent.com/agDHJWDU7DRDUL2DF9n1bnB-SoG8UyYMG9dXk1nLyafg-K6DWEqOPGxrMAMYYK3sTeSyfz25u1HdBZ5ZFGaL5JsVP3yGDa8V8RfEM7kW8CB61NzPKNt5KzA98zTDw3HX6qGSpY-XTg=w2400'
+const ogImageUrl = '.\twitterCardImage.png'
 
 export default ({ titlePre = '', className = '' }) => {
   const { pathname } = useRouter()

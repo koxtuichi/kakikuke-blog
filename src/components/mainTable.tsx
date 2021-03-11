@@ -41,7 +41,7 @@ class like extends React.Component<{}, typeImageTableState> {
   }
 
   componentDidMount() {
-    this.setState({ message: 'loading...' })
+    this.setState({ message: '画像を取得中だよ...' })
     if (this.state.getTweetNum === getFirstTweetNum) {
       this.getiine()
       this.setState({
@@ -53,13 +53,13 @@ class like extends React.Component<{}, typeImageTableState> {
       const scroll_Y = document.documentElement.scrollTop + window.innerHeight
       const offsetHeight = document.documentElement.offsetHeight
       if (
-        offsetHeight - scroll_Y <= 3000 &&
+        offsetHeight - scroll_Y <= 4000 &&
         !this.state.isLoading &&
         !this.state.limit &&
         offsetHeight > 1500
       ) {
         this.getiine()
-      } else if (3000 <= offsetHeight - scroll_Y && this.state.limit) {
+      } else if (5000 <= offsetHeight - scroll_Y && this.state.limit) {
         this.setState({
           limitMassage: '- FINISHED -',
         })

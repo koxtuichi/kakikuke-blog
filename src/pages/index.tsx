@@ -47,9 +47,9 @@ const RenderTagList = ({ tags }) => {
   return (
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
-      {/* <MouseCursor />
+      <MouseCursor />
       <div className={`${sharedStyles.cursor}`}></div>
-      <div className={`${sharedStyles.follower}`}></div> */}
+      <div className={`${sharedStyles.follower}`}></div>
       <div className={`${sharedStyles.layout}`}>
         <img
           style={{

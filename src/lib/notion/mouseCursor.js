@@ -3,6 +3,10 @@ import { TweenMax } from 'gsap'
 
 export default class MouseCorsor extends React.Component {
   componentDidMount() {
+    this.func()
+  }
+
+  func() {
     var cursor = document.getElementsByClassName('shared_cursor__1IaO0'),
       follower = document.getElementsByClassName('shared_follower__Gb56c'),
       cWidth = 8, //カーソルの大きさ

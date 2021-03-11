@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Header from '../components/header'
 import sharedStyles from '../styles/shared.module.css'
 import getBlogIndex from '../lib/notion/getBlogIndex'
+import MouseCursor from '../lib/notion/mouseCursor'
 import { postIsPublished } from '../lib/blog-helpers'
 import TagList from '../components/getTags'
 import { gettingCommonPosts } from './blog/index'
@@ -46,7 +47,10 @@ const RenderTagList = ({ tags }) => {
   return (
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />
-      <div className={sharedStyles.layout}>
+      <MouseCursor />
+      <div className={`${sharedStyles.cursor}`}></div>
+      <div className={`${sharedStyles.follower}`}></div>
+      <div className={`${sharedStyles.layout}`}>
         <img
           style={{
             margin: '10px auto',

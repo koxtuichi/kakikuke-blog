@@ -45,9 +45,9 @@ export default ({ posts = [] }) => {
   return (
     <React.Fragment>
       <Header titlePre="Blog" className="mt-6" />
-      <MouseCursor />
+      {/* <MouseCursor />
       <div className={`${sharedStyles.cursor}`}></div>
-      <div className={`${sharedStyles.follower}`}></div>
+      <div className={`${sharedStyles.follower}`}></div> */}
 
       <div style={{ height: '31px' }}></div>
 

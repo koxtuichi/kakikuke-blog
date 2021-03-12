@@ -31,7 +31,7 @@ export default class MouseCorsor extends React.Component {
       })
     })
 
-    await sleep(3000)
+    await sleep(5000)
     const imgElem = document.querySelectorAll('.hov_img')
     imgElem.forEach(elem => {
       elem.addEventListener('mouseover', function(e) {

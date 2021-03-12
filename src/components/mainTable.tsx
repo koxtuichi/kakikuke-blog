@@ -59,10 +59,6 @@ class like extends React.Component<{}, typeImageTableState> {
         offsetHeight > 1500
       ) {
         this.getiine()
-      } else if (5000 <= offsetHeight - scroll_Y && this.state.limit) {
-        this.setState({
-          limitMassage: '- FINISHED -',
-        })
       }
     })
   }
@@ -72,12 +68,9 @@ class like extends React.Component<{}, typeImageTableState> {
     this.setState({
       message: 'loading...',
       isLoading: true,
+      limit: true,
+      limitMassage: '- FINISHED -',
     })
-    if (!!this.state.images.max_id) {
-      this.setState({
-        limit: true,
-      })
-    }
     await sleep(1000)
     twitterAPI(this.state.images.max_id, this.state.getTweetNum)
       .then(res => {
@@ -137,7 +130,6 @@ export default like
 
 function twitterAPI(max_id: string, gettweetnum: Number) {
   const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=${max_id}&gettweetnum=${gettweetnum}`
-  console.log('twitterAPI')
   return new Promise((resolve, reject) => {
     axios
       .get(endpoint)

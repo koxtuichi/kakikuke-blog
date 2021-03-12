@@ -22,7 +22,6 @@ export default class MouseCorsor extends React.Component {
       })
     })
 
-    await sleep(5000)
     const linkElem = document.querySelectorAll('a')
     linkElem.forEach(elem => {
       elem.addEventListener('mouseover', function(e) {
@@ -32,15 +31,16 @@ export default class MouseCorsor extends React.Component {
         cursor.classList.remove('hov_')
       })
     })
-    // const imgElem = document.querySelectorAll('.hov_img')
-    // imgElem.forEach(elem => {
-    //   elem.addEventListener('mouseover', function(e) {
-    //     cursor.classList.add('hov_')
-    //   })
-    //   elem.addEventListener('mouseout', function(e) {
-    //     cursor.classList.remove('hov_')
-    //   })
-    // })
+    await sleep(3000)
+    const imgElem = document.querySelectorAll('.hov_img')
+    imgElem.forEach(elem => {
+      elem.addEventListener('mouseover', function(e) {
+        cursor.classList.add('hov_')
+      })
+      elem.addEventListener('mouseout', function(e) {
+        cursor.classList.remove('hov_')
+      })
+    })
   }
 
   render() {

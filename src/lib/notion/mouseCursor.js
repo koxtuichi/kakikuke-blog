@@ -5,7 +5,6 @@ import { sleep } from './utils'
 
 export default class MouseCorsor extends React.Component {
   async componentDidMount() {
-    let cursorR = 4 //カーソルの半径
     const cursor = document.getElementById('cursor') //カーソル用のdivを取得
 
     //上記のdivタグをマウスに追従させる処理
@@ -32,7 +31,7 @@ export default class MouseCorsor extends React.Component {
       })
     })
 
-    await sleep(5000)
+    await sleep(3000)
     const imgElem = document.querySelectorAll('.hov_img')
     imgElem.forEach(elem => {
       elem.addEventListener('mouseover', function(e) {

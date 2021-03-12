@@ -7,6 +7,7 @@ import blogStyles from '../../../styles/blog.module.css'
 import Header from '../../../components/header'
 import Moment from 'react-moment';
 import { gettingCommonPosts } from '../../blog/index'
+import MouseCursor from '../../../lib/notion/mouseCursor'
 import { sleep } from '../../../lib/notion/utils'
 
 export async function getStaticProps({ params: { tag } }) {
@@ -92,6 +93,7 @@ const RenderTag = ({ posts, tag, redirect }) => {
   return (
     <React.Fragment>
       <Header titlePre={'Tag'} className="mt-6" />
+      <MouseCursor />
       <div className={blogStyles.tagHeader} style={{ height: '40px', fontSize: '16px', textAlign: 'center' }}>
         <div>{tag}の記事一覧</div>
       </div>

@@ -14,6 +14,7 @@ import { getTagLink, getBlogLink, getDate } from '../../lib/blog-helpers'
 import Moment from 'react-moment';
 import { gettingCommonPosts } from './index'
 import { sleep } from '../../lib/notion/utils'
+import MouseCursor from '../../lib/notion/mouseCursor'
 
 export async function getStaticProps({ params: { slug }, preview }) {
   let postsTable
@@ -139,6 +140,7 @@ const RenderPost = ({ post, redirect, preview }) => {
   return (
     <React.Fragment>
       <Header titlePre={post.Page} className="mt-6" />
+      <MouseCursor />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
           <div className={blogStyles.previewAlert}>

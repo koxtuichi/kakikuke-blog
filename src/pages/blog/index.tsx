@@ -11,6 +11,7 @@ import {
   postIsPublished,
 } from '../../lib/blog-helpers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
+import MouseCursor from '../../lib/notion/mouseCursor'
 
 export let gettingCommonPosts = []
 
@@ -43,9 +44,7 @@ export default ({ posts = [] }) => {
   return (
     <React.Fragment>
       <Header titlePre="Blog" className="mt-6" />
-      {/* <MouseCursor />
-      <div className={`${sharedStyles.cursor}`}></div>
-      <div className={`${sharedStyles.follower}`}></div> */}
+      <MouseCursor />
 
       <div style={{ height: '31px' }}></div>
 

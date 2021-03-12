@@ -25,19 +25,22 @@
     "katex": "^0.12.0",
     "moment": "^2.29.1",
     "next": "9.4.4",
-    "prismjs": "^1.17.1",
+    "node": "^15.10.0",
+    "node-sass": "^5.0.0",
+    "prismjs": "^1.23.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-moment": "^1.1.1",
     "rss": "^1.2.2",
-    "uuid": "^8.1.0",
+    "sass": "^1.32.8",
+    "uuid": "^8.3.2",
     "vercel": "^21.2.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "@types/katex": "^0.11.0",
-    "@types/node": "^13.1.2",
-    "@types/react": "^16.9.17",
+    "@types/node": "^13.13.46",
+    "@types/react": "^16.14.5",
     "@types/rss": "0.0.28",
     "autoprefixer": "^9.8.6",
     "husky": "^3.1.0",
@@ -45,7 +48,7 @@
     "postcss": "^7.0.35",
     "prettier": "^1.19.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
-    "typescript": "^3.7.4"
+    "typescript": "^3.9.9"
   },
   "browser": {
     "fs": false

@@ -259,8 +259,8 @@ a {
 }
 
 a:hover {
-  cursor: pointer;
   text-decoration: underline dotted;
+  cursor: none;
 }
 
 .links {

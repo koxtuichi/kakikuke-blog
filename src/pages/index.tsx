@@ -50,6 +50,7 @@ const RenderTagList = ({ tags }) => {
       <MouseCursor />
       <div className={`${sharedStyles.layout}`}>
         <img
+          className="hov_img_noLink"
           style={{
             margin: '10px auto',
             borderRadius: '12px',

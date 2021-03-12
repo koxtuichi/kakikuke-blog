@@ -314,7 +314,7 @@ const RenderPost = ({ post, redirect, preview }) => {
                     style={childStyle}
                     src={display_source}
                     key={!useWrapper ? id : undefined}
-                    className='asset-wrapper'
+                    className='asset-wrapper hov_img_noLink'
                   />
                 )
               } else {
@@ -342,7 +342,7 @@ const RenderPost = ({ post, redirect, preview }) => {
                       paddingTop: `${Math.round(block_aspect_ratio * 100)}%`,
                       position: 'relative',
                     }}
-                    className="asset-wrapper"
+                    className="asset-wrapper hov_img_noLink"
                     key={id}
                   >
                     {child}

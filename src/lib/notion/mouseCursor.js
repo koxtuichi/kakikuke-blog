@@ -15,14 +15,33 @@ export default class MouseCorsor extends React.Component {
 
     //リンクにホバー時はクラスをつける
     const linkElem = document.querySelectorAll('a')
-    for (let i = 0; i < linkElem.length; i++) {
-      linkElem[i].addEventListener('mouseover', function(e) {
+    const imgElem = document.querySelectorAll('.hov_img')
+    const imgNoLinkElem = document.querySelectorAll('.hov_img_noLink')
+
+    imgElem.forEach(elem => {
+      elem.addEventListener('mouseover', function(e) {
         cursor.classList.add('hov_')
       })
-      linkElem[i].addEventListener('mouseout', function(e) {
+      elem.addEventListener('mouseout', function(e) {
         cursor.classList.remove('hov_')
       })
-    }
+    })
+    linkElem.forEach(elem => {
+      elem.addEventListener('mouseover', function(e) {
+        cursor.classList.add('hov_')
+      })
+      elem.addEventListener('mouseout', function(e) {
+        cursor.classList.remove('hov_')
+      })
+    })
+    imgNoLinkElem.forEach(elem => {
+      elem.addEventListener('mouseover', function(e) {
+        cursor.classList.add('hov_noLink')
+      })
+      elem.addEventListener('mouseout', function(e) {
+        cursor.classList.remove('hov_noLink')
+      })
+    })
   }
 
   render() {

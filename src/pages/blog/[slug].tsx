@@ -160,8 +160,8 @@ const RenderPost = ({ post, redirect, preview }) => {
 
           {post.Tag.split(',').map((tag, i) =>
             <div key={i} style={{ marginLeft: '10px', fontSize: '14px', display: 'inline-flex' }}>
-              <Link href="/blog/tag/[tag]" as={getTagLink(tag)}>
-                <a>#{tag}</a>
+              <Link key={i} href="/blog/tag/[tag]" as={getTagLink(tag)}>
+                <a key={i}>#{tag}</a>
               </Link>
             </div>
           )}

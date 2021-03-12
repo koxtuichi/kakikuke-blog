@@ -11,8 +11,6 @@ import {
   postIsPublished,
 } from '../../lib/blog-helpers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
-import MouseCursor from '../../lib/notion/mouseCursor'
-import { sleep } from '../../lib/notion/utils'
 
 export let gettingCommonPosts = []
 
@@ -68,8 +66,10 @@ export default ({ posts = [] }) => {
                           href="/blog/tag/[tag]"
                           as={getTagLink(tag)}
                         >
-                          <div style={{ display: 'inline-flex' }}>
-                            <a className={blogStyles.tag}>{tag}</a>
+                          <div key={i} style={{ display: 'inline-flex' }}>
+                            <a key={i} className={blogStyles.tag}>
+                              {tag}
+                            </a>
                           </div>
                         </Link>
                       ))}

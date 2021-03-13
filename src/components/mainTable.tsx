@@ -3,136 +3,69 @@ import axios from 'axios'
 import ImageTable from './imageTable'
 import { REACT_APP_API_ENDPOINT_URL } from '../lib/notion/server-constants'
 import { sleep } from '../lib/notion/utils'
+import useSWR from 'swr'
 
 const getFirstTweetNum = 30
 
 type typeImageTableState = {
-  images: typeImages
   message: string
-  getTweetNum: Number
-  isLoading: Boolean
-  limit: Boolean
-}
-
-type typeImages = {
-  url: string[]
-  height: number[]
-  source: string[]
-  max_id: string
 }
 
 class like extends React.Component<{}, typeImageTableState> {
   constructor(props: {}) {
     super(props)
     this.state = {
-      images: {
-        url: [],
-        height: [],
-        source: [],
-        max_id: '',
-      },
       message: '',
-      getTweetNum: getFirstTweetNum,
-      isLoading: false,
-      limit: false,
     }
   }
 
-  componentDidMount() {
-    this.setState({ message: '画像を取得中だよ...' })
-    if (this.state.getTweetNum === getFirstTweetNum) {
-      this.getiine()
-      this.setState({
-        getTweetNum: 50,
-      })
-    }
-
-    window.addEventListener('scroll', () => {
-      const scroll_Y = document.documentElement.scrollTop + window.innerHeight
-      const offsetHeight = document.documentElement.offsetHeight
-      if (
-        offsetHeight - scroll_Y <= 4000 &&
-        !this.state.isLoading &&
-        !this.state.limit &&
-        offsetHeight > 1500
-      ) {
-        this.getiine()
-        this.setState({
-          message: '',
-          isLoading: true,
-          limit: true,
-        })
-      }else if(this.state.limit){
-        this.setState({
-          message: '- FINISHED -',
-          isLoading: true,
-          limit: true,
-        })
-      }
-    })
+  async componentDidMount() {
+    await sleep(2000)
+    this.setState({ message: '1' })
   }
 
-  getiine = async () => {
-    await sleep(1000)
-    twitterAPI(this.state.images.max_id, this.state.getTweetNum)
-      .then(res => {
-        this.setIineImages(res)
-        this.setState({ isLoading: false })
-      })
-      .catch(() => {
-        this.setState({
-          message: '',
-          isLoading: false,
-          limit: true,
-        })
-        console.log('取得に失敗しました。')
-      })
-  }
-
-  setIineImages = (results: any) => {
-    this.setState({
-      images: {
-        url: this.state.images.url.concat(results.url),
-        height: this.state.images.height.concat(results.height),
-        source: this.state.images.source.concat(results.source),
-        max_id: String(results.max_id),
-      },
-    })
-    if (results.url.length === 0) {
-      this.setState({
-        message: '',
-      })
-      console.log('いいねした画像が見つかりませんでした。')
-      return
-    }
-    this.setState({
-      message: '',
-    })
-  }
 
   render() {
+    const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=&gettweetnum=`
+
     return (
       <div>
-        <ImageTable images={this.state.images} />
-        <div
-          className="font-bold mb-2 mt-16"
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          {this.state.message}
-        </div>
+        <ImageTable images={imagesList} />
+        <TweetGet url={endpoint} />
       </div>
     )
   }
 }
 export default like
 
-function twitterAPI(max_id: string, gettweetnum: Number) {
-  const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=${max_id}&gettweetnum=${gettweetnum}`
+interface ImagesI {
+  url: string[]
+  height: number[]
+  source: string[]
+  max_id: string
+}
+export let imagesList:ImagesI
+const TweetGet = ({url}:any):any => {
+  const { data, error } = useSWR([url], tweetImageFetcher)
+  if(error) return (<div className="font-bold mb-2 mt-16" style={{ textAlign: 'center' }}>画像取れなかったｸｿｩ</div>)
+  if(typeof data === 'object'){
+    imagesList = ({
+      url:(data as ImagesI).url,
+      height:(data as ImagesI).height,
+      source:(data as ImagesI).source,
+      max_id:(data as ImagesI).max_id,
+    })
+    if(!!data) {
+      return (<div className="font-bold mb-2 mt-16" style={{ textAlign: 'center' }}>- FINISHED -</div>)
+    }
+  }
+  return (<div className="font-bold mb-2 mt-16" style={{ textAlign: 'center' }}>画像取得中・・・</div>)
+}
+
+const tweetImageFetcher = (url:string) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(endpoint)
+      .get(url)
       .then(res => {
         resolve(res.data)
       })

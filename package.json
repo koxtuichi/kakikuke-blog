@@ -8,11 +8,6 @@
     "test": "craco test",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .gitignore"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "dependencies": {
     "@craco/craco": "^6.1.1",
     "@types/babel__core": "^7.1.12",
@@ -31,8 +26,10 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-moment": "^1.1.1",
+    "react-query": "^3.12.1",
     "rss": "^1.2.2",
     "sass": "^1.32.8",
+    "swr": "^0.5.3",
     "uuid": "^8.3.2",
     "vercel": "^21.2.3"
   },

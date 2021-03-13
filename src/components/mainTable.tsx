@@ -12,7 +12,6 @@ type typeImageTableState = {
   getTweetNum: Number
   isLoading: Boolean
   limit: Boolean
-  limitMassage: string
 }
 
 type typeImages = {
@@ -36,7 +35,6 @@ class like extends React.Component<{}, typeImageTableState> {
       getTweetNum: getFirstTweetNum,
       isLoading: false,
       limit: false,
-      limitMassage: '',
     }
   }
 
@@ -59,18 +57,22 @@ class like extends React.Component<{}, typeImageTableState> {
         offsetHeight > 1500
       ) {
         this.getiine()
+        this.setState({
+          message: '',
+          isLoading: true,
+          limit: true,
+        })
+      }else if(this.state.limit){
+        this.setState({
+          message: '- FINISHED -',
+          isLoading: true,
+          limit: true,
+        })
       }
     })
   }
 
   getiine = async () => {
-    if (this.state.limit) return
-    this.setState({
-      message: 'loading...',
-      isLoading: true,
-      limit: true,
-      limitMassage: '- FINISHED -',
-    })
     await sleep(1000)
     twitterAPI(this.state.images.max_id, this.state.getTweetNum)
       .then(res => {
@@ -112,15 +114,13 @@ class like extends React.Component<{}, typeImageTableState> {
     return (
       <div>
         <ImageTable images={this.state.images} />
-        {this.state.images.url.length === 0 && <div>{this.state.message}</div>}
         <div
           className="font-bold mb-2 mt-16"
           style={{
             textAlign: 'center',
-            display: !this.state.limit ? 'none' : null,
           }}
         >
-          {this.state.limitMassage}
+          {this.state.message}
         </div>
       </div>
     )

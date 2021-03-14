@@ -18,7 +18,7 @@ class like extends React.Component<{}, typeImageTableState> {
   }
 
   async componentDidMount() {
-    await sleep(2000)
+    await sleep(3000)
     this.setState({ message: '1' })
   }
 

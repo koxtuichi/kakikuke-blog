@@ -3,9 +3,7 @@ import axios from 'axios'
 import ImageTable from './imageTable'
 import { REACT_APP_API_ENDPOINT_URL } from '../lib/notion/server-constants'
 import { sleep } from '../lib/notion/utils'
-import useSWR from 'swr'
-
-const getFirstTweetNum = 30
+import useSWR, { SWRConfig } from 'swr'
 
 type typeImageTableState = {
   message: string
@@ -30,8 +28,10 @@ class like extends React.Component<{}, typeImageTableState> {
 
     return (
       <div>
-        <ImageTable images={imagesList} />
-        <TweetGet url={endpoint} />
+        <SWRConfig value={{dedupingInterval:10000*6*15}}>
+          <ImageTable images={imagesList} />
+          <TweetGet url={endpoint} />
+        </SWRConfig>
       </div>
     )
   }

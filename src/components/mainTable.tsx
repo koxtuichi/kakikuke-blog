@@ -13,13 +13,13 @@ class like extends React.Component<{}, typeImageTableState> {
   constructor(props: {}) {
     super(props)
     this.state = {
-      message: '',
+      message: null,
     }
   }
 
   async componentDidMount() {
-    await sleep(2000)
-    this.setState({ message: '1' })
+    await sleep(3000)
+    this.setState({ message: '- FINISHED -' })
   }
 
 
@@ -56,7 +56,7 @@ const TweetGet = ({url}:any):any => {
       max_id:(data as ImagesI).max_id,
     })
     if(!!data) {
-      return (<div className="font-bold mb-2 mt-16" style={{ textAlign: 'center' }}>- FINISHED -</div>)
+      return (<hr />)
     }
   }
   return (<div className="font-bold mb-2 mt-16" style={{ textAlign: 'center' }}>画像取得中・・・</div>)

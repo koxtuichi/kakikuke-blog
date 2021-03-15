@@ -18,10 +18,8 @@ class like extends React.Component<{}, typeImageTableState> {
   }
 
   async componentDidMount() {
-    await sleep(3000)
-    this.setState({ message: '- FINISHED -' })
+    window.setTimeout(() => this.setState({ message: '- FINISHED -' }), 2000);
   }
-
 
   render() {
     const endpoint = `${REACT_APP_API_ENDPOINT_URL}?maxid=&gettweetnum=`

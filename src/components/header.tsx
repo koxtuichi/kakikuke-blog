@@ -12,7 +12,7 @@ const navItems: { label: string; page?: string; link?: string }[] = [
 
 const ogImageUrl = '.\twitterCardImage.png'
 
-export default ({ titlePre = '', className = '' }) => {
+const Header = ({ titlePre = '', className = '' }) => {
   const { pathname } = useRouter()
 
   return (
@@ -48,3 +48,4 @@ export default ({ titlePre = '', className = '' }) => {
     </header>
   )
 }
+export default Header

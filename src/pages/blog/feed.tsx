@@ -52,9 +52,7 @@ export const getServerSideProps = async ({
   res.setHeader('Content-Type', 'text/xml')
   res.end(xml)
 
-  return {
-    props: {},
-  }
+  return
 }
 
 const Page = () => null

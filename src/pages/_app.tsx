@@ -3,9 +3,10 @@ import '../styles/index.scss'
 import 'katex/dist/katex.css'
 import Footer from '../components/footer'
 
-export default ({ Component, pageProps }) => (
+const App =  ({ Component, pageProps }) => (
   <>
     <Component {...pageProps} />
     <Footer />
   </>
 )
+export default App

@@ -45,16 +45,16 @@ export async function getStaticProps({ params: { tag } }) {
     return {
       props: {
         redirect: '/blog',
-      },
-      unstable_revalidate: 10,
+      revalidate: 10,
+    },
     }
   }
   return {
     props: {
       posts,
       tag,
-    },
-    unstable_revalidate: 10,
+    revalidate: 10,
+  },
   }
 }
 

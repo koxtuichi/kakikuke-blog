@@ -36,8 +36,8 @@ export async function getStaticProps() {
   return {
     props: {
       posts,
-    },
-    unstable_revalidate: 10,
+    revalidate: 10,
+  },
   }
 }
 export default ({ posts = [] }) => {

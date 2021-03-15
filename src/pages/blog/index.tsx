@@ -12,9 +12,9 @@ import {
 } from '../../lib/blog-helpers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import MouseCursor from '../../lib/notion/mouseCursor'
+import PostsTable from '../../components/postsTable'
 
 export let gettingCommonPosts = []
-
 export async function getStaticProps() {
   gettingCommonPosts = await getBlogIndex()
   const posts = Object.keys(gettingCommonPosts)
@@ -40,11 +40,13 @@ export async function getStaticProps() {
   },
   }
 }
-export default ({ posts = [] }) => {
+const Blog = ({ posts = [] }) => {
   return (
     <React.Fragment>
       <Header titlePre="Blog" className="mt-6" />
       <MouseCursor />
+
+      {/* <PostsTable /> */}
 
       <div style={{ height: '31px' }}></div>
 
@@ -115,3 +117,4 @@ export default ({ posts = [] }) => {
     </React.Fragment>
   )
 }
+export default Blog

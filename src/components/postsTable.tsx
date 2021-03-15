@@ -76,7 +76,7 @@ export default class PostsTable extends React.Component<{}, typeImageTableState>
     return (
       <div>
         <SWRConfig value={{dedupingInterval:10000*6*15}}>
-          {/* <PostsTableGet url={`${API_ENDPOINT}/loadPageChunk`} /> */}
+          <PostsTableGet url={`${API_ENDPOINT}/loadPageChunk`} />
         </SWRConfig>
       </div>
     )

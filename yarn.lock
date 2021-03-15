@@ -2097,7 +2097,7 @@
     "date-fns" "^1.27.2"
     "figures" "^2.0.0"
 
-"listr@^0.14.2", "listr@^0.14.3":
+"listr@^0.14.3":
   "integrity" "sha512-RmAl7su35BFd/xoMamRjpIE4j3v+L28o8CT5YhAXQJm1fD+1l9ngXY8JAQRJ+tFK2i5njvi0iRUKV09vPwA0iA=="
   "resolved" "https://registry.npmjs.org/listr/-/listr-0.14.3.tgz"
   "version" "0.14.3"
@@ -2304,7 +2304,7 @@
   "resolved" "https://registry.npmjs.org/modern-normalize/-/modern-normalize-1.0.0.tgz"
   "version" "1.0.0"
 
-"moment@^2.29.0", "moment@^2.29.1":
+"moment@^2.29.1":
   "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="
   "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
   "version" "2.29.1"
@@ -2386,7 +2386,7 @@
   "resolved" "https://registry.npmjs.org/nice-try/-/nice-try-1.0.5.tgz"
   "version" "1.0.5"
 
-"node-bin-setup@^1.0.0":
+"node-bin-setup@^1.0.0", "node-bin-setup@^1.0.6":
   "integrity" "sha512-uPIxXNis1CRbv1DwqAxkgBk5NFV3s7cMN/Gf556jSw6jBvV7ca4F9lRL/8cALcZecRibeqU+5dFYqFFmzv5a0Q=="
   "resolved" "https://registry.npmjs.org/node-bin-setup/-/node-bin-setup-1.0.6.tgz"
   "version" "1.0.6"
@@ -2840,7 +2840,7 @@
   "resolved" "https://registry.npmjs.org/process/-/process-0.11.10.tgz"
   "version" "0.11.10"
 
-"prop-types@^15.6.2", "prop-types@^15.7.0", "prop-types@15.7.2":
+"prop-types@15.7.2":
   "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   "version" "15.7.2"
@@ -2951,14 +2951,14 @@
     "minimist" "^1.2.0"
     "strip-json-comments" "~2.0.1"
 
-"react-dom@^16.6.0 || ^17", "react-dom@^16.8.3", "react-dom@^16.9.0 || ^17", "react-dom@^17.0.1":
-  "integrity" "sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug=="
-  "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.1.tgz"
-  "version" "17.0.1"
+"react-dom@17.0.0":
+  "integrity" "sha512-OGnFbxCjI2TMAZYMVxi4hqheJiN8rCEVVrL7XIGzCB6beNc4Am8M47HtkvxODZw9QgjmAPKpLba9FTu4fC1byA=="
+  "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.0.tgz"
+  "version" "17.0.0"
   dependencies:
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"
-    "scheduler" "^0.20.1"
+    "scheduler" "^0.20.0"
 
 "react-is@^16.8.1", "react-is@16.13.1":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
@@ -2984,15 +2984,13 @@
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"
   "version" "0.8.3"
 
-"react@^16.0 || ^17.0.0", "react@^16.11.0 || ^17.0.0", "react@^16.6.0", "react@^16.6.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.8.3", "react@^16.9.0 || ^17", "react@15.x.x || 16.x.x || 17.x.x", "react@17.0.1":
-  "integrity" "sha512-zJPnx/jKtuOEXCbQ9BKaxDMxR0001/hzxXwYxG8septeyYGfsgAei6NgfbVgOhbY1WOP2o3VPs/E9HaN+9hV3Q=="
-  "resolved" "https://registry.npmjs.org/react/-/react-16.6.0.tgz"
-  "version" "16.6.0"
+"react@17.0.0":
+  "integrity" "sha512-rG9bqS3LMuetoSUKHN8G3fMNuQOePKDThK6+2yXFWtoeTDLVNh/QCaxT+Jr+rNf4lwNXpx+atdn3Aa0oi8/6eQ=="
+  "resolved" "https://registry.npmjs.org/react/-/react-17.0.0.tgz"
+  "version" "17.0.0"
   dependencies:
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"
-    "prop-types" "^15.6.2"
-    "scheduler" "^0.10.0"
 
 "read-pkg@^5.2.0":
   "integrity" "sha512-Ug69mNOpfvKDAc2Q8DRpMjjzdtrnv9HcSMX+4VsZxD1aZ6ZzrIE7rlzXBtWTyhULSMKg076AW6WR5iZpD0JiOg=="
@@ -3166,22 +3164,14 @@
   "resolved" "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   "version" "2.1.2"
 
-"sass@^1.3.0", "sass@^1.32.8":
+"sass@^1.32.8":
   "integrity" "sha512-Sl6mIeGpzjIUZqvKnKETfMf0iDAswD9TNlv13A7aAF3XZlRPMq4VvJWBC2N2DXbp94MQVdNSFG6LfF/iOXrPHQ=="
   "resolved" "https://registry.npmjs.org/sass/-/sass-1.32.8.tgz"
   "version" "1.32.8"
   dependencies:
     "chokidar" ">=2.0.0 <4.0.0"
 
-"scheduler@^0.10.0":
-  "integrity" "sha512-+TSTVTCBAA3h8Anei3haDc1IRwMeDmtI/y/o3iBe3Mjl2vwYF9DtPDt929HyRmV/e7au7CLu8sc4C4W0VOs29w=="
-  "resolved" "https://registry.npmjs.org/scheduler/-/scheduler-0.10.0.tgz"
-  "version" "0.10.0"
-  dependencies:
-    "loose-envify" "^1.1.0"
-    "object-assign" "^4.1.1"
-
-"scheduler@^0.20.1":
+"scheduler@^0.20.0":
   "integrity" "sha512-LKTe+2xNJBNxu/QhHvDR14wUXHRQbVY5ZOYpOGWRzhydZUqrLb2JBvLPY7cAqFmqrWuDED0Mjk7013SZiOz6Bw=="
   "resolved" "https://registry.npmjs.org/scheduler/-/scheduler-0.20.1.tgz"
   "version" "0.20.1"
@@ -3560,7 +3550,7 @@
   "resolved" "https://registry.npmjs.org/stylis-rule-sheet/-/stylis-rule-sheet-0.0.10.tgz"
   "version" "0.0.10"
 
-"stylis@^3.5.0", "stylis@3.5.4":
+"stylis@3.5.4":
   "integrity" "sha512-8/3pSmthWM7lsPBKv7NXkzn2Uc9W7NotcwGNpJaa3k7WMM1XDCA4MgT5k/8BIexd5ydZdboXtU90XH9Ec4Bv/Q=="
   "resolved" "https://registry.npmjs.org/stylis/-/stylis-3.5.4.tgz"
   "version" "3.5.4"
@@ -3728,7 +3718,7 @@
   dependencies:
     "is-typedarray" "^1.0.0"
 
-"typescript@^3.9.9", "typescript@>=2.7":
+"typescript@^3.9.9":
   "integrity" "sha512-kdMjTiekY+z/ubJCATUPlRDl39vXYiMV9iyeMuEuXZh2we6zz80uovNN2WlAxmmdE/Z/YQe+EbOEXB5RHEED3w=="
   "resolved" "https://registry.npmjs.org/typescript/-/typescript-3.9.9.tgz"
   "version" "3.9.9"

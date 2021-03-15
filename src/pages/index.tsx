@@ -56,7 +56,7 @@ const RenderTagList = ({ tags }) => {
         <div style={{ textAlign: 'center' }}>
           <div className="font-bold mb-2 mt-16">コンセプト</div>
           <p className="mb-1">「ゲーム欲が掻き立てられるブログを発信したい」</p>
-          <p className="mb-1">中学生の頃、モンハンポータブルにハマってた</p>
+          <p className="mb-1">高校生の頃、モンハンポータブル3rdにハマってた</p>
           <p className="mb-1">友達の家に泊まって一緒に遊ぶのも楽しかったけど</p>
           <p className="mb-1">それと同じくらいブログをみるのにもハマってた</p>
           <p className="mb-1">

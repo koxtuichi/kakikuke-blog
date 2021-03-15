@@ -1,7 +1,7 @@
 import getBlogIndex from '../../../lib/notion/getBlogIndex'
 import { getTagLink, getDate, getBlogLink, postIsPublished } from '../../../lib/blog-helpers'
 import React, { useEffect } from 'react'
-import useRouter from 'next/router'
+import {useRouter} from 'next/router'
 import Link from 'next/link'
 import blogStyles from '../../../styles/blog.module.css'
 import Header from '../../../components/header'

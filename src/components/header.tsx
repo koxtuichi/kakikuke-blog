@@ -10,7 +10,7 @@ const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Favorite', page: '/favorite' },
 ]
 
-const ogImageUrl = 'https://xn--n8jdoikmo8i.com/twitterCardImage.png'
+const ogImageUrl = '/twitterCardImage.png'
 
 const Header = ({ titlePre = '', className = '' }) => {
   const { pathname } = useRouter()

@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "build": "next build && npm run build:rss",
+    "build": "next build",
     "build:rss": "node .next/serverless/scripts/build-rss.js",
     "test": "craco test",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .gitignore"

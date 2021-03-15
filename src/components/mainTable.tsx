@@ -18,7 +18,7 @@ class like extends React.Component<{}, typeImageTableState> {
   }
 
   async componentDidMount() {
-    window.setTimeout(() => this.setState({ message: '- FINISHED -' }), 2000);
+    window.setTimeout(() => this.setState({ message: '- FINISHED -' }), 4000);
   }
 
   render() {

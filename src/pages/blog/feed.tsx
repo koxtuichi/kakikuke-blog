@@ -31,11 +31,12 @@ async function generateFeedXml() {
     return 0
   })
   localPosts?.forEach(post => {
+    const url = encodeURIComponent(post.Slug)
     feed.item({
       title: post.Page,
       description: '', //なにもない
       date: new Date(post.Date),
-      url: `https://xn--n8jdoikmo8i.com/blog/${post.Slug}`,
+      url: `https://xn--n8jdoikmo8i.com/blog/${url}`,
     })
   })
 

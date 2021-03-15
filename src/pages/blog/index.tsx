@@ -14,12 +14,11 @@ import getBlogIndex from '../../lib/notion/getBlogIndex'
 import MouseCursor from '../../lib/notion/mouseCursor'
 import PostsTable from '../../components/postsTable'
 
-export let gettingCommonPosts = []
 export async function getStaticProps() {
-  gettingCommonPosts = await getBlogIndex()
-  const posts = Object.keys(gettingCommonPosts)
+  const postsTable = await getBlogIndex()
+  const posts = Object.keys(postsTable)
     .map(slug => {
-      const post = gettingCommonPosts[slug]
+      const post = postsTable[slug]
       if (!postIsPublished(post)) {
         return null
       }

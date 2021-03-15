@@ -9,12 +9,13 @@ import { sleep } from '../notion/utils'
 
 export default async function getBlogIndex(limit = 100, previews = false) {
   let postsTable: any = null
-  const useCache = process.env.USE_CACHE === 'true'
+  const useCache = true
   const cacheFile = `${BLOG_INDEX_CACHE}${previews ? '_previews' : ''}`
 
   if (useCache) {
     try {
       postsTable = JSON.parse(await readFile(cacheFile, 'utf8'))
+      // console.log(postsTable)
     } catch (_) {
       /* not fatal */
     }
@@ -22,6 +23,7 @@ export default async function getBlogIndex(limit = 100, previews = false) {
 
   if (!postsTable) {
     try {
+      console.log('!postsTable')
       const data = await rpc('loadPageChunk', {
         pageId: BLOG_INDEX_ID,
         limit: limit,
@@ -54,18 +56,8 @@ export default async function getBlogIndex(limit = 100, previews = false) {
       return {}
     }
 
-    // only get 10 most recent post's previews
+    
 
-    // オブジェクトの中身
-    // toatemwohakaishitaiyatu: {
-    //   id: '6d212294-acfe-4852-9f6c-aed50c6bf3ad',
-    //   Slug: 'toatemwohakaishitaiyatu',
-    //   Date: 1612796400768,
-    //   Published: 'Yes',
-    //   Tag: '小説',
-    //   Authors: [ '0b4c1439-c38b-41b3-9eb5-f4c51811245f' ],
-    //   Page: 'トーテムを破壊したい奴'
-    // },
     const postsKeys = Object.keys(postsTable).splice(0, 10)
     const sema = new Sema(3, { capacity: postsKeys.length })
 
@@ -89,10 +81,11 @@ export default async function getBlogIndex(limit = 100, previews = false) {
           })
       )
     }
+  }
 
-    if (useCache) {
-      writeFile(cacheFile, JSON.stringify(postsTable), 'utf8').catch(() => {})
-    }
+  if (useCache) {
+    writeFile(cacheFile, JSON.stringify(postsTable), 'utf8').catch(() => {})
+    // console.log(cacheFile)
   }
 
   return postsTable

@@ -2,14 +2,13 @@ import React from 'react'
 import axios from 'axios'
 import ImageTable from './imageTable'
 import { REACT_APP_API_ENDPOINT_URL } from '../lib/notion/server-constants'
-import { sleep } from '../lib/notion/utils'
 import useSWR, { SWRConfig } from 'swr'
 
 type typeImageTableState = {
   message: string
 }
 
-class like extends React.Component<{}, typeImageTableState> {
+class MainTable extends React.Component<{}, typeImageTableState> {
   constructor(props: {}) {
     super(props)
     this.state = {
@@ -34,7 +33,7 @@ class like extends React.Component<{}, typeImageTableState> {
     )
   }
 }
-export default like
+export default MainTable
 
 interface ImagesI {
   url: string[]

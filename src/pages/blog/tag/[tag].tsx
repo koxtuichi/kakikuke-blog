@@ -6,18 +6,11 @@ import Link from 'next/link'
 import blogStyles from '../../../styles/blog.module.css'
 import Header from '../../../components/header'
 import Moment from 'react-moment';
-import { gettingCommonPosts } from '../../blog/index'
 import MouseCursor from '../../../lib/notion/mouseCursor'
 import { sleep } from '../../../lib/notion/utils'
 
 export async function getStaticProps({ params: { tag } }) {
-  let postsTable
-  if (Object.keys(gettingCommonPosts).length === 0) {
-    postsTable = await getBlogIndex()
-  } else {
-    postsTable = gettingCommonPosts;
-  }
-
+  const postsTable = await getBlogIndex()
   const posts = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]
@@ -60,12 +53,7 @@ export async function getStaticProps({ params: { tag } }) {
 
 export async function getStaticPaths() {
   let tagList = [];
-  let postsTable
-  if (Object.keys(gettingCommonPosts).length === 0) {
-    postsTable = await getBlogIndex()
-  } else {
-    postsTable = gettingCommonPosts
-  }
+  const postsTable = await getBlogIndex()
 
   Object.keys(postsTable)
     .filter(post => postsTable[post].Published === 'Yes')

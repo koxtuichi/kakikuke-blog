@@ -5,17 +5,9 @@ import getBlogIndex from '../lib/notion/getBlogIndex'
 import MouseCursor from '../lib/notion/mouseCursor'
 import { postIsPublished } from '../lib/blog-helpers'
 import TagList from '../components/getTags'
-import { gettingCommonPosts } from './blog/index'
-import { sleep } from '../lib/notion/utils'
 
 export async function getStaticProps() {
-  let postsTable: any[] = []
-  if (Object.keys(gettingCommonPosts).length === 0) {
-    postsTable = await getBlogIndex()
-  } else {
-    postsTable = gettingCommonPosts
-  }
-
+  const postsTable = await getBlogIndex()
   const posts = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]

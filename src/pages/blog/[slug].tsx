@@ -12,18 +12,11 @@ import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { getTagLink, getBlogLink, getDate } from '../../lib/blog-helpers'
 import Moment from 'react-moment';
-import { gettingCommonPosts } from './index'
-import { sleep } from '../../lib/notion/utils'
 import MouseCursor from '../../lib/notion/mouseCursor'
 
 export async function getStaticProps({ params: { slug }, preview }) {
-  let postsTable
-  if (Object.keys(gettingCommonPosts).length === 0) {
-    postsTable = await getBlogIndex()
-  }else{
-    postsTable = gettingCommonPosts
-  }
-
+  
+  const postsTable = await getBlogIndex()
   const post = postsTable[slug]
 
   if (!post || (post.Published !== 'Yes' && !preview)) {
@@ -70,14 +63,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
 }
 
 export async function getStaticPaths() {
-  let postsTable
-
-  if (Object.keys(gettingCommonPosts).length === 0) {
-    postsTable = await getBlogIndex()
-  }else{
-    postsTable = gettingCommonPosts
-  }
-
+  const postsTable = await getBlogIndex()
   return {
     paths: Object.keys(postsTable)
       .filter(post => postsTable[post].Published === 'Yes')

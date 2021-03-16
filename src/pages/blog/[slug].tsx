@@ -438,7 +438,7 @@ const RenderPost = ({ post, redirect, preview }) => {
       <hr />
       </div>
       <div style={{ textAlign: 'center', margin: '0 auto' }}>
-        <a href={`http://twitter.com/share?text=かきくけこういち.COM%0a- ${post.Slug} -%0a&hashtags=ブログ&url=${url}%0a`}
+        <a href={`http://twitter.com/share?text=かきくけこういち.COM%0a- ${post.Slug} -%0a&hashtags=ブログ更新,${post.Tag}&url=${url}%0a`}
           rel="nofollow noopener noreferrer"
           target="_blank"
           style={{ backgroundColor: '#71bfaf', borderRadius: '24px', padding: '5px 10px', color: 'white' }}>シェアの手助け</a>

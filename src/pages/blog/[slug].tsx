@@ -442,8 +442,7 @@ const RenderPost = ({ post, redirect, preview }) => {
           rel="nofollow noopener noreferrer"
           target="_blank"
           style={{ backgroundColor: '#71bfaf', borderRadius: '24px', padding: '5px 10px', color: 'white' }}>シェアの手助け</a>
-        
-        <a href="https://game.blogmura.com/ranking/in?p_cid=10978808" 
+        <a href="https://game.blogmura.com/monsterhunter/ranking/in?p_cid=10978808" 
           style={{ backgroundColor: '#bf71ba', borderRadius: '24px', padding: '5px 10px', color: 'white', marginLeft: '10px' }} target="_blank" >ブログランクの手助け</a>
       </div>
     </React.Fragment>

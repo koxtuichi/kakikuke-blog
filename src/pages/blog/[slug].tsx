@@ -25,7 +25,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
       props: {
         redirect: '/blog',
         preview: false,
-        revalidate: 10,
+        revalidate: 5,
     },
     }
   }
@@ -57,7 +57,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
     props: {
       post,
       preview: preview || false,
-      revalidate: 10,
+      revalidate: 5,
   },
   }
 }

@@ -18,8 +18,9 @@ export default async function getBlogIndex(previews = true, useCache = true) {
     }
   }
 
+  console.log('postsTable')
+  console.log(postsTable)
   if (!postsTable) {
-    console.log('postsTable')
     try {
       const data = await rpc('loadPageChunk', {
         pageId: BLOG_INDEX_ID,

@@ -45,10 +45,7 @@ const Blog = ({ posts = [] }) => {
       <Header titlePre="Blog" className="mt-6" />
       <MouseCursor />
 
-      {/* <PostsTable /> */}
-
       <div style={{ height: '31px' }}></div>
-
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
         {posts.length === 0 && (
           <p className={blogStyles.noPosts}>助けて～記事が取得できないよぉお</p>

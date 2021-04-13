@@ -14,7 +14,6 @@ export default async function getBlogIndex(limit = 100, previews = true) {
   if (useCache) {
     try {
       postsTable = JSON.parse(await readFile(cacheFile, 'utf8'))
-      // console.log(postsTable)
     } catch (_) {
       /* not fatal */
     }
@@ -22,7 +21,6 @@ export default async function getBlogIndex(limit = 100, previews = true) {
 
   if (!postsTable) {
     try {
-      console.log('!postsTable')
       const data = await rpc('loadPageChunk', {
         pageId: BLOG_INDEX_ID,
         limit: limit,

@@ -6,7 +6,7 @@ import { getPostPreview } from './getPostPreview'
 import { readFile, writeFile } from '../fs-helpers'
 import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
 
-export default async function getBlogIndex(previews = true, useCache = false) {
+export default async function getBlogIndex(previews = true, useCache = true) {
   let postsTable: any = null
   const cacheFile = `${BLOG_INDEX_CACHE}${previews ? '_previews' : ''}`
 
@@ -19,6 +19,7 @@ export default async function getBlogIndex(previews = true, useCache = false) {
   }
 
   if (!postsTable) {
+    console.log('postsTable')
     try {
       const data = await rpc('loadPageChunk', {
         pageId: BLOG_INDEX_ID,

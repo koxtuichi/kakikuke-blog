@@ -16,7 +16,7 @@ import MouseCursor from '../../lib/notion/mouseCursor'
 
 export async function getStaticProps({ params: { slug }, preview }) {
   
-  const postsTable = await getBlogIndex(true, false)
+  const postsTable = await getBlogIndex()
   const post = postsTable[slug]
 
   if (!post || (post.Published !== 'Yes' && !preview)) {

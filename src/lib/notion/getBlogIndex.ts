@@ -6,9 +6,8 @@ import { getPostPreview } from './getPostPreview'
 import { readFile, writeFile } from '../fs-helpers'
 import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
 
-export default async function getBlogIndex(limit = 100, previews = true) {
+export default async function getBlogIndex(limit = 100, previews = true, useCache = true) {
   let postsTable: any = null
-  const useCache = true
   const cacheFile = `${BLOG_INDEX_CACHE}${previews ? '_previews' : ''}`
 
   if (useCache) {

@@ -15,7 +15,7 @@ import MouseCursor from '../../lib/notion/mouseCursor'
 import PostsTable from '../../components/postsTable'
 
 export async function getStaticProps() {
-  const postsTable = await getBlogIndex()
+  const postsTable = await getBlogIndex(100, true, false)
   const posts = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]

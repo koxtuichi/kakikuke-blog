@@ -29,8 +29,8 @@ export async function getStaticProps({ preview }) {
 
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
   return {
-    preview: preview || false,
     props: {
+      preview: preview || false,
       tags
     },
     revalidate: 5,

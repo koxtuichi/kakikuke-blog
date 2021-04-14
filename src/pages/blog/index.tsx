@@ -14,12 +14,12 @@ import getBlogIndex from '../../lib/notion/getBlogIndex'
 import MouseCursor from '../../lib/notion/mouseCursor'
 import PostsTable from '../../components/postsTable'
 
-export async function getStaticProps() {
+export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
   const posts = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]
-      if (!postIsPublished(post)) {
+      if (!preview && !postIsPublished(post)) {
         return null
       }
       return post
@@ -34,6 +34,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      preview: preview || false,
       posts,
     },
     revalidate: 5,

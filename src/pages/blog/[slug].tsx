@@ -55,11 +55,11 @@ export async function getStaticProps({ params: { slug }, preview }) {
   
   return {
     props: {
-      post,
       preview: preview || false,
-      revalidate: 5,
-  },
-  }
+      post,
+    },
+    revalidate: 5,
+}
 }
 
 export async function getStaticPaths() {

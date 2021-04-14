@@ -38,17 +38,17 @@ export async function getStaticProps({ params: { tag } }) {
     return {
       props: {
         redirect: '/blog',
+      },
       revalidate: 5,
-    },
-    }
+  }
   }
   return {
     props: {
       posts,
       tag,
+    },
     revalidate: 5,
-  },
-  }
+}
 }
 
 export async function getStaticPaths() {

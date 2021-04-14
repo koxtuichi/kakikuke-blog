@@ -6,7 +6,7 @@ import MouseCursor from '../lib/notion/mouseCursor'
 import { postIsPublished } from '../lib/blog-helpers'
 import TagList from '../components/getTags'
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const postsTable = await getBlogIndex(true, true, true)
   const posts = Object.keys(postsTable)
     .map(slug => {

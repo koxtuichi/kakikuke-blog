@@ -6,12 +6,12 @@ import MouseCursor from '../lib/notion/mouseCursor'
 import { postIsPublished } from '../lib/blog-helpers'
 import TagList from '../components/getTags'
 
-export async function getStaticProps() {
-  const postsTable = await getBlogIndex(true, true, true)
+export async function getStaticProps({ preview }) {
+  const postsTable = await getBlogIndex()
   const posts = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]
-      if (!postIsPublished(post)) {
+      if (!preview && !postIsPublished(post)) {
         return null
       }
       return post
@@ -29,13 +29,15 @@ export async function getStaticProps() {
 
   const tags = tagList.filter((tag, index, self) => self.indexOf(tag) === index)
   return {
+    preview: preview || false,
     props: {
       tags
     },
+    revalidate: 5,
   }
 }
 
-const RenderTagList = ({ tags }) => {
+const RenderTagList = ({ tags, preview }) => {
   return (
     <React.Fragment>
       <Header titlePre="Home" className="mt-6" />

@@ -26,7 +26,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
         redirect: '/blog',
         preview: false,
       },
-      revalidate: 10,
+      revalidate: 60,
     }
   }
   const postData = await getPageData(post.id)
@@ -55,10 +55,10 @@ export async function getStaticProps({ params: { slug }, preview }) {
   
   return {
     props: {
-      preview: preview || false,
       post,
+      preview: preview || false,
     },
-    revalidate: 10,
+    revalidate: 60,
   }
 }
 

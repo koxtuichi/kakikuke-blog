@@ -12,7 +12,6 @@ import {
 } from '../../lib/blog-helpers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import MouseCursor from '../../lib/notion/mouseCursor'
-import PostsTable from '../../components/postsTable'
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
@@ -37,7 +36,7 @@ export async function getStaticProps({ preview }) {
       preview: preview || false,
       posts,
     },
-    revalidate: 10,
+    revalidate: 60,
   }
 }
 const Blog = ({ posts = [] }) => {

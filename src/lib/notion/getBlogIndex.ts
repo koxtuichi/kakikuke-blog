@@ -3,24 +3,30 @@ import rpc, { values } from './rpc'
 import createTable from './createTable'
 import getTableData from './getTableData'
 import { getPostPreview } from './getPostPreview'
-import { readFile, writeFile } from '../fs-helpers'
+import { readFile, writeFile, unlinkFile } from '../fs-helpers'
 import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
 
-export default async function getBlogIndex(previews = true, useCache = true) {
+export default async function getBlogIndex(previews = true, useCache = true, reload = false) {
   let postsTable: any = null
   const cacheFile = `${BLOG_INDEX_CACHE}${previews ? '_previews' : ''}`
 
   if (useCache) {
     try {
+      if(reload){
+        console.log('reload')
+        const a = await readFile(cacheFile, 'utf8')
+        if(!!a){
+          await unlinkFile(cacheFile)
+        }
+      }
       postsTable = JSON.parse(await readFile(cacheFile, 'utf8'))
     } catch (_) {
       /* not fatal */
     }
   }
 
-  console.log('postsTable')
-  console.log(postsTable)
   if (!postsTable) {
+  console.log('!postsTable')
     try {
       const data = await rpc('loadPageChunk', {
         pageId: BLOG_INDEX_ID,

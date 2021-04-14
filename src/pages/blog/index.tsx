@@ -37,7 +37,7 @@ export async function getStaticProps({ preview }) {
       preview: preview || false,
       posts,
     },
-    revalidate: 5,
+    revalidate: 10,
   }
 }
 const Blog = ({ posts = [] }) => {

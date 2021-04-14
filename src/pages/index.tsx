@@ -33,7 +33,7 @@ export async function getStaticProps({ preview }) {
       preview: preview || false,
       tags
     },
-    revalidate: 5,
+    revalidate: 10,
   }
 }
 

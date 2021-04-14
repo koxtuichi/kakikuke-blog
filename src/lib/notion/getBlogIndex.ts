@@ -12,13 +12,13 @@ export default async function getBlogIndex(previews = true, useCache = true, rel
 
   if (useCache) {
     try {
-      if(reload){
-        console.log('reload')
-        const a = await readFile(cacheFile, 'utf8')
-        if(!!a){
-          await unlinkFile(cacheFile)
-        }
-      }
+      // if(reload){
+      //   console.log('reload')
+      //   const a = await readFile(cacheFile, 'utf8')
+      //   if(!!a){
+      //     await unlinkFile(cacheFile)
+      //   }
+      // }
       postsTable = JSON.parse(await readFile(cacheFile, 'utf8'))
     } catch (_) {
       /* not fatal */
@@ -26,7 +26,6 @@ export default async function getBlogIndex(previews = true, useCache = true, rel
   }
 
   if (!postsTable) {
-  console.log('!postsTable')
     try {
       const data = await rpc('loadPageChunk', {
         pageId: BLOG_INDEX_ID,

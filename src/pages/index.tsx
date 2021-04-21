@@ -43,7 +43,34 @@ const RenderTagList = ({ tags, preview }) => {
       <Header titlePre="Home" className="mt-6" />
       <MouseCursor />
       <div className={`${sharedStyles.layout}`}>
-        <img
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ writingMode: 'vertical-rl', display: 'inline-block' }}>
+            <p style={{ fontSize: 50, height: '100%', textAlign: 'start' }}>
+              <div>好きなこと、</div>
+              <div style={{ marginTop: 50 }}>好きなだけ。</div>
+              <div style={{ marginTop: 100 }}>そんな雑録。</div>
+            </p>
+          </div>
+        </div>
+        <div style={{ display: 'flex' }}>
+          <div style={{ width: '40vw' }} />
+          <a href="https://twitter.com/kakikukekoichi">
+            <img
+              className="hov_img_noLink"
+              style={{
+                margin: '10px auto',
+                borderRadius: '100%',
+                width: '20vw',
+                maxWidth: '650px',
+                minWidth: '300px',
+                marginTop: '20px',
+              }}
+              src="https://lh3.googleusercontent.com/rhioMCwTB2hY4PzVrscGgkihbBO_dTAret6cEOozfALC8rF3Vwp6E-lp57YmeZe9rD4FqyYtamOVvkOsUJIojbeeQPSDxDnhPT-NvtniXSDLNLifEz8xOnxqrhM1rDwqUVy8H1ky5A=w2400"
+            />
+          </a>
+          <div style={{ width: '40vw' }} />
+        </div>
+        {/* <img
           className="hov_img_noLink"
           style={{
             margin: '10px auto',
@@ -54,8 +81,8 @@ const RenderTagList = ({ tags, preview }) => {
             marginTop: '20px',
           }}
           src="https://lh3.googleusercontent.com/76V76X2N2K04JeBeKv12oEmyy2GB7P_7w6tkRORDYEk5NHtpUHeZvwllohbmeItpjNDJn7xASpIbLLrd7j1PHEALbzFaB5x2ZuDJWrQcRy3T99crTC9Yhk4q3P2wW4mf3xEEW22V9Q=w2400"
-        />
-        <div style={{ textAlign: 'center' }}>
+        /> */}
+        {/* <div style={{ textAlign: 'center' }}>
           <div className="font-bold mb-2 mt-16">コンセプト</div>
           <p className="mb-1">「ゲーム欲が掻き立てられるブログを発信したい」</p>
           <p className="mb-1">高校生の頃、モンハンポータブル3rdにハマってた</p>
@@ -106,7 +133,7 @@ const RenderTagList = ({ tags, preview }) => {
             ))}
           </div>
           <div style={{ minWidth: '15%' }}></div>
-        </div>
+        </div> */}
       </div>
     </React.Fragment>
   )

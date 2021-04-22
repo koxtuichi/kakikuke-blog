@@ -45,10 +45,10 @@ const RenderTagList = ({ tags, preview }) => {
       <div className={`${sharedStyles.layout}`}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ writingMode: 'vertical-rl', display: 'inline-block' }}>
-            <p style={{ fontSize: 50, height: '100%', textAlign: 'start' }}>
+            <p style={{ fontSize: 40, height: '100%', textAlign: 'start' }}>
               <div>好きなこと、</div>
-              <div style={{ marginTop: 50 }}>好きなだけ。</div>
-              <div style={{ marginTop: 100 }}>そんな雑録。</div>
+              <div style={{ marginTop: 40 }}>好きなだけ。</div>
+              <div style={{ marginTop: 80 }}>そんな雑録。</div>
             </p>
           </div>
         </div>

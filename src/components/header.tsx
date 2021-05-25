@@ -5,9 +5,9 @@ import { useRouter } from 'next/router'
 import styles from '../styles/header.module.css'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
-  { label: '僕', page: '/' },
-  { label: '雑', page: '/blog' },
-  { label: '好', page: '/favorite' },
+  { label: 'me', page: '/' },
+  { label: 'blog', page: '/blog' },
+  { label: 'like', page: '/favorite' },
 ]
 
 const ogImageUrl = 'https://xn--n8jdoikmo8i.com/twitterCardImage.png'

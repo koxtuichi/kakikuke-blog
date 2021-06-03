@@ -26,6 +26,7 @@ yarn-error.log*
 
 .blog_index_data
 .blog_index_data_previews
+.blog_index_data_previews_client
 
 .now
 .vercel

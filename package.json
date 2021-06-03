@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@craco/craco": "^6.1.1",
+    "@notionhq/client": "^0.1.8",
     "@types/babel__core": "^7.1.12",
     "@zeit/react-jsx-parser": "^2.0.0",
     "async-sema": "^3.1.0",

@@ -91,7 +91,7 @@ export async function getAllPosts() {
     page_size: 100,
   }
 
-  const cacheFile = `${BLOG_INDEX_CACHE}_previews`
+  const cacheFile = `${BLOG_INDEX_CACHE}_previews_client`
   try {
     allPosts = JSON.parse(await readFile(cacheFile, 'utf8'))
   }catch(e){
@@ -121,7 +121,7 @@ export async function getAllPosts() {
       return post
     })
 
-    // allPosts = [...allPosts, ...posts]
+    allPosts = [...allPosts, ...posts]
 
     if (!data.has_more) {
       break

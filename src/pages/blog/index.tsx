@@ -8,12 +8,32 @@ import {
   getBlogLink,
   getTagLink,
   getDate,
+  postIsPublished,
 } from '../../lib/blog-helpers'
 import MouseCursor from '../../lib/notion/mouseCursor'
 import { getAllPosts } from '../../lib/notion/client'
+import getBlogIndex from '../../lib/notion/getBlogIndex'
 
 export async function getStaticProps({ preview }) {
-  const posts = await getAllPosts();
+  // const posts = await getAllPosts();
+  const postsTable = await getBlogIndex()
+  const posts = Object.keys(postsTable)
+    .map(slug => {
+      const post = postsTable[slug]
+
+      if (!postIsPublished(post)) {
+        return null
+      }
+
+      return post
+    })
+    .filter(Boolean)
+
+  posts.sort((a, b) => {
+    if (a.Date > b.Date) return -1
+    if (a.Date < b.Date) return 1
+    return 0
+  })
 
   return {
     props: {
@@ -41,7 +61,7 @@ const Blog = ({ posts = [] }) => {
                 <div style={{ display: 'block' }}>
                   <div style={{ display: 'block' }}>
                     {post.Tag.length > 0 &&
-                      post.Tag.map((tag, i) => (
+                      post.Tag.split(',').map((tag, i) => (
                         <Link
                           key={i}
                           href="/blog/tag/[tag]"

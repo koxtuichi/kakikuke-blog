@@ -1,5 +1,4 @@
-import getBlogIndex from '../../../lib/notion/getBlogIndex'
-import { getTagLink, getDate, getBlogLink, postIsPublished } from '../../../lib/blog-helpers'
+import { getTagLink, getDate, getBlogLink } from '../../../lib/blog-helpers'
 import React, { useEffect } from 'react'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
@@ -7,58 +6,31 @@ import blogStyles from '../../../styles/blog.module.css'
 import Header from '../../../components/header'
 import Moment from 'react-moment';
 import MouseCursor from '../../../lib/notion/mouseCursor'
+import { getAllPosts } from '../../../lib/notion/client'
 
 export async function getStaticProps({ params: { tag } }) {
   // console.log(`Building tag: ${tag}`)
-  const postsTable = await getBlogIndex()
-  const posts = Object.keys(postsTable)
-    .map(slug => {
-      const post = postsTable[slug]
+  const postList = await getAllPosts();
+  const posts = postList.filter(post => {
+    if(!post.Tag.some(tagName => tagName === tag)) {
+      return null;
+    }
+    return post;
+  });
 
-      if (!postIsPublished(post)) {
-        return null
-      }
-
-      if(!post.Tag.match(tag)) {
-        return null
-      }
-
-      return post
-    })
-    .filter(Boolean)
-
-  posts.sort((a, b) => {
-    if (a.Date > b.Date) return -1
-    if (a.Date < b.Date) return 1
-    return 0
-  })
-  
-  if (posts.length === 0) {
-    console.log(`Failed to find post for slug: ${tag}`)
-    return {
-      props: {
-        redirect: '/blog',
-      },
-      revalidate: 60,
-  }
-  }
   return {
     props: {
       posts,
       tag,
     },
     revalidate: 60,
-}
+  }
 }
 
 export async function getStaticPaths() {
   let tagList = [];
-  const postsTable = await getBlogIndex()
-
-  Object.keys(postsTable)
-    .filter(post => postsTable[post].Published === 'Yes')
-    .map(post => postsTable[post] && postsTable[post].Tag.split(',').map(tag => tagList.push(tag)));
-
+  const posts = await getAllPosts();
+  posts.map(post => post.Tag.map(tag => tagList.push(tag)));
   return {
     paths: tagList.map(tag => getTagLink(tag)),
     fallback: true,
@@ -94,7 +66,7 @@ const RenderTag = ({ posts, tag, redirect }) => {
           <div style={{ display: 'block' }}>
             <div style={{ display: 'inline-flex' }}>
               {post.Tag.length > 0 && (
-                post.Tag.split(',').map((tag, i) =>
+                post.Tag.map((tag, i) =>
                   <Link key={i} href="/blog/tag/[tag]" as={getTagLink(tag)}>
                     <div>
                       <a className={blogStyles.tag}>{tag}</a>

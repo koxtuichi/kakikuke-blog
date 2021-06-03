@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import fetch from 'node-fetch'
 import {useRouter} from 'next/router'
 import Header from '../../components/header'
 import Heading from '../../components/heading'
@@ -9,72 +8,39 @@ import blogStyles from '../../styles/blog.module.css'
 import { textBlock } from '../../lib/notion/renderers'
 import getPageData from '../../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { getTagLink, getBlogLink, getDate } from '../../lib/blog-helpers'
 import Moment from 'react-moment';
 import MouseCursor from '../../lib/notion/mouseCursor'
+import { getAllPosts, getPostBySlug } from '../../lib/notion/client'
 
 export async function getStaticProps({ params: { slug }, preview }) {
   // console.log(`Building page: ${slug}`)
-  const postsTable = await getBlogIndex()
-  const post = postsTable[slug]
 
-  if (!post || (post.Published !== 'Yes' && !preview)) {
-    console.log(`Failed to find post for slug: ${slug}`)
-    return {
-      props: {
-        redirect: '/blog',
-        preview: false,
-      },
-      revalidate: 60,
-    }
-  }
-  const postData = await getPageData(post.id)
-  post.content = postData.blocks
-
-  for (let i = 0; i < postData.blocks.length; i++) {
-    const { value } = postData.blocks[i]
-    const { type, properties } = value
-    if (type == 'tweet') {
-      const src = properties.source[0][0]
-      const tweetId = src.split('/')[5].split('?')[0]
-      if (!tweetId) continue
-
-      try {
-        const res = await fetch(
-          `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
-        )
-        const json = await res.json()
-        properties.html = json.html.split('<script')[0]
-        post.hasTweet = true
-      } catch (_) {
-        console.log(`Failed to get tweet embed for ${src}`)
-      }
-    }
-  }
+  const post = await getPostBySlug(slug);
+  const postData = await getPageData(post.PageId)
+  const content = postData.blocks
   
   return {
     props: {
       post,
       preview: preview || false,
+      content,
     },
     revalidate: 60,
   }
 }
 
 export async function getStaticPaths() {
-  const postsTable = await getBlogIndex()
+  const posts = await getAllPosts();
   return {
-    paths: Object.keys(postsTable)
-      .filter(post => postsTable[post].Published === 'Yes')
-      .map(slug => getBlogLink(slug)),
+    paths: posts.map(post => getBlogLink(post.Slug)),
     fallback: true,
   }
 }
 
 const listTypes = new Set(['bulleted_list', 'numbered_list'])
 
-const RenderPost = ({ post, redirect, preview }) => {
+const RenderPost = ({ post, redirect, preview, content }) => {
   const router = useRouter()
 
   let listTagName: string | null = null
@@ -89,19 +55,6 @@ const RenderPost = ({ post, redirect, preview }) => {
   } = {}
 
   useEffect(() => {
-    const twitterSrc = 'https://platform.twitter.com/widgets.js'
-    if (post && post.hasTweet) {
-      if ((window as any)?.twttr?.widgets) {
-        ;(window as any).twttr.widgets.load()
-      } else if (!document.querySelector(`script[src="${twitterSrc}"]`)) {
-        const script = document.createElement('script')
-        script.async = true
-        script.src = twitterSrc
-        document.querySelector('body').appendChild(script)
-      }
-    }
-  }, [])
-  useEffect(() => {
     if (redirect && !post) {
       router.replace(redirect)
     }
@@ -110,16 +63,6 @@ const RenderPost = ({ post, redirect, preview }) => {
   if (router.isFallback) {
     return <div>Loading...</div>
   }
-
-  // if (!post) {
-  //   return (
-  //     <div className={blogStyles.post}>
-  //       <p>
-  //         Woops! didn't find that post, redirecting you back to the blog index
-  //       </p>
-  //     </div>
-  //   )
-  // }
 
   const url = `https%3A%2F%2Fxn--n8jdoikmo8i.com%2Fblog%2F${encodeURIComponent(encodeURIComponent(post.Slug))}`
 
@@ -146,7 +89,7 @@ const RenderPost = ({ post, redirect, preview }) => {
             <Moment format="//YYYY-MM-DD">{getDate(post.Date)}</Moment>
           )}
 
-          {post.Tag.split(',').map((tag, i) =>
+          {post.Tag.map((tag, i) =>
             <div key={i} style={{ marginLeft: '10px', fontSize: '14px', display: 'inline-flex' }}>
               <Link key={i} href="/blog/tag/[tag]" as={getTagLink(tag)}>
                 <a key={i}>#{tag}</a>
@@ -157,14 +100,14 @@ const RenderPost = ({ post, redirect, preview }) => {
 
         <hr />
 
-        {(!post.content || post.content.length === 0) && (
+        {(!content || content.length === 0) && (
           <p>助けて～記事が取得できないよぉお</p>
         )}
 
-        {(post.content || []).map((block, blockIdx) => {
+        {(content || []).map((block, blockIdx) => {
           const { value } = block
           const { type, properties, id, parent_id, format } = value
-          const isLast = blockIdx === post.content.length - 1
+          const isLast = blockIdx === content.length - 1
           const isList = listTypes.has(type)
           let toRender = []
 

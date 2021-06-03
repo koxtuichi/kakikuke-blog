@@ -17,7 +17,7 @@ const normalizeId = id => {
 
 const NOTION_TOKEN =
   process.env.NOTION_TOKEN ||
-  'd9c2caf9f81238e69ad4f77cb39b32e4f1a5a05d57b03d9f4274969dda3da15f62cde306e69314b0cab8ede87be3a7edbc131c6af7d5070a2e326ddbebab21943fde92f4cc2d0054ea4a3ea7672c'
+  '3bdf8406b2e10322826b75d7bfe90bf9b205eb7e09aaf58b537885a290ff5d9e9afe5a6e96e6f596da1639cca643b45c62043eac8f75af762ecb28e9ab9ad151ac77d6e70f4e042a8c6c8e6a5958'
 const BLOG_INDEX_ID = normalizeId(
   process.env.BLOG_INDEX_ID || 'bf915e99310d4fb39ea34797631a5ca3'
 )

@@ -42,6 +42,9 @@ if (!BLOG_INDEX_ID) {
 }
 
 module.exports = {
+  // future: {
+  //   webpack5: true,
+  // },
   target: 'experimental-serverless-trace',
 
   webpack(cfg, { dev, isServer }) {

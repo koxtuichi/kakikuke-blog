@@ -15,7 +15,7 @@ import Moment from 'react-moment';
 import MouseCursor from '../../lib/notion/mouseCursor'
 
 export async function getStaticProps({ params: { slug }, preview }) {
-  
+  // console.log(`Building page: ${slug}`)
   const postsTable = await getBlogIndex()
   const post = postsTable[slug]
 

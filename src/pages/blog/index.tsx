@@ -10,17 +10,21 @@ import {
   getDate,
   postIsPublished,
 } from '../../lib/blog-helpers'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
 import MouseCursor from '../../lib/notion/mouseCursor'
+// import { getAllPosts } from '../../lib/notion/client'
+import getBlogIndex from '../../lib/notion/getBlogIndex'
 
 export async function getStaticProps({ preview }) {
+  // const posts = await getAllPosts();
   const postsTable = await getBlogIndex()
   const posts = Object.keys(postsTable)
     .map(slug => {
       const post = postsTable[slug]
-      if (!preview && !postIsPublished(post)) {
+
+      if (!postIsPublished(post)) {
         return null
       }
+
       return post
     })
     .filter(Boolean)

@@ -138,7 +138,6 @@ export async function getAllPosts() {
 
   return allPosts
 }
-<<<<<<< HEAD
 
 export async function getPostBySlug(slug: string) {
   const data = await client.databases.query({
@@ -190,5 +189,3 @@ export async function getPostBySlug(slug: string) {
 
   return post
 }
-=======
->>>>>>> 252172e787078539f07447f04c4cf18776de63b2

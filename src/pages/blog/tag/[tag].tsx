@@ -10,6 +10,7 @@ import MouseCursor from '../../../lib/notion/mouseCursor'
 import { sleep } from '../../../lib/notion/utils'
 
 export async function getStaticProps({ params: { tag } }) {
+  console.log(`Building tag: ${tag}`)
   const postsTable = await getBlogIndex()
   const posts = Object.keys(postsTable)
     .map(slug => {

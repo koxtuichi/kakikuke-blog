@@ -380,13 +380,18 @@ const RenderPost = ({ post, redirect, preview, content }) => {
       <br />
       <hr />
       </div>
-      <div style={{ textAlign: 'center', margin: '0 auto' }}>
-        <a href={`http://twitter.com/share?text=かきくけこういち.COM%0a- ${post.Slug} -%0a&hashtags=ブログ更新,${post.Tag}&url=${url}%0a`}
-          rel="nofollow noopener noreferrer"
-          target="_blank"
-          style={{ backgroundColor: '#71bfaf', borderRadius: '24px', padding: '5px 10px', color: 'white' }}>シェアの手助け</a>
-        <a href="https://game.blogmura.com/game_today/ranking/in?p_cid=10978808" 
-          style={{ backgroundColor: '#bf71ba', borderRadius: '24px', padding: '5px 10px', color: 'white', marginLeft: '10px' }} target="_blank" >ブログランクの手助け</a>
+      <div className='hov_' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+        <div style={{ backgroundColor: '#bded87', borderRadius: '24px', padding: '5px 10px', color: 'white', width: 124, textAlign: 'center' }}>
+          <a href={`http://twitter.com/share?text=かきくけこういち.COM%0a- ${post.Slug} -%0a&hashtags=ブログ更新,${post.Tag}&url=${url}%0a`}
+            rel="nofollow noopener noreferrer" target="_blank">シェアで応援</a>
+        </div>
+        <div className='hov_' style={{ backgroundColor: '#ed8787', borderRadius: '24px', padding: '5px 10px', color: 'white', marginLeft: '10px', width: 124, textAlign: 'center' }}>
+          <a href={`http://b.hatena.ne.jp/entry/${url}/`} target="_blank" >ブックマークで応援</a>
+        </div>
+        <div className='hov_' style={{ backgroundColor: '#bded87', borderRadius: '24px', padding: '5px 10px', color: 'white', marginLeft: '10px', width: 124, textAlign: 'center' }}>
+          <a href="https://game.blogmura.com/game_today/ranking/in?p_cid=10978808" target="_blank" >ブログランクで応援</a>
+        </div>
+        
       </div>
     </React.Fragment>
   )

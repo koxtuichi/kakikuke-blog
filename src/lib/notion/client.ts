@@ -1,5 +1,7 @@
 import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
 import { readFile, writeFile } from '../fs-helpers'
+import getPageData from './getPageData'
+
 const { Client } = require('@notionhq/client')
 
 const client = new Client({
@@ -42,6 +44,21 @@ const params = {
       direction: 'descending',
     },
   ],
+  page_size: 100,
+}
+
+const imageParams = {
+  database_id: '9a5e21d8b62c4c3f949094b3e63ef99f',
+  filter: {
+    and: [
+      {
+        property: 'Published',
+        checkbox: {
+          equals: true,
+        },
+      },
+    ],
+  },
   page_size: 100,
 }
 
@@ -149,4 +166,50 @@ export async function getPostBySlug(slug: string) {
   }catch(e){
     console.log(e.mesasge);
   }
+}
+
+export async function getAllImages() {
+  let imagesInfo = [];
+
+  const cacheFile = `${BLOG_INDEX_CACHE}_previews_client_images`
+  try {
+    imagesInfo = JSON.parse(await readFile(cacheFile, 'utf8'))
+  }catch(e){
+    console.log(e)
+  }
+  if(0 < imagesInfo.length) return imagesInfo;
+
+  while (true) {
+    const data = await client.databases.query(imageParams)
+
+    // id取得（１つ固定）
+    const photoId = data.results.filter(item => {
+      const prop = item.properties
+      if(prop.Name.title[0].plain_text !== 'photo') return;
+      return true;
+    })
+    .map(item => {
+      return item.id;
+    })
+
+    // 画像情報を取得
+    // console.log(photoId[0]) //固定
+    const photoPage = await getPageData(photoId[0]);
+    imagesInfo = photoPage.blocks.filter(block => {
+      if(block.value.type !== 'image') return false;
+      return true;
+    })
+    .map(block => {
+      return block.value;
+    })
+    break;
+  }
+
+  try {
+    await writeFile(cacheFile, JSON.stringify(imagesInfo), 'utf8').catch(() => {})
+  }catch(e){
+    console.log(e)
+  }
+
+  return imagesInfo;
 }

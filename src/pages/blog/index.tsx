@@ -8,7 +8,6 @@ import {
   getBlogLink,
   getTagLink,
   getDate,
-  postIsPublished,
 } from '../../lib/blog-helpers'
 import MouseCursor from '../../lib/notion/mouseCursor'
 import { getAllPosts } from '../../lib/notion/client'

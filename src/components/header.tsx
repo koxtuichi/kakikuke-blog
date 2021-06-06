@@ -7,7 +7,8 @@ import styles from '../styles/header.module.css'
 const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'me', page: '/' },
   { label: 'blog', page: '/blog' },
-  { label: 'like', page: '/favorite' },
+  { label: 'fav', page: '/favorite' },
+  { label: 'photo', page: '/photo' },
 ]
 
 const ogImageUrl = 'https://xn--n8jdoikmo8i.com/twitterCardImage.png'

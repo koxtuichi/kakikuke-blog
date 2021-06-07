@@ -18,12 +18,10 @@ export async function getStaticProps() {
   }
 }
 
-const listTypes = new Set(['bulleted_list', 'numbered_list'])
-
 function Photo({ images, redirect }) {
   return (
     <React.Fragment>
-      <Header titlePre={''} className="mt-6" />
+      <Header titlePre='photo' className="mt-6" />
       <MouseCursor />
       <div className={blogStyles.post}>
         {images.map(img => {
@@ -113,30 +111,6 @@ function Photo({ images, redirect }) {
       </div>
     </React.Fragment>
   )
-}
-
-const COLOR_MAP = {
-  ['gray']: '#5e5e5e',
-  ['brown']: '#e3be78',
-  ['orange']: '#f5b622',
-  ['yellow']: '#c4c934',
-  ['teal']: '#79bf71',
-  ['blue']: '#24dced',
-  ['purple']: '#d3adff',
-  ['pink']: '#ff7878',
-  ['red']: '#ff5252',
-}
-
-const BK_COLOR_MAP = {
-  ['gray_background']: '#f5f5f5',
-  ['brown_background']: '#fcf0e8',
-  ['orange_background']: '#fcf6e8',
-  ['yellow_background']: '#f9fce8',
-  ['teal_background']: '#e8fcef',
-  ['blue_background']: '#e8f0ff',
-  ['purple_background']: '#f2e8fc',
-  ['pink_background']: '#fbe8fc',
-  ['red_background']: '#fce8e8',
 }
 
 export default Photo

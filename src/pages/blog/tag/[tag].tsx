@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
 import blogStyles from '../../../styles/blog.module.css'
+import sharedStyles from '../../../styles/shared.module.css'
 import Header from '../../../components/header'
 import Moment from 'react-moment';
 import MouseCursor from '../../../lib/notion/mouseCursor'
@@ -57,18 +58,18 @@ const RenderTag = ({ posts, tag, redirect }) => {
       <div className={blogStyles.tagHeader} style={{ height: '40px', fontSize: '16px', textAlign: 'center' }}>
         <div>{tag}の記事一覧</div>
       </div>
-      <div className={blogStyles.blogIndex}>
+      <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
         {!tag && (
           <p className={blogStyles.noPosts}>助けて～記事が取得できないよぉお</p>
         )}
         {posts.map(post => 
         <div className={blogStyles.postPreview} key={post.Slug}>
           <div style={{ display: 'block' }}>
-            <div style={{ display: 'inline-flex' }}>
+            <div style={{ display: 'block' }}>
               {post.Tag.length > 0 && (
                 post.Tag.map((tag, i) =>
                   <Link key={i} href="/blog/tag/[tag]" as={getTagLink(tag)}>
-                    <div>
+                    <div style={{ display: 'inline-flex' }}>
                       <a className={blogStyles.tag}>{tag}</a>
                     </div>
                   </Link>

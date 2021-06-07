@@ -7,6 +7,9 @@ const { Client } = require('@notionhq/client')
 const client = new Client({
   auth: 'secret_8poT1VLqlmcF48T3XWRa2A2yygx1WTl76E1E4wprmee',
 })
+const clientForPhoto = new Client({
+  auth: 'secret_LaQsgBkMmqBotFffvYGMCD0g8kZME2jvTwiejypOod9',
+})
 
 interface Post {
   PageId: string
@@ -180,7 +183,7 @@ export async function getAllImages() {
   if(0 < imagesInfo.length) return imagesInfo;
 
   while (true) {
-    const data = await client.databases.query(imageParams)
+    const data = await clientForPhoto.databases.query(imageParams)
 
     // id取得（１つ固定）
     const photoId = data.results.filter(item => {

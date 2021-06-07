@@ -20,7 +20,7 @@ export async function getStaticProps() {
 
 const listTypes = new Set(['bulleted_list', 'numbered_list'])
 
-const RenderPost = ({ images, redirect }) => {
+function Photo({ images, redirect }) {
   return (
     <React.Fragment>
       <Header titlePre={''} className="mt-6" />
@@ -139,4 +139,4 @@ const BK_COLOR_MAP = {
   ['red_background']: '#fce8e8',
 }
 
-export default RenderPost
+export default Photo

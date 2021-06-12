@@ -6,30 +6,32 @@ import { getAllImages } from '../../lib/notion/client'
 import Image from 'next/image'
 import getNotionAssetUrls from '../../lib/notion/getNotionAssetUrls'
 import { NextApiResponse } from 'next'
-import { BLOG_INDEX_CACHE } from '../../lib/notion/server-constants'
-import { readFile, writeFile } from '../../lib/fs-helpers'
+// import { BLOG_INDEX_CACHE } from '../../lib/notion/server-constants'
+// import { readFile, writeFile } from '../../lib/fs-helpers'
 
 export async function getStaticProps() {
   // console.log(`Building page: ${slug}`)
 
   const images = await getAllImages();
 
-  const cacheFile = `${BLOG_INDEX_CACHE}_previews_client_imageUrls`
+  // const cacheFile = `${BLOG_INDEX_CACHE}_previews_client_imageUrls`
   let urls = [];
-  try {
-    urls = JSON.parse(await readFile(cacheFile, 'utf8'))
-  }catch(e){
-    console.log(e)
-  }
+  // try {
+  //   urls = JSON.parse(await readFile(cacheFile, 'utf8'))
+  // }catch(e){
+  //   console.log(e)
+  // }
 
-  if(urls.length === 0) {
-    urls = await getUrls(images);
-    try {
-      await writeFile(cacheFile, JSON.stringify(urls), 'utf8').catch(() => {})
-    }catch(e){
-      console.log(e)
-    }
-  }
+  urls = await getUrls(images);
+
+  // if(urls.length === 0) {
+  //   urls = await getUrls(images);
+  //   try {
+  //     await writeFile(cacheFile, JSON.stringify(urls), 'utf8').catch(() => {})
+  //   }catch(e){
+  //     console.log(e)
+  //   }
+  // }
 
   urls = urls.sort((a, b) => {
     // createdTimeは分単位

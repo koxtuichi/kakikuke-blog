@@ -65,7 +65,7 @@ function Photo({ urls }) {
       <Header titlePre='photo' className="mt-6" />
       <MouseCursor />
       <div className={blogStyles.post}>
-        {urls.map((url, i) => {
+        {urls.filter(url => !!url.block_aspect_ratio).map((url, i) => {
           return (
             <React.Fragment key={i}>
             <Image

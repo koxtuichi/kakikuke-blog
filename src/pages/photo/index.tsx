@@ -53,7 +53,7 @@ const getUrls = async (images) => {
     const caption = properties.caption && {...properties.caption}['0'][0];
     const { signedUrls = [], ...urlsResponse } = await getNotionAssetUrls(res, encodeURIComponent(display_source), id);
     if(signedUrls.length === 0) return null;
-    const obj = { id: id, url: signedUrls[0], caption: (caption || null), width: (block_width || null), ratio: (block_aspect_ratio || null), createdTime: created_time };
+    const obj = { id: id, url: signedUrls[0], caption: (caption || null), width: block_width, ratio: (block_aspect_ratio || null), createdTime: created_time };
     urls.push(obj)
   }))
   return urls;
@@ -65,7 +65,7 @@ function Photo({ urls }) {
       <Header titlePre='photo' className="mt-6" />
       <MouseCursor />
       <div className={blogStyles.post}>
-        {urls.filter(url => !!url.block_aspect_ratio).map((url, i) => {
+        {urls.map((url, i) => {
           return (
             <React.Fragment key={i}>
             <Image

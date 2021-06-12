@@ -35,7 +35,7 @@ export async function getStaticProps() {
     // createdTimeは分単位
     return (a.createdTime > b.createdTime ? -1 : 1);
   })
-  
+
   return {
     props: {
       urls
@@ -51,9 +51,9 @@ const getUrls = async (images) => {
     const { id, properties, created_time, format = {} } = img;
     const { display_source, block_width, block_aspect_ratio } = format;
     const caption = properties.caption && {...properties.caption}['0'][0];
-    const { signedUrls = [], ...urlsResponse } = await getNotionAssetUrls(res, encodeURIComponent(display_source), id);
+    const { signedUrls = [], ...urlsResponse } = await getNotionAssetUrls(res, display_source, id);
     if(signedUrls.length === 0) return null;
-    const obj = { id: id, url: signedUrls[0], caption: (caption || null), width: block_width, ratio: block_aspect_ratio, createdTime: created_time };
+    const obj = { id: id, url: decodeURIComponent(signedUrls[0]), caption: (caption || null), width: block_width, ratio: block_aspect_ratio, createdTime: created_time };
     urls.push(obj)
   }))
   return urls;

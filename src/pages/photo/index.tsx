@@ -22,8 +22,6 @@ export async function getStaticProps() {
     console.log(e)
   }
 
-  urls = await getUrls(images);
-
   if(urls.length === 0) {
     urls = await getUrls(images);
     try {

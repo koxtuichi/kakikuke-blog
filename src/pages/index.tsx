@@ -14,7 +14,7 @@ export async function getStaticProps() {
 const RenderTagList = () => {
   return (
     <React.Fragment>
-      <Header titlePre="Home" className="mt-6" />
+      <Header titlePre="me" className="mt-6" />
       <MouseCursor />
       <div className={`${sharedStyles.layout}`}>
         <div style={{ textAlign: 'center' }}>

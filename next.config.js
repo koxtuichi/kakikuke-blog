@@ -46,6 +46,9 @@ module.exports = {
   //   webpack5: true,
   // },
   target: 'experimental-serverless-trace',
+  images: {
+    domains: ['s3.us-west-2.amazonaws.com'],
+  },
 
   webpack(cfg, { dev, isServer }) {
     // only compile build-rss in production server build

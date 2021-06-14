@@ -23,7 +23,7 @@ export async function getStaticProps() {
   }
   // urls = await getUrls(images);
 
-  if(urls.length === 0) {
+  if(urls.length < images.length) {
     urls = await getUrls(images);
     try {
       await writeFile(cacheFile, JSON.stringify(urls), 'utf8').catch(() => {})
@@ -31,6 +31,14 @@ export async function getStaticProps() {
       console.log(e)
     }
   }
+  // if(urls.length === 0) {
+  //   urls = await getUrls(images);
+  //   try {
+  //     await writeFile(cacheFile, JSON.stringify(urls), 'utf8').catch(() => {})
+  //   }catch(e){
+  //     console.log(e)
+  //   }
+  // }
 
   urls = urls.sort((a, b) => {
     // createdTimeは分単位

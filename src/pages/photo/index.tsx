@@ -21,7 +21,6 @@ export async function getStaticProps() {
   }catch(e){
     console.log(e)
   }
-  // urls = await getUrls(images);
 
   if(urls.length < images.length) {
     urls = await getUrls(images);
@@ -31,14 +30,6 @@ export async function getStaticProps() {
       console.log(e)
     }
   }
-  // if(urls.length === 0) {
-  //   urls = await getUrls(images);
-  //   try {
-  //     await writeFile(cacheFile, JSON.stringify(urls), 'utf8').catch(() => {})
-  //   }catch(e){
-  //     console.log(e)
-  //   }
-  // }
 
   urls = urls.sort((a, b) => {
     // createdTimeは分単位
@@ -69,27 +60,28 @@ const getUrls = async (images) => {
 }
 
 function Photo({ urls }) {
+  console.log('photo')
   return (
     <React.Fragment>
       <Header titlePre='photo' className="mt-6" />
       <MouseCursor />
       <div className={blogStyles.post}>
         {urls.map((url, i) => {
+          const height = url.width*url.ratio;
           return (
             <React.Fragment key={i}>
-            <Image
-              key={i}
-              className={`hov_img_noLink`}
-              src={url.url}
-              alt={url.caption}
-              width={url.width}
-              height={url.width*url.ratio}
-              quality={100}
-              loading='lazy'
-            />
-            <div key={i} style={{ color: '#3D3D3D', padding: 10, }}>{url.caption}</div>
-            <hr />
-            <div key={i} style={{ height: 20 }} />
+              <Image
+                className={`hov_img_noLink`}
+                src={url.url}
+                alt={url.caption}
+                width={url.width}
+                height={height}
+                quality={50}
+                priority={true}
+              />
+              <div style={{ color: '#3D3D3D', padding: 10, }}>{url.caption}</div>
+              <hr />
+              <div style={{ height: 20 }} />
             </React.Fragment>
           )
         })}

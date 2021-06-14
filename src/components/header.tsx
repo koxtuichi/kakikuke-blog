@@ -37,6 +37,7 @@ const Header = ({ titlePre = '', className = '' }) => {
         <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff"></meta>
+        <meta name="google-site-verification" content="8y6qbzkpX5YYnycu44SsUJXr3qc4Ugia9SY_DjabUZk" />
       </Head>
       <ul>
         {navItems.map(({ label, page, link }) => (

@@ -31,7 +31,11 @@ export async function getStaticProps({ params: { tag } }) {
 export async function getStaticPaths() {
   let tagList = [];
   const posts = await getAllPosts();
-  posts.map(post => post.Tag.map(tag => tagList.push(tag)));
+  posts.map(post => post.Tag.map(tag => {
+    if(!tagList.some(t => t === tag)) {
+      tagList.push(tag)
+    }
+  }));
   return {
     paths: tagList.map(tag => getTagLink(tag)),
     fallback: true,

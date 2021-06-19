@@ -115,7 +115,7 @@ function Photo({ urls }) {
                 alt={url.caption}
                 width={url.width}
                 height={height}
-                quality={50}
+                // quality={50}
                 priority={true}
               />
               <div style={{ color: '#3D3D3D', padding: 10, }}>{url.caption}</div>

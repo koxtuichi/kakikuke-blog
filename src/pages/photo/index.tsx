@@ -8,10 +8,10 @@ import getNotionAssetUrls from '../../lib/notion/getNotionAssetUrls'
 import { NextApiResponse } from 'next'
 import { BLOG_INDEX_CACHE } from '../../lib/notion/server-constants'
 import { readFile, writeFile } from '../../lib/fs-helpers'
+import Jimp from 'jimp';
 
 export async function getStaticProps() {
   // console.log(`Building page: ${slug}`)
-
   const images = await getAllImages();
 
   const cacheFile = `${BLOG_INDEX_CACHE}_previews_client_imageUrls`
@@ -36,8 +36,29 @@ export async function getStaticProps() {
     return (a.createdTime > b.createdTime ? -1 : 1);
   })
 
-  console.log(urls)
+  let isExistsImg = false;
+  try {
+    await readFile(`/images/${urls.length-1}.jpg`)
+    isExistsImg = true;
+  }catch(e){
+    console.log(e.message);
+    isExistsImg = false;
+  }
 
+  if(!isExistsImg) {
+    await urls.forEach(async (url, index) => {
+      await Jimp.read(url.url)
+      .then(lenna => {
+        return lenna
+          .quality(60)
+          .write(`${process.env.PUBLIC_URL || 'public'}/images/${index}.jpg`);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    })
+  }
+  
   return {
     props: {
       urls
@@ -45,6 +66,22 @@ export async function getStaticProps() {
     revalidate: 60,
   }
 }
+
+// const writeImg = async (urls) => {
+//   const result = urls.forEach((url, index) => {
+//     Jimp.read(url.url)
+//     .then(lenna => {
+//       return lenna
+//         .quality(60)
+//         .write(`${process.env.PUBLIC_URL || 'public'}/${index}.jpg`);
+//     })
+//     .catch(err => {
+//       console.error(err);
+//     });
+//   })
+
+//   return Promise.all(result).then(() => name);
+// } 
 
 const getUrls = async (images) => {
   let urls = [];
@@ -62,7 +99,7 @@ const getUrls = async (images) => {
 }
 
 function Photo({ urls }) {
-  console.log('photo')
+
   return (
     <React.Fragment>
       <Header titlePre='photo' className="mt-6" />
@@ -74,7 +111,7 @@ function Photo({ urls }) {
             <React.Fragment key={i}>
               <Image
                 className={`hov_img_noLink`}
-                src={url.url}
+                src={`/images/${i}.jpg`}
                 alt={url.caption}
                 width={url.width}
                 height={height}

@@ -19,6 +19,7 @@
     "fs": "^0.0.1-security",
     "github-slugger": "^1.2.1",
     "gsap": "^3.6.0",
+    "jimp": "^0.16.1",
     "katex": "^0.12.0",
     "moment": "^2.29.1",
     "next": "^10.0.8",

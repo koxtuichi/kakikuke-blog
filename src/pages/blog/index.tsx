@@ -43,7 +43,7 @@ const Blog = ({ posts = [] }) => {
                       post.Tag.map((tag, i) => (
                         <Link
                           key={i}
-                          href="/blog/tag/[tag]"
+                          href="/tag/[tag]"
                           as={getTagLink(tag)}
                         >
                           <div key={i} style={{ display: 'inline-flex' }}>

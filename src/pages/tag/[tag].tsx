@@ -1,13 +1,13 @@
-import { getTagLink, getDate, getBlogLink } from '../../../lib/blog-helpers'
+import { getTagLink, getDate, getBlogLink } from '../../lib/blog-helpers'
 import React, { useEffect } from 'react'
 import {useRouter} from 'next/router'
 import Link from 'next/link'
-import blogStyles from '../../../styles/blog.module.css'
-import sharedStyles from '../../../styles/shared.module.css'
-import Header from '../../../components/header'
+import blogStyles from '../../styles/blog.module.css'
+import sharedStyles from '../../styles/shared.module.css'
+import Header from '../../components/header'
 import Moment from 'react-moment';
-import MouseCursor from '../../../lib/notion/mouseCursor'
-import { getAllPosts } from '../../../lib/notion/client'
+import MouseCursor from '../../lib/notion/mouseCursor'
+import { getAllPosts } from '../../lib/notion/client'
 
 export async function getStaticProps({ params: { tag } }) {
   // console.log(`Building tag: ${tag}`)
@@ -72,7 +72,7 @@ const RenderTag = ({ posts, tag, redirect }) => {
             <div style={{ display: 'block' }}>
               {post.Tag.length > 0 && (
                 post.Tag.map((tag, i) =>
-                  <Link key={i} href="/blog/tag/[tag]" as={getTagLink(tag)}>
+                  <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
                     <div style={{ display: 'inline-flex' }}>
                       <a className={blogStyles.tag}>{tag}</a>
                     </div>

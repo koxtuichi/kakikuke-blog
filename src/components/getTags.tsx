@@ -30,7 +30,7 @@ class TagList extends React.Component<typeTag> {
           display: 'inline-block',
         }}
       >
-        <Link href={'/blog/tag/[tag]'} as={getTagLink(this.props.tag)}>
+        <Link href={'/tag/[tag]'} as={getTagLink(this.props.tag)}>
           <a>#{this.props.tag}</a>
         </Link>
       </div>

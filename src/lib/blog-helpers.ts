@@ -3,7 +3,7 @@ export const getBlogLink = (slug: string) => {
 }
 
 export const getTagLink = (tag: string) => {
-  return encodeURI(`/blog/tag/${tag}`)
+  return encodeURI(`/tag/${tag}`)
 }
 
 export const getDate = date => {

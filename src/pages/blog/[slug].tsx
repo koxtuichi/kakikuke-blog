@@ -91,7 +91,7 @@ const RenderPost = ({ post, redirect, preview, content }) => {
 
           {post.Tag.map((tag, i) =>
             <div key={i} style={{ marginLeft: '10px', fontSize: '14px', display: 'inline-flex' }}>
-              <Link key={i} href="/blog/tag/[tag]" as={getTagLink(tag)}>
+              <Link key={i} href="/tag/[tag]" as={getTagLink(tag)}>
                 <a key={i}>#{tag}</a>
               </Link>
             </div>

@@ -11,7 +11,7 @@ import { getAllPosts } from '../../lib/notion/client'
 
 export async function getStaticProps({ params: { tag } }) {
   // console.log(`Building tag: ${tag}`)
-  const postList = await getAllPosts();
+  const postList = await getAllPosts(true);
   const posts = postList.filter(post => {
     if(!post.Tag.some(tagName => tagName === tag)) {
       return null;

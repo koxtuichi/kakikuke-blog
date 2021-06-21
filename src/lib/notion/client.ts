@@ -65,10 +65,10 @@ const imageParams = {
   page_size: 100,
 }
 
-export async function getAllPosts() {
+export async function getAllPosts(istag = false) {
   let allPosts: Post[] = []
 
-  const cacheFile = `${BLOG_INDEX_CACHE}_previews_client`
+  const cacheFile = istag ? `${BLOG_INDEX_CACHE}_previews_client_tag` : `${BLOG_INDEX_CACHE}_previews_client`;
   try {
     allPosts = JSON.parse(await readFile(cacheFile, 'utf8'))
   }catch(e){

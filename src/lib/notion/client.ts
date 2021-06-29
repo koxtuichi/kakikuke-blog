@@ -1,4 +1,4 @@
-import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
+import { BLOG_INDEX_CACHE } from './server-constants'
 import { readFile, writeFile } from '../fs-helpers'
 import getPageData from './getPageData'
 
@@ -23,7 +23,7 @@ interface Post {
 }
 
 const params = {
-  database_id: BLOG_INDEX_ID,
+  database_id: 'bf915e99310d4fb39ea34797631a5ca3',
   filter: {
     and: [
       {
